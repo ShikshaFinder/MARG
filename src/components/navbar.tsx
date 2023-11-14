@@ -277,12 +277,12 @@ interface NavItem {
 
 const NAV_ITEMS: Array<NavItem> = [
   {
-    label: "School & Coaching Classes",
+    label: "Create & Edit your platform",
     children: [
       {
-        label: "Schools",
-        subLabel: "Choose the right school For the best future of yours",
-        href: "/School",
+        label: "Create & Edit Your platform",
+        subLabel: "Let the world know the quality of your education",
+        href: "/formm",
       },
       {
         label: "Coaching classes",
@@ -307,11 +307,11 @@ const NAV_ITEMS: Array<NavItem> = [
     ],
   },
   {
-    label: "Solve My Doubts",
+    label: "Analytics",
     href: "https://launching-soon-shikshafinder.my.canva.site/",
   },
   {
-    label: "For parents",
+    label: "Start Marketing",
     href: "/parent",
   },
 ];

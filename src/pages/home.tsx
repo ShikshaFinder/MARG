@@ -1,14 +1,16 @@
-import Hero from "./components/hero";
-import Aboutus from "./components/aboutus";
+import Hero from "../components/hero";
+import Aboutus from "../components/aboutus";
 
 export default function Home() {
-    return (
-      <>
-        <Hero />
-        <Aboutus />
-      </>
-    );
+  return (
+    <>
+      <Hero />
+      <Aboutus />
+    </>
+  );
 }
 
-{/* <Hero />
-          <Aboutus /> */}
+{
+  /* <Hero />
+          <Aboutus /> */
+}
