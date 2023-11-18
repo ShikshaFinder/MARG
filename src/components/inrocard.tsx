@@ -1,5 +1,5 @@
 import React from 'react'
-import Imagee from './imgg'
+// import Imagee from './imgg'
 import {
   Image,
   Button,
@@ -8,7 +8,8 @@ import {
   CardBody,
   Heading,
   Text,
-  CardFooter
+  CardFooter,
+  Input
 } from "@chakra-ui/react";
 
 function introcard() {
@@ -39,7 +40,16 @@ function introcard() {
           </CardBody>
 
           <CardFooter>
-            <Imagee />
+            {/* <Imagee /> */}
+            <Button>
+              <Input
+                type="file"
+                accept="image/*"
+                onChange={(event) => {
+                  console.log("image uploaded");
+                }}
+              />
+            </Button>
           </CardFooter>
         </Stack>
       </Card>
