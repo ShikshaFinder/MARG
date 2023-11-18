@@ -1,6 +1,6 @@
 import { Box, Input, Button } from "@chakra-ui/react";
 
-export const Chatbot = () => {
+export  default function Chatbot {
   return (
     <Box
       position="fixed"

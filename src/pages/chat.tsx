@@ -1,5 +1,5 @@
 import React from "react";
-import { Chatbot } from "../components/chatbot";
+import  Chatbot from "../components/chatbot";
 import Introcard from "../components/inrocard";
 function chat() {
   return (
