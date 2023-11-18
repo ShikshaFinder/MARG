@@ -3,16 +3,13 @@ import { Inter } from "next/font/google";
 import Hero from "../components/hero";
 import Waitlist from "../components/Waitlist";
 import Aboutus from "../components/aboutus";
-import supabase from "../../supabase"
-
-
+import supabase from "../../supabase";
 
 // import Parentscontent from "./components/Parentscontent";
 const inter = Inter({ subsets: ["latin"] });
 
-export default function Home({data}) {
-
-  console.log(data.data)
+export default function Home({ data }: { data: any }) {
+  console.log(data.data);
   return (
     <>
       <Head>
@@ -31,9 +28,9 @@ export default function Home({data}) {
   );
 }
 
-export async function getStaticProps(context) {
-  const data = await supabase.from('school').select('*');
-  return{
-    props:{data:data},
-  }
+export async function getStaticProps() {
+  const data = await supabase.from("school").select("*");
+  return {
+    props: { data },
+  };
 }
