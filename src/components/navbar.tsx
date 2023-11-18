@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from 'react';
+// import { useState } from 'react';
 import Link from 'next/link';
 import {
   Box,
@@ -285,8 +285,8 @@ const NAV_ITEMS: Array<NavItem> = [
         href: "/formm",
       },
       {
-        label: "Coaching classes",
-        subLabel: "Let's get Started!",
+        label: "Reach out to students ",
+        subLabel: "Let the students know the quality of your Education",
         href: "/Coaching",
       },
     ],

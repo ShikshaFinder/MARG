@@ -43,16 +43,19 @@ export default function CallToActionWithVideo() {
                 zIndex: -1,
               }}
             >
-             Shiksha Finder
+              Shiksha Finder
             </Text>
             <br />
             <link rel="stylesheet" href="/login" />
             <Text as={"span"} color={"blue.400"}>
-              Let's Explore!
+              इमानदार स्कूल की पहचान
             </Text>
           </Heading>
           <Text color={"black"}>
-              here at shiksha finder you can upload demo lecture of your schools and tutions so that students can come and understand the quality of education you are providing.
+            Here at Shiksha Finder You can upload <b>Demo Lecture</b> of your
+            schools and Education platform so that students can come and
+            Expore &nbsp;
+            <b>The Quality Of Education </b> You Are Providing.
           </Text>
           <Stack
             spacing={{ base: 4, sm: 6 }}
@@ -121,9 +124,7 @@ export default function CallToActionWithVideo() {
               height="315"
               src="https://www.youtube.com/embed/SSIeK18tkjM?si=zQfs_xRBnKAwl7HL"
               title="YouTube video player"
-             
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            
             ></iframe>
           </Box>
         </Flex>
