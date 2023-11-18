@@ -1,8 +1,7 @@
 import React from 'react'
-// import Imagee from './imgg'
+import Imagee from './Imgg'
 import {
   Image,
-  Button,
   Stack,
   Card,
   CardBody,
@@ -40,16 +39,8 @@ function introcard() {
           </CardBody>
 
           <CardFooter>
-            {/* <Imagee /> */}
-            <Button>
-              <Input
-                type="file"
-                accept="image/*"
-                onChange={(event) => {
-                  console.log("image uploaded");
-                }}
-              />
-            </Button>
+            <Imagee />
+         
           </CardFooter>
         </Stack>
       </Card>

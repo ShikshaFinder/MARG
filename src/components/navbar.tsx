@@ -308,11 +308,11 @@ const NAV_ITEMS: Array<NavItem> = [
   },
   {
     label: "Analytics",
-    href: "https://launching-soon-shikshafinder.my.canva.site/",
+    href: "/analytics",
   },
   {
     label: "Start Marketing",
-    href: "/parent",
+    href: "/marketing",
   },
 ];
 
