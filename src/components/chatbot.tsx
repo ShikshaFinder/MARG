@@ -1,6 +1,6 @@
 import { Box, Input, Button } from "@chakra-ui/react";
 
-export  default function Chatbot {
+export default function Chatbot() {
   return (
     <Box
       position="fixed"
@@ -20,4 +20,4 @@ export  default function Chatbot {
       </Box>
     </Box>
   );
-};
+}
