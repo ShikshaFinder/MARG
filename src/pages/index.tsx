@@ -1,12 +1,12 @@
 import Head from "next/head";
-import { Inter } from "next/font/google";
+// import { Inter } from "next/font/google";
 import Hero from "../components/hero";
 import Waitlist from "../components/Waitlist";
 import Aboutus from "../components/aboutus";
-import supabase from "../../supabase";
+// import supabase from "../../supabase";
 
 // import Parentscontent from "./components/Parentscontent";
-const inter = Inter({ subsets: ["latin"] });
+// const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
   // console.log(data.data);
