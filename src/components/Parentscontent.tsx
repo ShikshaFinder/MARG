@@ -44,16 +44,16 @@ export default function SimpleThreeColumns() {
         />
         <Feature
           icon={<Icon as={FcDonate} w={10} h={10} />}
-          title={"Unlimited Donations"}
+          title={"Best call to action"}
           text={
-            "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore..."
+            "After watching your ADS, students can directly feel the admission form of your school."
           }
         />
         <Feature
           icon={<Icon as={FcInTransit} w={10} h={10} />}
-          title={"Instant Delivery"}
+          title={"Value for Money"}
           text={
-            "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore..."
+            "You will be able to make an impression on the minds of parents and students who are finding the schools and actively looking out for admission"
           }
         />
       </SimpleGrid>
