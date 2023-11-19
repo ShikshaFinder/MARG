@@ -8,8 +8,8 @@ import supabase from "../../supabase";
 // import Parentscontent from "./components/Parentscontent";
 const inter = Inter({ subsets: ["latin"] });
 
-export default function Home({ data }: { data: any }) {
-  console.log(data.data);
+export default function Home() {
+  // console.log(data.data);
   return (
     <>
       <Head>
@@ -28,9 +28,8 @@ export default function Home({ data }: { data: any }) {
   );
 }
 
-export async function getStaticProps() {
-  const data = await supabase.from("school").select("*");
-  return {
-    props: { data },
-  };
-}
+// export async function getStaticProps() {
+//   const data = await supabase.from("school").select("*");
+//   return {
+//     props: { data },
+//   };
