@@ -1,4 +1,5 @@
 "use client";
+import Link from "next/link";
 
 import {
   Container,
@@ -53,25 +54,27 @@ export default function CallToActionWithVideo() {
           </Heading>
           <Text color={"black"}>
             Here at Shiksha Finder You can upload <b>Demo Lecture</b> of your
-            schools and Education platform so that students can come and
-            Expore &nbsp;
+            schools and Education platform so that students can come and Expore
+            &nbsp;
             <b>The Quality Of Education </b> You Are Providing.
           </Text>
           <Stack
             spacing={{ base: 4, sm: 6 }}
             direction={{ base: "column", sm: "row" }}
           >
-            <Button
-              rounded={"full"}
-              size={"lg"}
-              fontWeight={"normal"}
-              px={6}
-              colorScheme={"blue"}
-              bg={"blue.400"}
-              _hover={{ bg: "blue.500" }}
-            >
-              Get started
-            </Button>
+            <Link href="/formm">
+              <Button
+                rounded={"full"}
+                size={"lg"}
+                fontWeight={"normal"}
+                px={6}
+                colorScheme={"blue"}
+                bg={"blue.400"}
+                _hover={{ bg: "blue.500" }}
+              >
+                Get started
+              </Button>
+            </Link>
             <Button
               rounded={"full"}
               size={"lg"}

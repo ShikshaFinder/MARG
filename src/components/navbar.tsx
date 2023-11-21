@@ -292,17 +292,18 @@ const NAV_ITEMS: Array<NavItem> = [
     ],
   },
   {
-    label: "Skill classes & Online Platforms",
+    label: "Participate in contest",
+    href: "/contest",
     children: [
       {
-        label: "Skill Classes",
-        subLabel: "Learn what you Love",
-        href: "/skillclass",
+        label: "Participate in the best learning platform contest",
+        subLabel: "Win Amzing Prizes by participating in the contest ",
+        href: "/contest",
       },
       {
-        label: "Online Platform",
-        subLabel: "Find out best",
-        href: "https://launching-soon-shikshafinder.my.canva.site/",
+        label: "About this Contest",
+        subLabel: "what is this contest & how i can avail the benefites of ",
+        href: "/aboutcontest",
       },
     ],
   },

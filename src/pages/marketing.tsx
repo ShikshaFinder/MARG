@@ -1,10 +1,10 @@
-import Parent from "../components/Parentscontent";
+import Marketing from "../components/marketing";
 import React from "react";
 
 export default function skillclass() {
   return (
     <div>
-      <Parent />
+      <Marketing />
     </div>
   );
 }
