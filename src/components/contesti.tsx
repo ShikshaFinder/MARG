@@ -14,22 +14,20 @@ import {
 const milestones = [
   {
     id: 1,
-    date: "MARCH 30, 2022",
-    title: "Chakra Hackathon",
-    description: `Winner of first ever ChakraUI Hackathon. On sait depuis longtemps que travailler avec du texte lisible et contenant du sens.`,
+    title: "Register your platform",
+    description: `Make sure you have registered your platform ,if not than create one 👍`,
   },
   {
     id: 2,
-    date: "July 30, 2021",
-    title: "Open Source, first contribution",
-    description: `Fixing a typo, to fix a bug, contributing to Open Source and collaborating to improve technology for everyone, Ahmad's world changed again!.`,
+  
+    title: "Copy the link for your platform & share it with your students",
+    description: `Share & encourage your students to participate and give a honest review`,
   },
   {
     id: 3,
-    date: "July 30, 2018",
-    title: "Freelancing, started working for myself",
+    title: "Enjoy the benefites of participation",
     description:
-      "Ahmad starts his own business consulting for companies as a fullstack developer. Clients include UK Government departments, UK banks, global fintechs and startups.",
+      "Enjoy the benefites of participating in the Shiksha Finder contest 🥳",
   },
 ];
 
@@ -40,7 +38,7 @@ const Milestones = () => {
   return (
     <Container maxWidth="7xl" p={{ base: 2, sm: 10 }}>
       <chakra.h3 fontSize="4xl" fontWeight="bold" mb={18} textAlign="center">
-        Milestones
+        How to participate in contest ? 🤔
       </chakra.h3>
       {milestones.map((milestone) => (
         <Flex key={milestone.id} mb="10px">
@@ -80,10 +78,9 @@ interface CardProps {
   id: number;
   title: string;
   description: string;
-  date: string;
 }
 
-const Card = ({ id, title, description, date }: CardProps) => {
+const Card = ({ id, title, description }: CardProps) => {
   // For even id show card on left side
   // For odd id show card on right side
   const isEvenId = id % 2 == 0;
@@ -124,9 +121,7 @@ const Card = ({ id, title, description, date }: CardProps) => {
       }}
     >
       <Box>
-        <Text fontSize="lg" color={isEvenId ? "teal.400" : "blue.400"}>
-          {date}
-        </Text>
+
 
         <VStack spacing={2} mb={3} textAlign="left">
           <chakra.h1 fontSize="2xl" lineHeight={1.2} fontWeight="bold" w="100%">

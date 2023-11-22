@@ -25,6 +25,26 @@ import {
 import { useToast } from "@chakra-ui/react";
 
 const Form1 = () => {
+  let [FullData, setFullData] = useState({
+    scName: "",
+    email: "",
+    DISE: "",
+  });
+
+  const handleChange = (
+    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    let value = event.target.value;
+    let name = event.target.name;
+    console.log(value);
+    setFullData((prevalue) => {
+      return {
+        ...prevalue, // Spread Operator
+        [name]: value,
+      };
+    });
+  };
+  // const[scName,setscName]=useState("");
   const [show, setShow] = useState(false);
   const handleClick = () => setShow(!show);
   return (
@@ -34,24 +54,36 @@ const Form1 = () => {
       </Heading>
       <Flex>
         <FormControl mr="5%">
-          <FormLabel htmlFor="School Name" fontWeight={"normal"}>
+          <FormLabel htmlFor="SchoolName" fontWeight={"normal"}>
             Name of school
           </FormLabel>
-          <Input id="School Name" placeholder="School Name" />
+          <Input
+            id="SchoolName"
+            value={FullData.scName}
+            onChange={handleChange}
+            placeholder="SchoolName"
+            name="scName"
+          />
         </FormControl>
       </Flex>
       <FormControl mt="2%">
         <FormLabel htmlFor="email" fontWeight={"normal"}>
           Email address
         </FormLabel>
-        <Input id="email" type="email" />
+        <Input
+          id="email"
+          value={FullData.email}
+          onChange={handleChange}
+          name="email"
+          type="email"
+        />
         <FormHelperText>We&apos;ll never share your email.</FormHelperText>
       </FormControl>
       <br />
       <FormControl>
         <FormLabel htmlFor="Image" fontWeight={"normal"}>
           Add the <b>Cover image</b> of your School which you want to show your
-          students  
+          students
         </FormLabel>
         <Imgg />
       </FormControl>
@@ -65,6 +97,9 @@ const Form1 = () => {
             pr="4.5rem"
             type={show ? "text" : "password"}
             placeholder="Enter DISE Code"
+            value={FullData.DISE}
+            name="DISE"
+            onChange={handleChange}
           />
           <InputRightElement width="4.5rem">
             <Button h="1.75rem" size="sm" onClick={handleClick}>
@@ -78,63 +113,42 @@ const Form1 = () => {
 };
 
 const Form2 = () => {
+  let [FullData, setFullData] = useState({
+    State: "",
+    street_address: "",
+    city: "",
+    mobile: "",
+    zip: "",
+  });
+  const handleChange = (
+    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    let value = event.target.value;
+    let name = event.target.name;
+    console.log(value);
+    setFullData((prevalue) => {
+      return {
+        ...prevalue, // Spread Operator
+        [name]: value,
+      };
+    });
+  };
   return (
     <>
       <Heading w="100%" textAlign={"center"} fontWeight="normal" mb="2%">
         School Details
       </Heading>
-      <FormControl as={GridItem} colSpan={[6, 3]}>
-        <FormLabel
-          htmlFor="State"
-          fontSize="sm"
-          fontWeight="md"
-          color="gray.700"
-          _dark={{
-            color: "gray.50",
-          }}
-        >
+      <FormControl mr="5%">
+        <FormLabel htmlFor="State" fontWeight={"normal"}>
           State
         </FormLabel>
-        <Select
+        <Input
           id="State"
+          value={FullData.State}
+          onChange={handleChange}
           name="State"
-          autoComplete="State"
-          placeholder="Select option"
-          focusBorderColor="brand.400"
-          shadow="sm"
-          size="sm"
-          w="full"
-          rounded="md"
-        >
-          <option>Andhra Pradesh</option>
-          <option>Arunachal Pradesh</option>
-          <option>Assam</option>
-          <option>Bihar</option>
-          <option>Chhattisgarh</option>
-          <option>Goa</option>
-          <option>Gujarat</option>
-          <option>Haryana</option>
-          <option>Himachal Pradesh</option>
-          <option>Jharkhand</option>
-          <option>Karnataka</option>
-          <option>Kerala</option>
-          <option>Madhya Pradesh</option>
-          <option>Maharashtra</option>
-          <option>Manipur</option>
-          <option>Meghalaya</option>
-          <option>Mizoram</option>
-          <option>Nagaland</option>
-          <option>Odisha</option>
-          <option>Punjab</option>
-          <option>Rajasthan</option>
-          <option>Sikkim</option>
-          <option>Tamil Nadu</option>
-          <option>Telangana</option>
-          <option>Tripura</option>
-          <option>Uttar Pradesh</option>
-          <option>Uttarakhand</option>
-          <option>West Bengal</option>
-        </Select>
+          placeholder="State"
+        />
       </FormControl>
 
       <FormControl as={GridItem} colSpan={6}>
@@ -152,7 +166,6 @@ const Form2 = () => {
         </FormLabel>
         <Input
           type="text"
-          name="street_address"
           id="street_address"
           autoComplete="street-address"
           focusBorderColor="brand.400"
@@ -160,6 +173,9 @@ const Form2 = () => {
           size="sm"
           w="full"
           rounded="md"
+          value={FullData.street_address}
+          onChange={handleChange}
+          name="street_address"
         />
       </FormControl>
 
@@ -186,6 +202,8 @@ const Form2 = () => {
           size="sm"
           w="full"
           rounded="md"
+          value={FullData.city}
+          onChange={handleChange}
         />
       </FormControl>
 
@@ -204,7 +222,13 @@ const Form2 = () => {
         </FormLabel>
         <InputGroup>
           <InputLeftAddon children="+91" />
-          <Input type="tel" placeholder="phone number" />
+          <Input
+            type="tel"
+            placeholder="phone number"
+            value={FullData.mobile}
+            onChange={handleChange}
+            name="mobile"
+          />
         </InputGroup>
       </FormControl>
 
@@ -223,7 +247,7 @@ const Form2 = () => {
         </FormLabel>
         <Input
           type="text"
-          name="postal_code"
+          name="zip"
           id="postal_code"
           autoComplete="postal-code"
           focusBorderColor="brand.400"
@@ -231,6 +255,8 @@ const Form2 = () => {
           size="sm"
           w="full"
           rounded="md"
+          value={FullData.zip}
+          onChange={handleChange}
         />
       </FormControl>
     </>
@@ -238,6 +264,24 @@ const Form2 = () => {
 };
 
 const Form3 = () => {
+  let [FullData, setFullData] = useState({
+    website: "",
+    scDsc: "",
+  });
+  const handleChange = (
+    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    let value = event.target.value;
+    let name = event.target.name;
+    console.log(value);
+    setFullData((prevalue) => {
+      return {
+        ...prevalue, // Spread Operator
+        [name]: value,
+      };
+    });
+  };
+
   return (
     <>
       <Heading w="100%" textAlign={"center"} fontWeight="normal">
@@ -271,6 +315,9 @@ const Form3 = () => {
               placeholder="www.example.com"
               focusBorderColor="brand.400"
               rounded="md"
+              value={FullData.website}
+              onChange={handleChange}
+              name="website"
             />
           </InputGroup>
         </FormControl>
@@ -294,6 +341,9 @@ const Form3 = () => {
             fontSize={{
               sm: "sm",
             }}
+            value={FullData.scDsc}
+            onChange={handleChange}
+            name="scDsc"
           />
           <FormHelperText>
             Please Give as much information as you can so that studnets can max.

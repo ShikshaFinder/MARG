@@ -14,13 +14,23 @@ import {
   Text,
   Image,
   Button,
+  useClipboard,
+  Editable,
+  EditableInput,
+  EditablePreview,
+  Flex,
+  Input,
 } from "@chakra-ui/react";
+import Link from "next/link";
+
 // import  from "next/image";
 
 
 import React from 'react'
 
 function bestschool() {
+Example(); 
+    
   return (
     <Accordion>
       <AccordionItem>
@@ -54,15 +64,23 @@ function bestschool() {
                   2019, which surveyed rural households in India, only around
                   50% of students in the age group of 14-18 years were satisfied
                   with their schools.
-
-
-                  <b>And if you do have </b>
+                  <br />
+                  <b>
+                    Participate in the contest and show the strength you have 😎{" "}
+                  </b>
                 </Text>
               </CardBody>
 
               <CardFooter>
-                <Button variant="solid" colorScheme="blue">
-                  Buy Latte
+                <Link href={"/contesti"}>
+
+                  <Button variant="solid" colorScheme="green">
+                    Participate Now
+                  </Button>
+                </Link>
+                &nbsp; &nbsp;
+                <Button colorScheme="teal" variant="outline">
+                  Know More
                 </Button>
               </CardFooter>
             </Stack>
@@ -74,3 +92,28 @@ function bestschool() {
 }
 
 export default bestschool
+
+ function Example() {
+      const placeholder = "text to be copied...";
+      const { onCopy, value, setValue, hasCopied } = useClipboard("");
+
+      return (
+        <>
+          <Flex mb={2}>
+            <Input
+              placeholder={placeholder}
+              value={value}
+              onChange={(e) => {
+                setValue(e.target.value);
+              }}
+              mr={2}
+            />
+            <Button onClick={onCopy}>{hasCopied ? "Copied!" : "Copy"}</Button>
+          </Flex>
+          <Editable placeholder="Paste here">
+            <EditablePreview width="100%" />
+            <EditableInput />
+          </Editable>
+        </>
+      );
+    }
