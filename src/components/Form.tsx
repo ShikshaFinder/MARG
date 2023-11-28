@@ -1,7 +1,8 @@
 "use client";
 import Imgg from "./Imgg";
 import Video from "./Vid";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import supabase from "../../supabase";
 import {
   Progress,
   Box,
@@ -24,12 +25,24 @@ import {
 
 import { useToast } from "@chakra-ui/react";
 
-const Form1 = () => {
+const Form1 = ({ getDataSetter }) => {
   let [FullData, setFullData] = useState({
     scName: "",
     email: "",
     DISE: "",
   });
+
+  useEffect(() => {
+    // Only way to use a state for a function, because the setter function
+    // can take a callback to set the new value
+    // getDataSetter(() => () => FullData);
+    getDataSetter((prevalue) => {
+      return {
+        ...prevalue, // Spread Operator
+        ...FullData,
+      };
+    });
+  }, [FullData]);
 
   const handleChange = (
     event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -85,7 +98,7 @@ const Form1 = () => {
           Add the <b>Cover image</b> of your School which you want to show your
           students
         </FormLabel>
-        <Imgg />
+        <Imgg getDataSetter={setFullData} />
       </FormControl>
 
       <FormControl>
@@ -112,7 +125,7 @@ const Form1 = () => {
   );
 };
 
-const Form2 = () => {
+const Form2 = ({ getDataSetter }) => {
   let [FullData, setFullData] = useState({
     State: "",
     street_address: "",
@@ -120,6 +133,19 @@ const Form2 = () => {
     mobile: "",
     zip: "",
   });
+
+  useEffect(() => {
+    // Only way to use a state for a function, because the setter function
+    // can take a callback to set the new value
+    // getDataSetter(() => () => FullData);
+    getDataSetter((prevalue) => {
+      return {
+        ...prevalue, // Spread Operator
+        ...FullData,
+      };
+    });
+  }, [FullData]);
+
   const handleChange = (
     event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
@@ -140,7 +166,7 @@ const Form2 = () => {
       </Heading>
       <FormControl mr="5%">
         <FormLabel htmlFor="State" fontWeight={"normal"}>
-          State
+          Subdistrict
         </FormLabel>
         <Input
           id="State"
@@ -263,11 +289,24 @@ const Form2 = () => {
   );
 };
 
-const Form3 = () => {
+const Form3 = ({ getDataSetter }) => {
   let [FullData, setFullData] = useState({
     website: "",
     scDsc: "",
   });
+
+  useEffect(() => {
+    // Only way to use a state for a function, because the setter function
+    // can take a callback to set the new value
+    // getDataSetter(() => () => FullData);
+    getDataSetter((prevalue) => {
+      return {
+        ...prevalue, // Spread Operator
+        ...FullData,
+      };
+    });
+  }, [FullData]);
+
   const handleChange = (
     event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
@@ -367,7 +406,7 @@ const Form3 = () => {
             Campus,extra curricular activities This video is showcased first
           </small>
         </FormLabel>
-        <Video />
+        <Video getDataSetter={setFullData} />
       </FormControl>
     </>
   );
@@ -377,6 +416,66 @@ export default function Multistep() {
   const toast = useToast();
   const [step, setStep] = useState(1);
   const [progress, setProgress] = useState(33.33);
+  const [getChildData, setGetChildData] = useState(() => null);
+
+  const submitChildData = async () => {
+    console.log(getChildData);
+    const { data, error } = await supabase
+      .from("School")
+      .insert([
+        {
+          schoolname: getChildData.scName,
+          email: getChildData.email,
+          DISE: getChildData.DISE,
+          city: getChildData.State,
+          streetaddress: getChildData.street_address,
+          subdistrict: getChildData.city,
+          mobile1: getChildData.mobile,
+          zipcode: getChildData.zip,
+          website: getChildData.website,
+          discription: getChildData.scDsc,
+        },
+      ])
+      .select();
+
+    if (error) {
+      // Handle error
+      console.log("error : ", error);
+    } else {
+      // Handle success
+      console.log("data inserted successfully");
+      console.log(data);
+    }
+  };
+
+  // State: "",
+  //   street_address: "",
+  //   city: "",
+  //   mobile: "",
+  //   zip: "",
+  // website: "",
+  //   scDsc: "",
+
+  const handleChildData = async () => {
+    console.log(getChildData);
+    // const { data, error } = await uploadFile(getChildData.imgselectedFile);
+
+    const { data, error } = await supabase.storage
+      .from("uploads")
+      .upload(
+        "CoverImages/123/" + getChildData.imgselectedFile.name,
+        getChildData.imgselectedFile
+      );
+    if (error) {
+      // Handle error
+      console.log("error : ", error);
+    } else {
+      // Handle success
+      console.log(data);
+    }
+
+    // console.log(data);
+  };
 
   return (
     <>
@@ -396,7 +495,13 @@ export default function Multistep() {
           mx="5%"
           isAnimated
         ></Progress>
-        {step === 1 ? <Form1 /> : step === 2 ? <Form2 /> : <Form3 />}
+        {step === 1 ? (
+          <Form1 getDataSetter={setGetChildData} />
+        ) : step === 2 ? (
+          <Form2 getDataSetter={setGetChildData} />
+        ) : (
+          <Form3 getDataSetter={setGetChildData} />
+        )}
         <ButtonGroup mt="5%" w="100%">
           <Flex w="100%" justifyContent="space-between">
             <Flex>
@@ -423,6 +528,7 @@ export default function Multistep() {
                   } else {
                     setProgress(progress + 33.33);
                   }
+                  handleChildData();
                 }}
                 colorScheme="teal"
                 variant="outline"
@@ -443,6 +549,7 @@ export default function Multistep() {
                     duration: 3000,
                     isClosable: true,
                   });
+                  submitChildData();
                 }}
               >
                 Submit

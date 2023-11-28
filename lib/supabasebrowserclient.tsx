@@ -1,1 +1,1 @@
-// import {createBrowserSupabaseClient } from "@supabase/auth-helpers-nextjs"
+import {createBrowserSupabaseClient } from "@supabase/auth-helpers-nextjs"
