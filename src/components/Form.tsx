@@ -3,6 +3,7 @@ import Imgg from "./Imgg";
 import Video from "./Vid";
 import { useState, useEffect } from "react";
 import supabase from "../../supabase";
+import { useSupabaseClient } from "@supabase/auth-helpers-react";
 import {
   Progress,
   Box,
@@ -417,10 +418,11 @@ export default function Multistep() {
   const [step, setStep] = useState(1);
   const [progress, setProgress] = useState(33.33);
   const [getChildData, setGetChildData] = useState(() => null);
+  const supabaseClient = useSupabaseClient();
 
   const submitChildData = async () => {
     console.log(getChildData);
-    const { data, error } = await supabase
+    const { data, error } = await supabaseClient
       .from("School")
       .insert([
         {
@@ -458,21 +460,20 @@ export default function Multistep() {
 
   const handleChildData = async () => {
     console.log(getChildData);
-    // const { data, error } = await uploadFile(getChildData.imgselectedFile);
 
-    const { data, error } = await supabase.storage
-      .from("uploads")
-      .upload(
-        "CoverImages/123/" + getChildData.imgselectedFile.name,
-        getChildData.imgselectedFile
-      );
-    if (error) {
-      // Handle error
-      console.log("error : ", error);
-    } else {
-      // Handle success
-      console.log(data);
-    }
+    // const { data, error } = await supabase.storage
+    //   .from("uploads")
+    //   .upload(
+    //     "CoverImages//" + getChildData.imgselectedFile.name,
+    //     getChildData.imgselectedFile
+    //   );
+    // if (error) {
+    //   // Handle error
+    //   console.log("error : ", error);
+    // } else {
+    //   // Handle success
+    //   console.log(data);
+    // }
 
     // console.log(data);
   };

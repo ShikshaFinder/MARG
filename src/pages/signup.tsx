@@ -34,7 +34,7 @@ export default function SignupCard() {
       email,
       password,
       options: {
-      emailRedirectTo:"http://localhost:3000/auth/callback"
+        emailRedirectTo: "http://localhost:3000/api/auth/callback",
       },
     });
 
