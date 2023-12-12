@@ -9,6 +9,8 @@ import { useState } from "react";
 import AuthContextProvider from "@/context";
 import Head from 'next/head'
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import { Analytics } from "@vercel/analytics/react";
+
 
 const inter = Inter({ subsets: ["latin"] });
 const supabaseUrl = "https://wexrtlzodmpxquqvjxlo.supabase.co";
@@ -29,6 +31,7 @@ export default function App({
       supabaseClient={supabaseClient}
       initialSession={pageProps.initialSession}
     >
+      <Analytics/>
       <Head>
         <title>Shiksha Finder</title>
         <meta property="og:title" content="My page title" key="title" />
