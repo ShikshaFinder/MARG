@@ -8,6 +8,7 @@ import { SessionContextProvider, Session } from "@supabase/auth-helpers-react";
 import { useState } from "react";
 import AuthContextProvider from "@/context";
 import Head from 'next/head'
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 const inter = Inter({ subsets: ["latin"] });
 const supabaseUrl = "https://wexrtlzodmpxquqvjxlo.supabase.co";
@@ -32,7 +33,7 @@ export default function App({
         <title>Shiksha Finder</title>
         <meta property="og:title" content="My page title" key="title" />
       </Head>
-
+      <SpeedInsights />
       <ChakraProvider>
         <AuthContextProvider>
           <div className={inter.className}>
