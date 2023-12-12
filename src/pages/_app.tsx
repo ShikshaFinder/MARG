@@ -7,6 +7,7 @@ import { createPagesBrowserClient } from "@supabase/auth-helpers-nextjs";
 import { SessionContextProvider, Session } from "@supabase/auth-helpers-react";
 import { useState } from "react";
 import AuthContextProvider from "@/context";
+import Head from 'next/head'
 
 const inter = Inter({ subsets: ["latin"] });
 const supabaseUrl = "https://wexrtlzodmpxquqvjxlo.supabase.co";
@@ -27,6 +28,11 @@ export default function App({
       supabaseClient={supabaseClient}
       initialSession={pageProps.initialSession}
     >
+      <Head>
+        <title>Shiksha Finder</title>
+        <meta property="og:title" content="My page title" key="title" />
+      </Head>
+
       <ChakraProvider>
         <AuthContextProvider>
           <div className={inter.className}>
