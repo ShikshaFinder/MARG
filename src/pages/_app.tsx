@@ -6,6 +6,7 @@ import { type AppProps } from "next/app";
 import { createPagesBrowserClient } from "@supabase/auth-helpers-nextjs";
 import { SessionContextProvider, Session } from "@supabase/auth-helpers-react";
 import { useState } from "react";
+import AuthContextProvider from "@/context";
 
 const inter = Inter({ subsets: ["latin"] });
 const supabaseUrl = "https://wexrtlzodmpxquqvjxlo.supabase.co";
@@ -27,10 +28,12 @@ export default function App({
       initialSession={pageProps.initialSession}
     >
       <ChakraProvider>
-        <div className={inter.className}>
-          <Navbar />
-          <Component {...pageProps} />
-        </div>
+        <AuthContextProvider>
+          <div className={inter.className}>
+            <Navbar />
+            <Component {...pageProps} />
+          </div>
+        </AuthContextProvider>
       </ChakraProvider>
     </SessionContextProvider>
   );

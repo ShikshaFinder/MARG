@@ -61,7 +61,7 @@ export default function Navbar() {
             fontFamily={"heading"}
             color={useColorModeValue("gray.800", "white")}
           >
-            <Link href={"/home"}> Shiksha Finder</Link>
+            <Link href={"/"}> Shiksha Finder</Link>
           </Text>
 
           <Flex display={{ base: "none", md: "flex" }} ml={10}>
@@ -77,7 +77,7 @@ export default function Navbar() {
         >
           <Button
             as={Link}
-            href={"https://launching-soon-shikshafinder.my.canva.site/"}
+            href={"/login"}
             passHref
             fontSize={"sm"}
             fontWeight={400}

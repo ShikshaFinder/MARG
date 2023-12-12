@@ -20,25 +20,23 @@ import {
 import { useState } from "react";
 import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
 
-export default function SignupCard() {
+export default function Login() {
   const router = useRouter(); // Initialize the router
 
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
+  //   const [firstName, setFirstName] = useState("");
+  //   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
 
-  const signUpNewUser = async () => {
+  const Signin = async () => {
     try {
-      const { data, error } = await supabase.auth.signUp({
+      const { data, error } = await supabase.auth.signInWithPassword({
         email,
         password,
-        options: {
-          emailRedirectTo: "http://localhost:3000",
-        },
       });
-      router.push("/checkmail");
+      console.log(data);
+      router.push("/");
     } catch (error) {
       console.log(error);
     }
@@ -54,7 +52,7 @@ export default function SignupCard() {
       <Stack spacing={8} mx={"auto"} maxW={"lg"} py={12} px={6}>
         <Stack align={"center"}>
           <Heading fontSize={"4xl"} textAlign={"center"}>
-            Sign up
+            Sign In
           </Heading>
           <Text fontSize={"lg"} color={"gray.600"}>
             to enjoy all of our cool features ✌️
@@ -67,26 +65,6 @@ export default function SignupCard() {
           p={8}
         >
           <Stack spacing={4}>
-            <HStack>
-              <Box>
-                <FormControl id="firstName" isRequired>
-                  <FormLabel>First Name</FormLabel>
-                  <Input
-                    type="text"
-                    onChange={(e) => setFirstName(e.target.value)}
-                  />
-                </FormControl>
-              </Box>
-              <Box>
-                <FormControl id="lastName">
-                  <FormLabel>Last Name</FormLabel>
-                  <Input
-                    type="text"
-                    onChange={(e) => setLastName(e.target.value)}
-                  />
-                </FormControl>
-              </Box>
-            </HStack>
             <FormControl id="email" isRequired>
               <FormLabel>Email address</FormLabel>
               <Input type="email" onChange={(e) => setEmail(e.target.value)} />
@@ -112,7 +90,7 @@ export default function SignupCard() {
             </FormControl>
             <Stack spacing={10} pt={2}>
               <Button
-                onClick={signUpNewUser}
+                onClick={Signin}
                 loadingText="Submitting"
                 size="lg"
                 bg={"blue.400"}
@@ -121,7 +99,7 @@ export default function SignupCard() {
                   bg: "blue.500",
                 }}
               >
-                Sign up
+                SignIn
               </Button>
             </Stack>
             <Stack pt={6}>
