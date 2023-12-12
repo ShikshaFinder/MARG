@@ -1,7 +1,10 @@
 import { Button, Input } from "@chakra-ui/react";
 import { useState, useEffect } from "react";
 
-export default function ImageInputButton({ getDataSetter }) {
+interface ImageInputButtonProps {
+  getDataSetter: (callback: (prevalue: any) => any) => void;
+}
+export default function ImageInputButton({ getDataSetter }: ImageInputButtonProps) {
   const [vidselectedFile, setSelectedFile] = useState<File | null>(null);
 
   useEffect(() => {

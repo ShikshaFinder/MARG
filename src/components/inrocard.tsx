@@ -1,5 +1,4 @@
 import React from 'react'
-import Imagee from './Imgg'
 import {
   Image,
   Stack,
@@ -11,7 +10,9 @@ import {
   Input
 } from "@chakra-ui/react";
 
+
 function introcard() {
+  
   return (
     <>
       <Card
@@ -39,8 +40,6 @@ function introcard() {
           </CardBody>
 
           <CardFooter>
-            <Imagee />
-         
           </CardFooter>
         </Stack>
       </Card>
