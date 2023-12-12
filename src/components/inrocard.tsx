@@ -1,4 +1,5 @@
 import React from 'react'
+import Imgg from './Imgg'
 import {
   Image,
   Stack,
@@ -7,11 +8,18 @@ import {
   Heading,
   Text,
   CardFooter,
-  Input
 } from "@chakra-ui/react";
+import { useState } from 'react';
 
-
+interface ImageInputButtonProps {
+  getDataSetter: (callback: (prevalue: any) => any) => void;
+}
 function introcard() {
+   let [FullData, setFullData] = useState({
+     scName: "",
+     email: "",
+     DISE: "",
+   });
   
   return (
     <>
@@ -40,6 +48,7 @@ function introcard() {
           </CardBody>
 
           <CardFooter>
+             <Imgg getDataSetter={setFullData} />
           </CardFooter>
         </Stack>
       </Card>
