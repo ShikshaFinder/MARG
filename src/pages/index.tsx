@@ -1,7 +1,6 @@
 import Head from "next/head";
 // import { Inter } from "next/font/google";
 import Hero from "../components/hero";
-import Waitlist from "../components/Waitlist";
 import Aboutus from "../components/aboutus";
 import { useAuthContext } from "@/context";
 import { NextSeo } from "next-seo";
@@ -59,8 +58,9 @@ export default function Home() {
 
       <div>Current user : {user.email}</div>
       <Hero />
-      <Waitlist />
+
       <Aboutus />
+      
     </>
   );
 }

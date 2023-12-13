@@ -75,15 +75,18 @@ export default function CallToActionWithVideo() {
                 Get started
               </Button>
             </Link>
-            <Button
-              rounded={"full"}
-              size={"lg"}
-              fontWeight={"normal"}
-              px={6}
-              leftIcon={<PlayIcon h={4} w={4} color={"black.300"} />}
-            >
-              How It Works
-            </Button>
+            <Link href="https://shikshafinder.com/" target="_blank" >
+              {" "}
+              <Button
+                rounded={"full"}
+                size={"lg"}
+                fontWeight={"normal"}
+                px={6}
+                leftIcon={<PlayIcon h={4} w={4} color={"black.300"} />}
+              >
+                For Students
+              </Button>
+            </Link>
           </Stack>
         </Stack>
         <Flex

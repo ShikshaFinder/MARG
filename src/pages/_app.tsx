@@ -8,7 +8,6 @@ import { SessionContextProvider, Session } from "@supabase/auth-helpers-react";
 import { useState } from "react";
 import AuthContextProvider from "@/context";
 import Head from 'next/head'
-import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Analytics } from "@vercel/analytics/react";
 
 
@@ -36,7 +35,6 @@ export default function App({
         <title>Shiksha Finder</title>
         <meta property="og:title" content="My page title" key="title" />
       </Head>
-      <SpeedInsights />
       <ChakraProvider>
         <AuthContextProvider>
           <div className={inter.className}>
