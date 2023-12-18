@@ -14,7 +14,6 @@ import {
   GridItem,
   FormLabel,
   Input,
-  Select,
   SimpleGrid,
   InputLeftAddon,
   InputGroup,
