@@ -12,45 +12,42 @@ import {
 } from "@chakra-ui/react";
 // Here we have used react-icons package for the icons
 import { BiCheck } from "react-icons/bi";
-import { BsFillCloudCheckFill } from "react-icons/bs";
-import { AiOutlineCloudServer } from "react-icons/ai";
+import { IoIosListBox, IoIosRocket } from "react-icons/io";
 import { FaServer } from "react-icons/fa";
 import { IconType } from "react-icons";
 
 const plansList = [
   {
     title: "Basic",
-    price: 49,
-    icon: BsFillCloudCheckFill,
+    price: "499",
+    icon: IoIosListBox,
     features: [
-      "Deploy 5 apps",
-      "2 Servers",
-      "Push to deploy",
-      "Collaborate with your team",
+      "100 banner ad views",
+      "100 views in the first page",
+      "10 video ads view ",
+      "3 online admission forms and there details",
     ],
   },
   {
-    title: "Growth",
-    price: 499,
-    icon: AiOutlineCloudServer,
+    title: "Advanced",
+    price: "4999",
+    icon: IoIosRocket,
     features: [
-      "Deploy 10 apps",
-      "4 Servers",
-      "Push to deploy",
-      "Collaborate with your team",
-      "Setup load balanced clusters",
+      "1100 banner ad views",
+      "1500 views in the first page",
+      "100 video ads view ",
+      "35 online admission forms and there details",
     ],
   },
   {
-    title: "Business",
-    price: 99,
+    title: "Pro",
+    price: "49k",
     icon: FaServer,
     features: [
-      "Deploy unlimited apps",
-      "unlimited Servers",
-      "Push to deploy",
-      "Collaborate with your team",
-      "Setup load balanced clusters",
+      "10000 banner ad views",
+      "10000 views in the first page",
+      "1000 video ads view ",
+      "300 online admission forms and there details",
     ],
   },
 ];
@@ -63,9 +60,9 @@ const ThreeTiersPricing = () => {
       </chakra.h2>
       <a href="/terms">
         {" "}
-        <Text textAlign="right" fontSize="sm">
+        <Text textAlign="right" fontSize="sm" color={"blue.400"}>
           {" "}
-          T&C Applies
+          T&C Applies{" "}
         </Text>
       </a>
       <a href="/termsService"></a>
@@ -80,7 +77,7 @@ const ThreeTiersPricing = () => {
 
 interface PricingCardProps {
   title: string;
-  price: number;
+  price: string;
   features: string[];
   icon: IconType;
 }
@@ -102,20 +99,17 @@ const PricingCard = ({ title, price, icon, features }: PricingCardProps) => {
           {title}
         </chakra.h2>
         <Text fontSize="7xl" fontWeight="bold">
-          <Text as="sup" fontSize="3xl" fontWeight="normal" top="-1em">
-            $
-          </Text>
           {price}
         </Text>
         <Text fontSize="md" color="gray.500">
-          per month
+          Only
         </Text>
       </Box>
       <VStack spacing={2} alignItems="flex-start" my={6}>
         {features.map((feature, index) => (
           <HStack key={index} spacing={3}>
             <Icon as={BiCheck} h={4} w={4} color="green.500" />
-            <Text fontSize="sm" color="gray.500">
+            <Text fontSize="md" color="black">
               {feature}
             </Text>
           </HStack>

@@ -104,7 +104,13 @@ export default function Login() {
             </Stack>
             <Stack pt={6}>
               <Text align={"center"}>
-                Already a user? <Link color={"blue.400"}>Login</Link>
+              Not registered yet?{" "}
+                <Link
+                  href={"/signup"}
+                  style={{ color: "blue", textDecoration: "underline" }}
+                >
+                  Signup
+                </Link>
               </Text>
             </Stack>
           </Stack>
