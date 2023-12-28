@@ -3,6 +3,7 @@ import Imgg from "../components/Imgg";
 import Video from "../components/Vid";
 import { useState, useEffect } from "react";
 import supabase from "../../supabase";
+
 import {
   Progress,
   Box,
@@ -93,7 +94,7 @@ const Form1: React.FC<{
   return (
     <>
       <Heading w="100%" textAlign={"center"} fontWeight="normal" mb="2%">
-        School Registration
+       Platform registartion
       </Heading>
       <Flex>
         <FormControl mr="5%">

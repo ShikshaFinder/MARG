@@ -1,13 +1,9 @@
 import Head from "next/head";
-// import { Inter } from "next/font/google";
 import Hero from "../components/hero";
 import Aboutus from "../components/aboutus";
 import { useAuthContext } from "@/context";
 import { NextSeo } from "next-seo";
-// import { useEffect } from "react";
 
-// import Parentscontent from "./components/Parentscontent";
-// const inter = Inter({ subsets: ["latin"] });
 
 type UserType = {
   app_metadata: {

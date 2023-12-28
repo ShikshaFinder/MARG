@@ -1,4 +1,3 @@
-import "@/styles/globals.css";
 import { ChakraProvider } from "@chakra-ui/react";
 import { Inter } from "next/font/google";
 import Navbar from "../components/navbar";
@@ -7,9 +6,8 @@ import { createPagesBrowserClient } from "@supabase/auth-helpers-nextjs";
 import { SessionContextProvider, Session } from "@supabase/auth-helpers-react";
 import { useState } from "react";
 import AuthContextProvider from "@/context";
-import Head from 'next/head'
+import Head from "next/head";
 import { Analytics } from "@vercel/analytics/react";
-
 
 const inter = Inter({ subsets: ["latin"] });
 const supabaseUrl = "https://wexrtlzodmpxquqvjxlo.supabase.co";
@@ -30,7 +28,7 @@ export default function App({
       supabaseClient={supabaseClient}
       initialSession={pageProps.initialSession}
     >
-      <Analytics/>
+      <Analytics />
       <Head>
         <title>Shiksha Finder</title>
         <meta property="og:title" content="My page title" key="title" />
@@ -38,9 +36,9 @@ export default function App({
       <ChakraProvider>
         <AuthContextProvider>
           <div className={inter.className}>
-            <Navbar />
+              <Navbar />
+            </div>
             <Component {...pageProps} />
-          </div>
         </AuthContextProvider>
       </ChakraProvider>
     </SessionContextProvider>

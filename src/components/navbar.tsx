@@ -1,6 +1,4 @@
 "use client";
-
-// import { useState } from 'react';
 import Link from "next/link";
 import {
   Box,
@@ -102,10 +100,9 @@ export default function Navbar() {
           </Button>
         </Stack>
       </Flex>
-
-      <Collapse in={isOpen} animateOpacity>
-        <MobileNav />
-      </Collapse>
+        <Collapse in={isOpen} animateOpacity>
+          <MobileNav />
+        </Collapse>
     </Box>
   );
 }

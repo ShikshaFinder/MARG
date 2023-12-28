@@ -7,6 +7,8 @@ import {
 } from "@chakra-ui/react";
 import Imgg from "../components/Imgg";
 
+import {useForm} from "react-hook-form";
+
 function MarketingForm() {
  let [FullData, setFullData] = useState();
  
