@@ -143,8 +143,8 @@ export default function Home() {
             w={"full"}
           >
             <Blob
-              w={"150%"}
-              h={"150%"}
+              w={"100%"}
+              h={"100%"}
               position={"absolute"}
               top={"-20%"}
               left={0}
@@ -153,7 +153,7 @@ export default function Home() {
             />
             <Box
               position={"relative"}
-              height={"300px"}
+              height={"250px"}
               rounded={"2xl"}
               boxShadow={"2xl"}
               width={"full"}
@@ -179,7 +179,7 @@ export default function Home() {
 const Blob = (props: IconProps) => {
   return (
     <Icon
-      width={"100%"}
+      width={"100"}
       viewBox="0 0 578 440"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
