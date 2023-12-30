@@ -1,4 +1,4 @@
-import { ChakraProvider } from "@chakra-ui/react";
+import { ChakraProvider, extendTheme, ThemeConfig } from "@chakra-ui/react";
 import { Inter } from "next/font/google";
 import Navbar from "../components/navbar";
 import { type AppProps } from "next/app";
@@ -22,6 +22,12 @@ export default function App({
   const [supabaseClient] = useState(() =>
     createPagesBrowserClient({ supabaseUrl, supabaseKey })
   );
+  const config: ThemeConfig = {
+    initialColorMode: "dark",
+    useSystemColorMode: t,
+  };
+
+  const theme = extendTheme({ config });
 
   return (
     <SessionContextProvider
@@ -33,12 +39,12 @@ export default function App({
         <title>Shiksha Finder</title>
         <meta property="og:title" content="My page title" key="title" />
       </Head>
-      <ChakraProvider>
+      <ChakraProvider theme={theme}>
         <AuthContextProvider>
           <div className={inter.className}>
-              <Navbar />
-            </div>
-            <Component {...pageProps} />
+            <Navbar />
+          </div>
+          <Component {...pageProps} />
         </AuthContextProvider>
       </ChakraProvider>
     </SessionContextProvider>
