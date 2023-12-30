@@ -24,7 +24,7 @@ export default function App({
   );
   const config: ThemeConfig = {
     initialColorMode: "dark",
-    useSystemColorMode: t,
+    useSystemColorMode: false,
   };
 
   const theme = extendTheme({ config });
