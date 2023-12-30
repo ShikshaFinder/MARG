@@ -58,7 +58,7 @@ export default function Home() {
       <Head>
         <meta
           name="ShikshaFinder"
-          content="Shiksha Finder,schools,how to find best schools for your child?,what is the best way of marketing your educational platform?,schools near me"
+          content="Shiksha Finder,schools,how to Market my educational platform,what is the best way of marketing your educational platform?,schools near me,advertiisment schools"
         />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </Head>
@@ -109,14 +109,13 @@ export default function Home() {
               spacing={{ base: 4, sm: 6 }}
               direction={{ base: "column", sm: "row" }}
             >
-              <Link href="/formm">
+              <Link href="/signup">
                 <Button
                   rounded={"full"}
                   size={"lg"}
                   fontWeight={"normal"}
                   px={6}
                   colorScheme={"blue"}
-                 
                   _hover={{ bg: "blue.500" }}
                 >
                   Get started
@@ -163,7 +162,7 @@ export default function Home() {
                 width="600"
                 height="315"
                 src="https://www.youtube.com/embed/SSIeK18tkjM?si=zQfs_xRBnKAwl7HL"
-                title="YouTube video player"
+                title="Shiksha Finder Introduction"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
               ></iframe>
             </Box>
@@ -195,8 +194,4 @@ const Blob = (props: IconProps) => {
   );
 };
 
-// export async function getStaticProps() {
-//   const data = await supabase.from("school").select("*");
-//   return {
-//     props: { data },
-//   };
+
