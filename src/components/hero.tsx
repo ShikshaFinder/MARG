@@ -50,7 +50,7 @@ export default function CallToActionWithVideo() {
               इमानदार स्कूल की पहचान
             </Text>
           </Heading>
-          <Text color={"black"}>
+          <Text >
             Here at Shiksha Finder You can upload <b>Demo Lecture</b> of your
             schools and Education platform so that students can come and Expore
             &nbsp;

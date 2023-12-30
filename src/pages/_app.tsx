@@ -1,4 +1,9 @@
-import { ChakraProvider, extendTheme, ThemeConfig } from "@chakra-ui/react";
+import {
+  ChakraProvider,
+  extendTheme,
+  ThemeConfig,
+  ColorModeScript,
+} from "@chakra-ui/react";
 import { Inter } from "next/font/google";
 import Navbar from "../components/navbar";
 import { type AppProps } from "next/app";
@@ -24,7 +29,7 @@ export default function App({
   );
   const config: ThemeConfig = {
     initialColorMode: "dark",
-    useSystemColorMode: false,
+    useSystemColorMode: true,
   };
 
   const theme = extendTheme({ config });
@@ -37,7 +42,7 @@ export default function App({
       <Analytics />
       <Head>
         <title>Shiksha Finder</title>
-        <meta property="og:title" content="My page title" key="title" />
+        <meta property="og:title" content="Shiksha Finder" key="title" />
       </Head>
       <ChakraProvider theme={theme}>
         <AuthContextProvider>
