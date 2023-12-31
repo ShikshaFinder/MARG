@@ -3,6 +3,7 @@ import Aboutus from "../components/aboutus";
 import { useAuthContext } from "@/context";
 import { NextSeo } from "next-seo";
 import Link from "next/link";
+import Footer from "../components/footer";
 import {
   Box,
   Button,
@@ -170,6 +171,7 @@ export default function Home() {
         </Stack>
       </Container>
       <Aboutus />
+      <Footer />
     </>
   );
 }
@@ -191,6 +193,7 @@ const Blob = (props: IconProps) => {
         fill="currentColor"
       />
     </Icon>
+    
   );
 };
 
