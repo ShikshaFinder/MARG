@@ -94,7 +94,7 @@ const Form1: React.FC<{
   return (
     <>
       <Heading w="100%" textAlign={"center"} fontWeight="normal" mb="2%">
-       Platform registartion
+        Platform registartion
       </Heading>
       <Flex>
         <FormControl mr="5%">
@@ -481,13 +481,6 @@ export default function Multistep() {
     }
   };
 
-  // State: "",
-  //   street_address: "",
-  //   city: "",
-  //   mobile: "",~~
-  //   zip: "",
-  // website: "",
-  //   scDsc: "",
   async function User() {
     const {
       data: { user },

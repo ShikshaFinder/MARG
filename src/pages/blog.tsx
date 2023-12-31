@@ -26,7 +26,7 @@ const BlogTags = (props: Props) => {
           <>
             <meta
               name="ShikshaFinder"
-              content="How to find a best school for your child?"
+              content="What is the best way to market any educational platform?"
             />
             <Tag size={"md"} variant="solid" colorScheme="orange" key={tag}>
               {tag}

@@ -25,7 +25,7 @@ const plansList = [
       "100 banner ad views",
       "100 views in the first page",
       "10 video ads view ",
-      "3 online admission forms and there details",
+      "3 online admission forms and their details",
     ],
   },
   {
@@ -36,7 +36,7 @@ const plansList = [
       "1100 banner ad views",
       "1500 views in the first page",
       "100 video ads view ",
-      "35 online admission forms and there details",
+      "35 online admission forms and their details",
     ],
   },
   {
@@ -47,7 +47,7 @@ const plansList = [
       "10000 banner ad views",
       "10000 views in the first page",
       "1000 video ads view ",
-      "300 online admission forms and there details",
+      "300 online admission forms and their details",
     ],
   },
 ];
@@ -109,7 +109,7 @@ const PricingCard = ({ title, price, icon, features }: PricingCardProps) => {
         {features.map((feature, index) => (
           <HStack key={index} spacing={3}>
             <Icon as={BiCheck} h={4} w={4} color="green.500" />
-            <Text fontSize="md" color="black">
+            <Text fontSize="md" color={useColorModeValue("black", "white")}>
               {feature}
             </Text>
           </HStack>
