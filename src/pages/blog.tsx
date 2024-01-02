@@ -63,7 +63,7 @@ const Parent = () => {
   return (
     <>
       <Head>
-        <title>How to find best school for your child?</title>
+        <title>How To Market your Educational Platform?</title>
         <meta
           name="description"
           content="How To Market your Educational platform in one of the best possible way"
