@@ -11,7 +11,6 @@ import { SessionContextProvider, Session } from "@supabase/auth-helpers-react";
 import { useState } from "react";
 import AuthContextProvider from "@/context";
 import Head from "next/head";
-import { Analytics } from "@vercel/analytics/react";
 
 const inter = Inter({ subsets: ["latin"] });
 const supabaseUrl = "https://qgkjakomwapzuhvnrvgr.supabase.co";
@@ -38,7 +37,6 @@ export default function App({
       supabaseClient={supabaseClient}
       initialSession={pageProps.initialSession}
     >
-      <Analytics />
       <Head>
         <title>Shiksha Finder</title>
         <meta property="og:title" content="Shiksha Finder" key="title" />
