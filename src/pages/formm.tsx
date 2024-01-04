@@ -53,7 +53,7 @@ type ChildDataType = {
   street_address: string;
   city: string;
   mobile: string;
-  zip: string;
+  stream: string;
   website: string; // Assuming website is a property
   scDsc: string;
   imgselectedFile: any;
@@ -164,7 +164,7 @@ const Form2: React.FC<{
     street_address: "",
     city: "",
     mobile: "",
-    zip: "",
+    stream: "",
   });
 
   useEffect(() => {
@@ -299,11 +299,11 @@ const Form2: React.FC<{
           }}
           mt="2%"
         >
-          ZIP / Postal
+          Stream
         </FormLabel>
         <Input
           type="text"
-          name="zip"
+          name="stream"
           id="postal_code"
           autoComplete="postal-code"
           focusBorderColor="brand.400"
@@ -311,7 +311,7 @@ const Form2: React.FC<{
           size="sm"
           w="full"
           rounded="md"
-          value={FullData.zip}
+          value={FullData.stream}
           onChange={handleChange}
         />
       </FormControl>
@@ -467,7 +467,7 @@ export default function Multistep() {
             streetaddress: getChildData?.street_address ?? "",
             subdistrict: getChildData?.city ?? "",
             mobile1: getChildData?.mobile ?? "",
-            zipcode: getChildData?.zip ?? "",
+            stream: getChildData?.stream ?? "",
             website: getChildData?.website ?? "",
             discription: getChildData?.scDsc ?? "",
           },
