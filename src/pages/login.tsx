@@ -36,7 +36,7 @@ export default function Login() {
         password,
       });
       console.log(data);
-      router.push("/");
+      router.push("/onbording");
     } catch (error) {
       console.log(error);
     }
@@ -107,7 +107,7 @@ export default function Login() {
               Not registered yet?{" "}
                 <Link
                   href={"/signup"}
-                  style={{ color: "blue", textDecoration: "underline" }}
+                  style={{ color: "blue.600", textDecoration: "underline" }}
                 >
                   Signup
                 </Link>
