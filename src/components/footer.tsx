@@ -100,13 +100,22 @@ export default function SmallCentered() {
         >
           <Text>© shikshafinder</Text>
           <Stack direction={"row"} spacing={6}>
-            <SocialButton label={"Twitter"} href={"#"}>
+            <SocialButton
+              label={"Twitter"}
+              href={"https://twitter.com/shiksha_finder"}
+            >
               <FaTwitter />
             </SocialButton>
-            <SocialButton label={"YouTube"} href={"#"}>
+            <SocialButton
+              label={"YouTube"}
+              href={"https://youtu.be/SSIeK18tkjM?si=iZRLrFrp4YDvAjIO"}
+            >
               <FaYoutube />
             </SocialButton>
-            <SocialButton label={"Instagram"} href={"#"}>
+            <SocialButton
+              label={"Instagram"}
+              href={"https://www.instagram.com/shikshafinder/"}
+            >
               <FaInstagram />
             </SocialButton>
           </Stack>
