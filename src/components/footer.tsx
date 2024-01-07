@@ -10,7 +10,7 @@ import {
   useColorModeValue,
   VisuallyHidden,
 } from "@chakra-ui/react";
-import { FaInstagram, FaTwitter, FaYoutube } from "react-icons/fa";
+import { FaInstagram, FaLinkedin, FaTwitter, FaYoutube } from "react-icons/fa";
 import { ReactNode } from "react";
 
 import Image from "next/image";
@@ -117,6 +117,12 @@ export default function SmallCentered() {
               href={"https://www.instagram.com/shikshafinder/"}
             >
               <FaInstagram />
+            </SocialButton>
+            <SocialButton
+              label={"linkedin"}
+              href={"https://www.linkedin.com/company/shikshafinder"}
+            >
+              <FaLinkedin />
             </SocialButton>
           </Stack>
         </Container>
