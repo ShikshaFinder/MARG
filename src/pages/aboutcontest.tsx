@@ -11,9 +11,7 @@ import {
   Icon,
   useColorModeValue,
   Card,
-  CardHeader,
   CardBody,
-  CardFooter,
 } from "@chakra-ui/react";
 import {
   IoAnalyticsSharp,

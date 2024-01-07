@@ -4,13 +4,10 @@ import{
   Menu,
   MenuButton,
   MenuList,
-  MenuGroup,
   MenuItem,
   MenuDivider,
   Button
 } from "@chakra-ui/react"
-
-
 
 function Navnew() {
   return (
@@ -19,27 +16,27 @@ function Navnew() {
         Explore 😎
       </MenuButton>
       <MenuList>
-        
+        <Link href={"/formm"}>
           <MenuItem>
-            {" "}
-            <Link href={"/formm"}> Create  platform🚀</Link>
+            Create platform🚀
           </MenuItem>
+        </Link>
+        <Link href={"/profile"}>
           <MenuItem>
-            {" "}
-            <Link href={"/profile"}> My account</Link>
+            My account
           </MenuItem>
-       
+        </Link>
         <MenuDivider />
-        
+        <Link href={"/marketing"}>
           <MenuItem>
-            {" "}
-            <Link href={"/marketing"}> Market 💪🏻</Link>
+            Market 💪🏻
           </MenuItem>
+        </Link>
+        <Link href={"/contest"}>
           <MenuItem>
-            {" "}
-            <Link href={"/contest"}>Participate in Contest </Link>
+            Participate in Contest
           </MenuItem>
-        
+        </Link>
       </MenuList>
     </Menu>
   );

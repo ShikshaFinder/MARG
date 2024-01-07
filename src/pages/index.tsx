@@ -45,12 +45,12 @@ export default function Home() {
         title="Shiksha Finder"
         description="Show case the quality of education"
         openGraph={{
-          url: "https://shikshafinder.com/",
+          url: "https://platform.shikshafinder.com/",
           title: "Let's promote Education quality",
           description: "Home page of shiksha finder",
           images: [
             {
-              url: "https://images.pexels.com/photos/764681/pexels-photo-764681.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+              url: "",
               alt: "Shiksha Finder == happy students",
             },
           ],

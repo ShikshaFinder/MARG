@@ -294,7 +294,7 @@ const NAV_ITEMS: Array<NavItem> = [
     children: [
       {
         label: "Participate in the best learning platform contest",
-        subLabel: "Win Amzing Prizes by participating in the contest ",
+        subLabel: "And showcase the trust of your students on you 😎",
         href: "/contest",
       },
       {
