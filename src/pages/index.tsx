@@ -4,6 +4,8 @@ import { useAuthContext } from "@/context";
 import { NextSeo } from "next-seo";
 import Link from "next/link";
 import Footer from "../components/footer";
+import NavNev from "../components/navnew";
+
 import {
   Box,
   Button,
@@ -100,7 +102,7 @@ export default function Home() {
                 इमानदार स्कूल की पहचान
               </Text>
             </Heading>
-            <Text >
+            <Text>
               Here at Shiksha Finder You can upload <b>Demo Lecture</b> of your
               schools and Education platform so that students can come and
               Expore &nbsp;
@@ -110,18 +112,22 @@ export default function Home() {
               spacing={{ base: 4, sm: 6 }}
               direction={{ base: "column", sm: "row" }}
             >
-              <Link href="/signup">
-                <Button
-                  rounded={"full"}
-                  size={"lg"}
-                  fontWeight={"normal"}
-                  px={6}
-                  colorScheme={"blue"}
-                  _hover={{ bg: "blue.500" }}
-                >
-                  Get started
-                </Button>
-              </Link>
+              {user ? (
+                <NavNev />
+              ) : (
+                <Link href="/signup">
+                  <Button
+                    rounded={"full"}
+                    size={"lg"}
+                    fontWeight={"normal"}
+                    px={6}
+                    colorScheme={"blue"}
+                    _hover={{ bg: "blue.500" }}
+                  >
+                    Get started
+                  </Button>
+                </Link>
+              )}
               <Link href="https://shikshafinder.com/" target="_blank">
                 {" "}
                 <Button

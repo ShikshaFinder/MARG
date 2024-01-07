@@ -18,6 +18,7 @@ import {
   CheckboxGroup,
 } from "@chakra-ui/react";
 import { Controller } from "react-hook-form";
+import { useRouter } from "next/router";
 
 type UserType = {
   app_metadata: {
@@ -38,6 +39,7 @@ type UserType = {
   updated_at: string;
 };
 function formm() {
+  const Router = useRouter();
   const toast = useToast();
   const { user } = useAuthContext() as { user: UserType };
 
@@ -53,6 +55,7 @@ function formm() {
       duration: 3000,
       isClosable: true,
     });
+    Router.push("/contest")
   };
 
   const onSubmit = async (data: any) => {

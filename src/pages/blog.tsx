@@ -8,8 +8,10 @@ import {
   useColorModeValue,
   Container,
   VStack,
+  Link
 } from "@chakra-ui/react";
 import Head from "next/head";
+import { ExternalLinkIcon } from "@chakra-ui/icons";
 
 interface Props {
   marginTop?: number;
@@ -171,16 +173,14 @@ const Parent = () => {
             soaking up content. Create short, engaging videos showcasing your
             teaching style, course highlights, and student testimonials. Make it
             informative and fun, not just a boring lecture clip!
-            <Text
-              as="span"
-              color="blue"
-              textDecoration="underline"
-              cursor="pointer"
+            <Link
+              href="https://platform.shikshafinder.com/marketing"
+              isExternal
             >
-              <a href="https://platform.shikshafinder.com/marketing">
-                start marketing your school
-              </a>
-            </Text>
+              start marketing your school
+              <ExternalLinkIcon mx="2px" />
+            </Link>
+            <br />
             <Text as="p" fontSize="lg">
               <b>2. Master the Magic of Social Media:</b> Don't just post,
               engage! Start conversations on your Facebook page, answer
@@ -190,16 +190,12 @@ const Parent = () => {
               <br />
             </Text>
             Engage your students with help of Demo Lectures{" "}
-            <Text
-              as="span"
-              color="blue"
-              textDecoration="underline"
-              cursor="pointer"
+            <Link
+              href="   https://platform.shikshafinder.com/marketing"
+              isExternal
             >
-              <a href="https://platform.shikshafinder.com/uploadLectures">
-                Lectures ShikshaFinder
-              </a>
-            </Text>
+              Shiksha Finder Lectures <ExternalLinkIcon mx="2px" />
+            </Link>
             <br /> <b>Leverage the Power of Shiksha Finder</b>This website is a
             game-changer for educators! Upload your demo lectures for free,
             reaching a wider audience of students actively searching for the
@@ -255,7 +251,7 @@ const Parent = () => {
               cursor="pointer"
             >
               <a href="https://platform.shikshafinder.com/contest">
-               Get Started
+                Get Started
               </a>
             </Text>{" "}
           </Text>
