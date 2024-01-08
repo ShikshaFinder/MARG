@@ -31,7 +31,7 @@ type UserType = {
   email: string;
   email_confirmed_at: string;
   id: string;
-  identities: Array<any>; // You might want to define a type for this array
+  identities: Array<any>;
   last_sign_in_at: string;
   phone: any;
   role: string;
@@ -112,7 +112,7 @@ export default function Home() {
               spacing={{ base: 4, sm: 6 }}
               direction={{ base: "column", sm: "row" }}
             >
-              {user ? (
+              {user && user.email ? (
                 <NavNev />
               ) : (
                 <Link href="/signup">
@@ -182,7 +182,6 @@ export default function Home() {
   );
 }
 
-
 const Blob = (props: IconProps) => {
   return (
     <Icon
@@ -199,8 +198,5 @@ const Blob = (props: IconProps) => {
         fill="currentColor"
       />
     </Icon>
-    
   );
 };
-
-
