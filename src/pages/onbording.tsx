@@ -9,7 +9,6 @@ import {
   Container,
   Button,
 } from "@chakra-ui/react";
-import Link from "next/link";
 import { BiLeftArrowAlt, BiRightArrowAlt } from "react-icons/bi";
 import Slider from "react-slick";
 
@@ -39,13 +38,13 @@ export default function CaptionCarousel() {
       title: "One of the best way to approch your students👨‍🎓",
       text: "Show case the quality of your Education and let the students choose you!",
       image:
-        "https://images.unsplash.com/photo-1516796181074-bf453fbfa3e6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1yZWxhdGVkfDV8fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=900&q=60",
+        "https://images.unsplash.com/photo-1443916568596-df5a58c445e9?q=80&w=1932&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     },
     {
       title: "Get Exponential growth with shiksha finder marketing 📈",
       text: "Get the the most targeted audience for your institute and grow your business exponentially!",
       image:
-        "https://images.unsplash.com/photo-1438183972690-6d4658e3290e?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2274&q=80",
+        "https://images.unsplash.com/photo-1519751138087-5bf79df62d5b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     },
     {
       title: "Our vision is to make the education system more transparent👨‍🏫",
@@ -130,12 +129,12 @@ export default function CaptionCarousel() {
                 </Text>
               </Stack>
               <Stack align="end">
-                <Link href={"/"}>
+                <a href={"/"}>
                   {" "}
                   <Button colorScheme="blackAlpha" variant="solid">
                   Let's Begin 🚀
                   </Button>
-                </Link>{" "}
+                </a>{" "}
               </Stack>
             </Container>
           </Box>
