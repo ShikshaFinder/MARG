@@ -2,7 +2,7 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import { useToast } from "@chakra-ui/react";
-import supabase from "../../supabase";
+import supabase from "../../../supabase";
 import { useAuthContext } from "@/context";
 import {
   Button,
@@ -55,12 +55,12 @@ function formm() {
       duration: 3000,
       isClosable: true,
     });
-    Router.push("/contest")
+    Router.push("/contest");
   };
 
   const onSubmit = async (data: any) => {
     const { error } = await supabase
-      .from("School")
+      .from("coaching")
       .insert([{ ...data, user_id: user.id }]);
     if (error) {
       console.error("Error submitting Form:", error);
@@ -76,17 +76,18 @@ function formm() {
           <Card variant="outline">
             <CardBody>
               <Heading size="md" fontSize="26px">
-                We welcome you with full hearts 💓{" "}
+               Coaching Class Registration Shiksha Finder
               </Heading>
               <br />
               <FormControl isRequired>
-                <FormLabel>School Name</FormLabel>
+                <FormLabel>Coaching Name</FormLabel>
                 <Input
-                  {...register("schoolname", {
-                    required: true,
+                  {...register("coachingname", {
+                    required: false,
                   })}
-                  name="schoolname"
-                  placeholder="schoolname"
+                  name="coachingname"
+                  placeholder="coaching name"
+                  type="text"
                 />
               </FormControl>
               <br />
@@ -113,10 +114,10 @@ function formm() {
                 <br />
                 <Input
                   {...register("locationlink", {
-                    required: true,
+                    required: false,
                   })}
                   name="locationlink"
-                  placeholder="Google map link of school"
+                  placeholder="Google map link of coaching class"
                 />
               </FormControl>
               <br />
@@ -134,8 +135,8 @@ function formm() {
               <FormControl isRequired>
                 <FormLabel>District/city</FormLabel>
                 <Input
-                  {...register("District", { required: true })}
-                  name="District"
+                  {...register("city", { required: false })}
+                  name="city"
                   placeholder="District/city"
                 />
               </FormControl>
@@ -152,20 +153,20 @@ function formm() {
               <FormControl isRequired>
                 <FormLabel> Mobile Number</FormLabel>
                 <Input
-                  {...register("mobile1", { required: true })}
-                  name="mobile1"
-                  type="number"
+                  {...register("mobile", { required: true })}
+                  name="mobile"
+                  type="tel"
                   placeholder="Contact number"
                 />
               </FormControl>{" "}
               <br />
               <FormControl isRequired>
-                <FormLabel> DISE code</FormLabel>
+                <FormLabel> website</FormLabel>
                 <Input
-                  {...register("DISE", { required: false })}
-                  name="number"
-                  type="number"
-                  placeholder="DISE code"
+                  {...register("website", { required: false })}
+                  name="website"
+                  type="website"
+                  placeholder="website"
                 />
               </FormControl>{" "}
               <br />
@@ -190,7 +191,7 @@ function formm() {
                 />
                 <br />
                 <Input
-                  {...register("Standard", { required: true })}
+                  {...register("Standard")}
                   name="Standard"
                   placeholder="If Teaching for any exam than mention here"
                 />
@@ -210,7 +211,7 @@ function formm() {
                 <Input
                   {...register("email", { required: false })}
                   name="email"
-                  placeholder="yourschool@...com"
+                  placeholder="yourcoaching@...com"
                 />
               </FormControl>
               <br />
