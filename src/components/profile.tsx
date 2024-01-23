@@ -28,7 +28,7 @@ function profile() {
         <CardBody>
           <Wrap justifyContent={"center"} spacing={4} direction="column">
             <WrapItem>
-              <Link href={"/formm"}>
+              <Link href={"/form"}>
                 {" "}
                 <Avatar size="2xl" name="harsh" borderRadius={"3xl"} />{" "}
                 <FaEdit size={24} style={{ alignSelf: "flex-end" }} />

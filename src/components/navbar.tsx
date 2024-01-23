@@ -154,7 +154,7 @@ const DesktopNav = () => {
             <PopoverTrigger>
               <Box
                 as={Link}
-                href={navItem.href ?? "/formm"}
+                href={navItem.href ?? "/form"}
                 passHref
                 p={2}
                 fontSize={"sm"}
@@ -253,7 +253,7 @@ const MobileNavItem = ({ label, children, href }: NavItem) => {
       <Box
         py={2}
         as={Link}
-        href={href ?? "/formm"}
+        href={href ?? "/form"}
         passHref
         justifyContent="space-between"
         alignItems="center"
@@ -313,7 +313,7 @@ const NAV_ITEMS: Array<NavItem> = [
       {
         label: "Create & Edit Your platform",
         subLabel: "Let the world know the quality of your education",
-        href: "/formm",
+        href: "/form",
       },
       {
         label: "Reach out to students ",

@@ -16,7 +16,7 @@ function Navnew() {
         Explore 😎
       </MenuButton>
       <MenuList>
-        <Link href={"/formm"}>
+        <Link href={"/form"}>
           <MenuItem>
             Create platform🚀
           </MenuItem>
