@@ -22,7 +22,7 @@ function form() {
             I Have A Coaching Center 🏢
           </Button>
         </Link>
-        <Link href={"/onlineform"}>
+        <Link href={"/form/onlineform"}>
           <Button colorScheme="teal" size="md">
             I Have A Online Platform 🌎
           </Button>

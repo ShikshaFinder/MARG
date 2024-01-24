@@ -60,7 +60,7 @@ function formm() {
 
   const onSubmit = async (data: any) => {
     const { error } = await supabase
-      .from("coaching")
+      .from("onlineform")
       .insert([{ ...data, user_id: user.id }]);
     if (error) {
       console.error("Error submitting Form:", error);
@@ -76,11 +76,11 @@ function formm() {
           <Card variant="outline">
             <CardBody>
               <Heading size="md" fontSize="26px">
-                Coaching Class Registration Shiksha Finder
+                Online Platfrom Registration Shiksha Finder
               </Heading>
               <br />
               <FormControl isRequired>
-                <FormLabel>Coaching Name</FormLabel>
+                <FormLabel>Online Platform Name</FormLabel>
                 <Input
                   {...register("coachingname", {
                     required: true,
