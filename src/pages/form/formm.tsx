@@ -1,5 +1,6 @@
 "use client";
-import React from "react";
+
+import React, { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useToast } from "@chakra-ui/react";
 import supabase from "../../../supabase";
@@ -64,10 +65,33 @@ function formm() {
       .insert([{ ...data, user_id: user.id }]);
     if (error) {
       console.error("Error submitting Form:", error);
+      toast({
+        title: "Error",
+        description: error.message,
+        status: "error",
+        duration: 3000,
+        isClosable: true,
+      });
     } else {
       handleSubmitt();
     }
   };
+    const [data, setData] = useState(null);
+ useEffect(() => {
+   const fetchData = async () => {
+     try {
+       const response = await fetch("/state.json");
+       const data = await response.json();
+       setData(data);
+     } catch (error) {
+       console.error("Error:", error);
+     }
+   };
+
+   fetchData();
+ }, []);
+
+ console.log(data);
 
   return (
     <>
@@ -196,12 +220,26 @@ function formm() {
                 />
               </FormControl>
               <br />
-              <FormControl>
-                <FormLabel>Board</FormLabel>
-                <Input
-                  {...register("Board", { required: false })}
+              <FormControl as="fieldset">
+                <FormLabel as="legend">Board</FormLabel>
+                <Controller
                   name="Board"
-                  placeholder="Board"
+                  control={control}
+                  defaultValue={[]}
+                  rules={{ required: true }}
+                  render={({ field }) => (
+                    <CheckboxGroup {...field}>
+                      <HStack spacing="24px" wrap="wrap">
+                        {" "}
+                        <Checkbox value="CBSE">CBSE</Checkbox>
+                        <Checkbox value="ICSE">ICSE</Checkbox>
+                        <Checkbox value="IB">IB</Checkbox>
+                        <Checkbox value="AISSCE">AISSCE</Checkbox>
+                        <Checkbox value="NIOS">NIOS</Checkbox>
+                        <Checkbox value="State">State Board</Checkbox>
+                      </HStack>
+                    </CheckboxGroup>
+                  )}
                 />
               </FormControl>
               <br />
