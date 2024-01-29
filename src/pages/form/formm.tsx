@@ -102,7 +102,7 @@ function formm() {
     fetchData();
   }, []);
 
-  console.log(states); // log the 'states' variable
+  // console.log(states); // log the 'states' variable
 
   return (
     <>
