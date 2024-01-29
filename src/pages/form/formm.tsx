@@ -5,6 +5,13 @@ import { useForm } from "react-hook-form";
 import { useToast } from "@chakra-ui/react";
 import supabase from "../../../supabase";
 import { useAuthContext } from "@/context";
+interface State {
+  name: string;
+  districts: string[];
+  state: string;
+
+  // ...
+}
 import {
   Button,
   FormControl,
@@ -17,6 +24,7 @@ import {
   Card,
   CardBody,
   CheckboxGroup,
+  Select,
 } from "@chakra-ui/react";
 import { Controller } from "react-hook-form";
 import { useRouter } from "next/router";
@@ -56,7 +64,7 @@ function formm() {
       duration: 3000,
       isClosable: true,
     });
-    Router.push("/contest")
+    Router.push("/contest");
   };
 
   const onSubmit = async (data: any) => {
@@ -76,22 +84,25 @@ function formm() {
       handleSubmitt();
     }
   };
-    const [data, setData] = useState(null);
- useEffect(() => {
-   const fetchData = async () => {
-     try {
-       const response = await fetch("/state.json");
-       const data = await response.json();
-       setData(data);
-     } catch (error) {
-       console.error("Error:", error);
-     }
-   };
 
-   fetchData();
- }, []);
+  const [states, setStates] = useState<State[]>([]);
+  const [data, setData] = useState(null);
 
- console.log(data);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch("/state.json");
+        const data = await response.json();
+        setStates(data.states); // set the fetched data to the 'states' variable
+      } catch (error) {
+        console.error("Error:", error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  console.log(states); // log the 'states' variable
 
   return (
     <>
@@ -146,13 +157,19 @@ function formm() {
               <br />
               <FormControl isRequired>
                 <FormLabel>State</FormLabel>
-                <Input
+                <Select
                   {...register("State", {
                     required: true,
                   })}
                   name="State"
-                  placeholder="State"
-                />
+                  placeholder="Select State"
+                >
+                  {states.map((stateObj) => (
+                    <option key={stateObj.state} value={stateObj.state}>
+                      {stateObj.state}
+                    </option>
+                  ))}
+                </Select>
               </FormControl>
               <br />
               <FormControl isRequired>
