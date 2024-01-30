@@ -165,12 +165,11 @@ export default function Home() {
               overflow={"hidden"}
             >
               <AspectRatio ratio={14 / 9}>
-                {" "}
                 <iframe
                   width="600"
                   height="400"
                   src="https://www.youtube.com/embed/SSIeK18tkjM?si=zQfs_xRBnKAwl7HL"
-                  title="Shiksha Finder Introduction"
+                  title="Shiksha Finder video"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                 ></iframe>
               </AspectRatio>
