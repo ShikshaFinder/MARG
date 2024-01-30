@@ -9,8 +9,6 @@ interface State {
   name: string;
   districts: string[];
   state: string;
-
-  // ...
 }
 import {
   Button,
@@ -41,7 +39,7 @@ type UserType = {
   email: string;
   email_confirmed_at: string;
   id: string;
-  identities: Array<any>; // You might want to define a type for this array
+  identities: Array<any>; 
   last_sign_in_at: string;
   phone: any;
   role: string;
@@ -103,11 +101,12 @@ function formm() {
 
     fetchData();
   }, []);
+
+
     const districts =
       states.find((state) => state.state === selectedState)?.districts || [];
 
 
-  // console.log(states); // log the 'states' variable
 
   return (
     <>
@@ -116,8 +115,7 @@ function formm() {
           <Card variant="outline">
             <CardBody>
               <Heading size="md" fontSize="26px">
-                We welcome you with full hearts 💓{" "}
-              </Heading>
+    School Registration With Shiksha Finder.              </Heading>
               <br />
               <FormControl isRequired>
                 <FormLabel>School Name</FormLabel>

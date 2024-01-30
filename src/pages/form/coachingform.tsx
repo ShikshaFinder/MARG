@@ -1,9 +1,14 @@
 "use client";
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useToast } from "@chakra-ui/react";
 import supabase from "../../../supabase";
 import { useAuthContext } from "@/context";
+interface State {
+  name: string;
+  districts: string[];
+  state: string;
+}
 import {
   Button,
   FormControl,
@@ -16,6 +21,7 @@ import {
   Card,
   CardBody,
   CheckboxGroup,
+  Select,
 } from "@chakra-ui/react";
 import { Controller } from "react-hook-form";
 import { useRouter } from "next/router";
@@ -38,14 +44,15 @@ type UserType = {
   role: string;
   updated_at: string;
 };
-function formm() {
+function CoachingForm() {
   const Router = useRouter();
   const toast = useToast();
   const { user } = useAuthContext() as { user: UserType };
 
   const form = useForm();
 
-  const { register, handleSubmit, control } = form;
+ const { register, handleSubmit, control, watch } = form;
+ const selectedState = watch("State");
 
   const handleSubmitt = () => {
     toast({
@@ -56,6 +63,7 @@ function formm() {
       isClosable: true,
     });
     Router.push("/contest");
+
   };
 
   const onSubmit = async (data: any) => {
@@ -64,10 +72,36 @@ function formm() {
       .insert([{ ...data, user_id: user.id }]);
     if (error) {
       console.error("Error submitting Form:", error);
+       toast({
+         title: "Error",
+         description: error.message,
+         status: "error",
+         duration: 3000,
+         isClosable: true,
+       });
     } else {
       handleSubmitt();
     }
   };
+  const [states, setStates] = useState<State[]>([]);
+  const [data, setData] = useState(null);
+  
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch("/state.json");
+        const data = await response.json();
+        setStates(data.states); // set the fetched data to the 'states' variable
+      } catch (error) {
+        console.error("Error:", error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  const districts =
+    states.find((state) => state.state === selectedState)?.districts || [];
 
   return (
     <>
@@ -123,24 +157,34 @@ function formm() {
               <br />
               <FormControl isRequired>
                 <FormLabel>State</FormLabel>
-                <Input
-                  {...register("State", {
-                    required: true,
-                  })}
+                <Select
+                  {...register("State", { required: true })}
                   name="State"
-                  placeholder="State"
-                />
+                  placeholder="Select State"
+                >
+                  {states.map((stateObj) => (
+                    <option key={stateObj.state} value={stateObj.state}>
+                      {stateObj.state}
+                    </option>
+                  ))}
+                </Select>
               </FormControl>
               <br />
               <FormControl isRequired>
                 <FormLabel>District/city</FormLabel>
-                <Input
-                  {...register("city", { required: false })}
-                  name="city"
-                  placeholder="District/city"
-                />
-              </FormControl>
-              <br />
+                <Select
+                  {...register("District", { required: true })}
+                  name="District"
+                  placeholder="Select District"
+                >
+                  {districts.map((district) => (
+                    <option key={district} value={district}>
+                      {district}
+                    </option>
+                  ))}
+                </Select>
+              </FormControl>{" "}
+              <br />{" "}
               <FormControl isRequired>
                 <FormLabel> Sub-District</FormLabel>
                 <Input
@@ -249,4 +293,4 @@ function formm() {
   );
 }
 
-export default formm;
+export default CoachingForm;
