@@ -5,26 +5,17 @@ import { useForm } from "react-hook-form";
 import { useToast } from "@chakra-ui/react";
 import supabase from "../../../supabase";
 import { useAuthContext } from "@/context";
-interface State {
-  name: string;
-  districts: string[];
-  state: string;
-}
 import {
   Button,
   FormControl,
   FormLabel,
   Heading,
   Input,
-  Checkbox,
   Stack,
-  HStack,
   Card,
   CardBody,
-  CheckboxGroup,
   Select,
 } from "@chakra-ui/react";
-import { Controller } from "react-hook-form";
 import { useRouter } from "next/router";
 
 type UserType = {
@@ -45,6 +36,11 @@ type UserType = {
   role: string;
   updated_at: string;
 };
+interface State {
+  name: string;
+  districts: string[];
+  state: string;
+}
 function formm() {
   const Router = useRouter();
   const toast = useToast();
@@ -52,7 +48,7 @@ function formm() {
 
   const form = useForm();
 
-  const { register, handleSubmit, control, watch } = form;
+  const { register, handleSubmit, watch } = form;
   const selectedState = watch("State");
 
   const handleSubmitt = () => {
