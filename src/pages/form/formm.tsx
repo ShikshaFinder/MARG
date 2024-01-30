@@ -86,7 +86,6 @@ function formm() {
   };
 
   const [states, setStates] = useState<State[]>([]);
-  const [data, setData] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {

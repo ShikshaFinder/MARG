@@ -132,21 +132,21 @@ function formm() {
                 />
               </FormControl>
               <br />
-              <FormControl isRequired>
-                <FormLabel>District/city</FormLabel>
+              <FormControl>
+                <FormLabel>App Name</FormLabel>
                 <Input
-                  {...register("city", { required: false })}
-                  name="city"
-                  placeholder="District/city"
+                  {...register("app", { required: false })}
+                  name="app"
+                  placeholder="App name in playstore"
                 />
               </FormControl>
               <br />
-              <FormControl isRequired>
-                <FormLabel> Sub-District</FormLabel>
+              <FormControl >
+                <FormLabel> Playstore link</FormLabel>
                 <Input
-                  {...register("subdistrict", { required: true })}
-                  name="subdistrict"
-                  placeholder="If its main district than just put City name here also"
+                  {...register("link", { required: false })}
+                  name="link"
+                  placeholder="link of playstore"
                 />
               </FormControl>
               <br />
@@ -163,7 +163,7 @@ function formm() {
               <FormControl isRequired>
                 <FormLabel> website</FormLabel>
                 <Input
-                  {...register("website", { required: false })}
+                  {...register("website", { required: true })}
                   name="website"
                   type="website"
                   placeholder="website"
