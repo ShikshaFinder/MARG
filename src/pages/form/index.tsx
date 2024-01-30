@@ -27,7 +27,7 @@ function form() {
             I Have A Online Platform 🌎
           </Button>
         </Link>
-        <Link href={"/form/skillform"}>
+        <Link href={"/form/skillclass"}>
           <Button colorScheme="teal" size="md">
             I Have A Skill Class 🎨
           </Button>

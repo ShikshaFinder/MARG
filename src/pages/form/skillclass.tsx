@@ -114,7 +114,27 @@ function formm() {
               </Heading>
               <br />
               <FormControl isRequired>
-                <FormLabel>skillclass Name</FormLabel>
+                <FormLabel>Type Of Skill</FormLabel>
+                <Select
+                  {...register("skilltype", { required: true })}
+                  name="skilltype"
+                  placeholder="SKill Type"
+                >
+                  <option value="art">Art & Crafts</option>
+                  <option value="Business">Business</option>
+                  <option value="coding">coding</option>
+                  <option value="dance">Dance</option>
+                  <option value="designing">Designing</option>
+                  <option value="self-defence">self-deffence</option>
+                  <option value="singing">singing</option>
+                  <option value="sports">sports</option>
+                  <option value="photography">Photography</option>
+                  <option value="other">Other</option>
+                </Select>
+              </FormControl>
+              <br />
+              <FormControl isRequired>
+                <FormLabel>Skillclass Name</FormLabel>
                 <Input
                   {...register("skillclassname", {
                     required: true,
@@ -172,8 +192,8 @@ function formm() {
               <FormControl isRequired>
                 <FormLabel>District/city</FormLabel>
                 <Select
-                  {...register("District", { required: true })}
-                  name="District"
+                  {...register("city", { required: true })}
+                  name="city"
                   placeholder="Select District"
                 >
                   {districts.map((district) => (
@@ -196,71 +216,20 @@ function formm() {
               <FormControl isRequired>
                 <FormLabel> Mobile Number</FormLabel>
                 <Input
-                  {...register("mobile1", { required: true })}
-                  name="mobile1"
+                  {...register("mobile", { required: true })}
+                  name="mobile"
                   type="number"
                   placeholder="Contact number"
                 />
               </FormControl>{" "}
               <br />
               <FormControl isRequired>
-                <FormLabel> DISE code</FormLabel>
+                <FormLabel>Website</FormLabel>
                 <Input
-                  {...register("DISE", { required: false })}
-                  name="number"
-                  type="number"
-                  placeholder="DISE code"
-                />
-              </FormControl>{" "}
-              <br />
-              <FormControl isRequired>
-                <FormLabel>Standard/Exam </FormLabel>
-                <Controller
-                  name="Standard"
-                  control={control}
-                  defaultValue={[]}
-                  rules={{ required: true }}
-                  render={({ field }) => (
-                    <CheckboxGroup {...field}>
-                      <HStack spacing="24px" wrap="wrap">
-                        <Checkbox value="Kg">Kinder Garden</Checkbox>
-                        <Checkbox value="ten">1-10</Checkbox>
-                        <Checkbox value="science">11-12 Science</Checkbox>
-                        <Checkbox value="Commerce">11-12 Commerce</Checkbox>
-                        <Checkbox value="Arts">11-12 Arts</Checkbox>
-                      </HStack>
-                    </CheckboxGroup>
-                  )}
-                />
-                <br />
-                <Input
-                  {...register("Standard", { required: false })}
-                  name="Standard"
-                  placeholder="If Teaching for any exam than mention here"
-                />
-              </FormControl>
-              <br />
-              <FormControl as="fieldset">
-                <FormLabel as="legend">Board</FormLabel>
-                <Controller
-                  name="Board"
-                  control={control}
-                  defaultValue={[]}
-                  rules={{ required: true }}
-                  render={({ field }) => (
-                    <CheckboxGroup {...field}>
-                      <HStack spacing="24px" wrap="wrap">
-                        {" "}
-                        <Checkbox value="CBSE">CBSE</Checkbox>
-                        <Checkbox value="ICSE">ICSE</Checkbox>
-                        <Checkbox value="IB">IB</Checkbox>
-                        <Checkbox value="AISSCE">AISSCE</Checkbox>
-                        <Checkbox value="NIOS">NIOS</Checkbox>
-                        <Checkbox value="State">State Board</Checkbox>
-                      </HStack>
-                    </CheckboxGroup>
-                  )}
-                />
+                  {...register("website", { required: true })}
+                  name="website"
+                  placeholder="Website link"
+                />{" "}
               </FormControl>
               <br />
               <FormControl>
@@ -269,25 +238,6 @@ function formm() {
                   {...register("email", { required: false })}
                   name="email"
                   placeholder="yourskillclass@...com"
-                />
-              </FormControl>
-              <br />
-              <FormControl as="fieldset">
-                <FormLabel as="legend">Medium</FormLabel>
-                <Controller
-                  name="medium"
-                  control={control}
-                  defaultValue={[]}
-                  rules={{ required: true }}
-                  render={({ field }) => (
-                    <CheckboxGroup {...field}>
-                      <HStack spacing="24px">
-                        <Checkbox value="Hindi">Hindi Medium</Checkbox>
-                        <Checkbox value="English">English Medium</Checkbox>
-                        <Checkbox value="Native">Native</Checkbox>
-                      </HStack>
-                    </CheckboxGroup>
-                  )}
                 />
               </FormControl>
               <br />
