@@ -54,7 +54,9 @@ function formm() {
 
   const form = useForm();
 
-  const { register, handleSubmit, control } = form;
+  const { register, handleSubmit, control, watch } = form;
+    const selectedState = watch("State");
+
 
   const handleSubmitt = () => {
     toast({
@@ -101,6 +103,9 @@ function formm() {
 
     fetchData();
   }, []);
+    const districts =
+      states.find((state) => state.state === selectedState)?.districts || [];
+
 
   // console.log(states); // log the 'states' variable
 
@@ -158,9 +163,7 @@ function formm() {
               <FormControl isRequired>
                 <FormLabel>State</FormLabel>
                 <Select
-                  {...register("State", {
-                    required: true,
-                  })}
+                  {...register("State", { required: true })}
                   name="State"
                   placeholder="Select State"
                 >
@@ -174,13 +177,19 @@ function formm() {
               <br />
               <FormControl isRequired>
                 <FormLabel>District/city</FormLabel>
-                <Input
+                <Select
                   {...register("District", { required: true })}
                   name="District"
-                  placeholder="District/city"
-                />
-              </FormControl>
-              <br />
+                  placeholder="Select District"
+                >
+                  {districts.map((district) => (
+                    <option key={district} value={district}>
+                      {district}
+                    </option>
+                  ))}
+                </Select>
+              </FormControl>{" "}
+          <br />
               <FormControl isRequired>
                 <FormLabel> Sub-District</FormLabel>
                 <Input
@@ -231,7 +240,7 @@ function formm() {
                 />
                 <br />
                 <Input
-                  {...register("Standard", { required: true })}
+                  {...register("Standard", { required: false })}
                   name="Standard"
                   placeholder="If Teaching for any exam than mention here"
                 />
