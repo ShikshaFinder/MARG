@@ -17,6 +17,7 @@ import {
   Stack,
   Text,
   useColorModeValue,
+  AspectRatio,
 } from "@chakra-ui/react";
 
 type UserType = {
@@ -65,7 +66,6 @@ export default function Home() {
         />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </Head>
-
 
       <Container maxW={"7xl"}>
         <Stack
@@ -164,13 +164,16 @@ export default function Home() {
               width={"full"}
               overflow={"hidden"}
             >
-              <iframe
-                width="600"
-                height="315"
-                src="https://www.youtube.com/embed/SSIeK18tkjM?si=zQfs_xRBnKAwl7HL"
-                title="Shiksha Finder Introduction"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              ></iframe>
+              <AspectRatio ratio={14 / 9}>
+                {" "}
+                <iframe
+                  width="600"
+                  height="315"
+                  src="https://www.youtube.com/embed/SSIeK18tkjM?si=zQfs_xRBnKAwl7HL"
+                  title="Shiksha Finder Introduction"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                ></iframe>
+              </AspectRatio>
             </Box>
           </Flex>
         </Stack>
