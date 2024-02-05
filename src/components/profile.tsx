@@ -21,7 +21,7 @@ import {
   FaSchool,
 } from "react-icons/fa";
 import Link from "next/link";
-function profile() {
+function profile({name,city,state,email,Board,Medium,Standard}:{name:string,city:string,state:string,email:string,Board:string,Medium:string,Standard:string}) {
   return (
     <Container justifyContent={"center"}>
       <Card>
@@ -35,7 +35,7 @@ function profile() {
               </Link>
             </WrapItem>
             <WrapItem>
-              <big style={{ textAlign: "center" }}>Shree Swami Narayan Gurukul</big>
+              <big style={{ textAlign: "center" }}>{name}</big>
             </WrapItem>
             <WrapItem>
               <Badge colorScheme="green" borderRadius={"2xl"}>
@@ -44,12 +44,12 @@ function profile() {
             </WrapItem>
             <WrapItem style={{ marginTop: "10px" }}>
               <FaMapMarkerAlt />
-              <b style={{ textAlign: "center" }}>&nbsp; Ahmedabad, Gujarat</b>
+              <b style={{ textAlign: "center" }}>&nbsp; {city}, {state}</b>
             </WrapItem>
             <WrapItem style={{ marginTop: "10px" }}>
               <FaMailBulk />
               <b style={{ textAlign: "center" }}>
-                &nbsp;janiharsh794@gmail.com
+                &nbsp;{email}
               </b>
             </WrapItem>
             <WrapItem style={{ marginTop: "10px" }}>
@@ -66,26 +66,25 @@ function profile() {
                   textDecoration: "underline",
                 }}
               >
-                <Link href={"/liked"}> &nbsp; Students List</Link>
+                <Link href={"/studentlist"}> &nbsp; Students List</Link>
               </b>
             </WrapItem>
             <WrapItem style={{ marginTop: "10px" }}>
               <FaAlignLeft />
 
-              <b style={{ textAlign: "center" }}>&nbsp; Board</b>
+              <b style={{ textAlign: "center" }}>&nbsp; {Board}</b>
             </WrapItem>
             <WrapItem style={{ marginTop: "10px" }}>
               <FaLanguage />
 
-              <b style={{ textAlign: "center" }}>&nbsp; Medium</b>
+              <b style={{ textAlign: "center" }}>&nbsp; {Medium}</b>
             </WrapItem>
             <WrapItem style={{ marginTop: "10px" }}>
               <FaSchool />
-              <b style={{ textAlign: "center" }}>&nbsp; Standard</b>{" "}
+              <b style={{ textAlign: "center" }}>&nbsp; {Standard}</b>{" "}
             </WrapItem>
           </Wrap>
         </CardBody>
-        {/* Add bg="gray.200" to set the background color */}
       </Card>
     </Container>
   );
