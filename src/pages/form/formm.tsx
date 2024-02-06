@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { useForm } from "react-hook-form";
+import { useForm, Controller } from "react-hook-form";
 import { useToast } from "@chakra-ui/react";
 import supabase from "../../../supabase";
 import { useAuthContext } from "@/context";
@@ -24,7 +24,6 @@ import {
   CheckboxGroup,
   Select,
 } from "@chakra-ui/react";
-import { Controller } from "react-hook-form";
 import { useRouter } from "next/router";
 
 type UserType = {
