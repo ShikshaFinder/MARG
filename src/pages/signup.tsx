@@ -1,5 +1,5 @@
 "use client";
-import { useRouter } from "next/router"; // Import the useRouter hook
+import { useRouter } from "next/router"; 
 import supabase from "../../supabase";
 import {
   Flex,
@@ -34,13 +34,19 @@ export default function SignupCard() {
       const { data, error } = await supabase.auth.signUp({
         email,
         password,
+
         options: {
-          emailRedirectTo: "http://localhost:3000",
+          emailRedirectTo: "https://platform.shikshafinder.com/",
+          data: {
+            firstName,
+            lastName,
+          },
         },
       });
       router.push("/checkmail");
     } catch (error) {
       console.log(error);
+  
     }
   };
 
@@ -73,6 +79,7 @@ export default function SignupCard() {
                   <FormLabel>First Name</FormLabel>
                   <Input
                     type="text"
+                    name="firstName"
                     onChange={(e) => setFirstName(e.target.value)}
                   />
                 </FormControl>
@@ -81,6 +88,7 @@ export default function SignupCard() {
                 <FormControl id="lastName">
                   <FormLabel>Last Name</FormLabel>
                   <Input
+                  name="lastName"
                     type="text"
                     onChange={(e) => setLastName(e.target.value)}
                   />
