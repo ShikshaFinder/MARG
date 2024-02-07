@@ -9,6 +9,7 @@ import {
   CardBody,
   Select,
   Button,
+  Textarea,
 } from "@chakra-ui/react";
 import { useForm, Controller } from "react-hook-form";
 import supabase from "../../supabase";
@@ -35,10 +36,9 @@ type UserType = {
   updated_at: string;
 };
 
-
 function uploadDemolecture() {
   const { register, handleSubmit } = useForm();
-   const Router = useRouter();
+  const Router = useRouter();
   const toast = useToast();
   const { user } = useAuthContext() as { user: UserType };
 
@@ -71,8 +71,6 @@ function uploadDemolecture() {
     }
   };
 
-
-
   return (
     <>
       {/* //form to upload demo lecture
@@ -85,6 +83,7 @@ function uploadDemolecture() {
             <Text fontSize="4xl">
               Let's provide the quality of education 🚀
             </Text>
+            <br />
             <FormControl isRequired>
               <FormLabel>Teacher Name</FormLabel>
               <Input
@@ -99,31 +98,42 @@ function uploadDemolecture() {
             <FormControl isRequired>
               <FormLabel>Standard</FormLabel>
               <Input
-                {...register("schoolname", {
+                {...register("Standard", {
                   required: true,
                 })}
-                name="schoolname"
-                placeholder="schoolname"
+                name="Standard"
+                placeholder="Standard/Main Category of what you are teaching"
               />
             </FormControl>
             <br />
             <FormControl isRequired>
               <FormLabel>Subject</FormLabel>
-              <Select
-                {...register("subject", { required: true })}
-                name="subject"
-                placeholder="Select option"
-              >
-                <option value="option1">Maths</option>
-                <option value="option2">English</option>
-                <option value="option3">Science</option>
-              </Select>
+
               <Input
                 {...register("subject", { required: true })}
                 name="subject"
-                placeholder="Enter another value you want to display as"
+                placeholder="Subject/SubCategory"
               />
             </FormControl>
+            <br />
+
+            <br />
+            <FormControl isRequired>
+              <FormLabel>Discription</FormLabel>
+
+              <Textarea
+                {...register("discription", { required: true })}
+                name="discription"
+                placeholder="Input the expertise of teacher or qualifications"
+              />
+            </FormControl>
+            <br />
+
+            <Button>
+              {" "}
+              <input type="file" accept="video/*" />
+            </Button>
+            <br />
             <br />
             <Button
               colorScheme="teal"
