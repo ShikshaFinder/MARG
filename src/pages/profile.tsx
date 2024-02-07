@@ -19,34 +19,13 @@ import supabase from "../../supabase";
 import { useRouter } from "next/router";
 
 
-type UserType = {
-  app_metadata: {
-    provider: string;
-    providers: string[];
-  };
-  aud: string;
-  confirmation_sent_at: string;
-  confirmed_at: string;
-  created_at: string;
-  email: string;
-  email_confirmed_at: string;
-  id: string;
-  identities: Array<any>; // You might want to define a type for this array
-  last_sign_in_at: string;
-  phone: any;
-  role: string;
-  updated_at: string;
-};
-
 function Profile() {
-    const [userData, setUserData] = useState<any>();
 
     const router = useRouter();
-  const { user } = useAuthContext() as { user: UserType };
   const CustomTab = React.forwardRef<HTMLElement, any>((props, ref) => {
     const tabProps = useTab({ ...props, ref });
     const isSelected = !!tabProps["aria-selected"];
-    const { user } = useAuthContext() as { user: UserType };
+    const { user } = useAuthContext() ;
     const [userData, setUserData] = useState<any>();
 
     async function getStudent() {

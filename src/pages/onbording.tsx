@@ -129,7 +129,7 @@ export default function CaptionCarousel() {
                 </Text>
               </Stack>
               <Stack align="end">
-                <a href={"/"}>
+                <a href={"/form"}>
                   {" "}
                   <Button colorScheme="blackAlpha" variant="solid">
                   Let's Begin 🚀
