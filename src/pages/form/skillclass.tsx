@@ -237,6 +237,16 @@ function formm() {
                 />
               </FormControl>
               <br />
+              <FormControl isRequired>
+                <FormLabel>Upload cover Image</FormLabel>
+                <Input type="file" accept="image/*" />
+              </FormControl>{" "}
+              <br />
+              <FormControl isRequired>
+                <FormLabel>Upload introduction video</FormLabel>
+                <Input type="file" accept="video/*" />
+              </FormControl>{" "}
+              <br />
               <Button
                 colorScheme="teal"
                 size="md"

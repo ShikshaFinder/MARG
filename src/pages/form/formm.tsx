@@ -113,7 +113,8 @@ function formm() {
           <Card variant="outline">
             <CardBody>
               <Heading size="md" fontSize="26px">
-    School Registration With Shiksha Finder.              </Heading>
+                School Registration With Shiksha Finder.{" "}
+              </Heading>
               <br />
               <FormControl isRequired>
                 <FormLabel>School Name</FormLabel>
@@ -185,7 +186,7 @@ function formm() {
                   ))}
                 </Select>
               </FormControl>{" "}
-          <br />
+              <br />
               <FormControl isRequired>
                 <FormLabel> Sub-District</FormLabel>
                 <Input
@@ -292,6 +293,16 @@ function formm() {
                   )}
                 />
               </FormControl>
+              <br />
+              <FormControl isRequired>
+                <FormLabel>Upload cover Image</FormLabel>
+                <Input type="file" accept="image/*" />
+              </FormControl>{" "}
+              <br />
+              <FormControl isRequired>
+                <FormLabel>Upload introduction video</FormLabel>
+                <Input type="file" accept="video/*" />
+              </FormControl>{" "}
               <br />
               <Button
                 colorScheme="teal"
