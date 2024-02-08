@@ -20,7 +20,7 @@ type UserType = {
   phone: any;
   role: string;
   firstName:string;
-  lastNAme:string;
+  lastName:string;
   updated_at: string;
 };
 

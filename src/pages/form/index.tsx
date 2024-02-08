@@ -8,9 +8,12 @@ import { useRouter } from "next/router";
 
 
 function form() {
+  const router = useRouter();
+
 
  async function addInstitution(institute: string) {
   const typeOfInstitute = institute;
+
   try {
     const { data, error } = await supabase.auth.updateUser({
       data: { lastName: typeOfInstitute },
@@ -18,17 +21,17 @@ function form() {
   } catch (error) {
     console.log(error);
   }
+router.push(institute);
 }
 
-  const router = useRouter();
 
 const { user } = useAuthContext() ;
- 
+ console.log(user.lastName)
 
   return (
     <>
       <Stack spacing={6} direction="column" align="center">
-        <Link href={"/form/formm"}>
+     
           {" "}
           <Button
             colorScheme="teal"
@@ -37,8 +40,6 @@ const { user } = useAuthContext() ;
           >
             I Have A School 🏫
           </Button>
-        </Link>
-        <Link href={"/form/coachingform"}>
           {" "}
           <Button
             colorScheme="teal"
@@ -47,8 +48,6 @@ const { user } = useAuthContext() ;
           >
             I Have A Coaching Center 🏢
           </Button>
-        </Link>
-        <Link href={"/form/onlineform"}>
           <Button
             colorScheme="teal"
             size="md"
@@ -56,8 +55,6 @@ const { user } = useAuthContext() ;
           >
             I Have A Online Platform 🌎
           </Button>
-        </Link>
-        <Link href={"/form/skillclass"}>
           <Button
             colorScheme="teal"
             size="md"
@@ -65,7 +62,6 @@ const { user } = useAuthContext() ;
           >
             I Have A Skill Class 🎨
           </Button>
-        </Link>
       </Stack>
     </>
   );

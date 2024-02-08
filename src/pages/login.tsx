@@ -8,7 +8,6 @@ import {
   FormLabel,
   Input,
   InputGroup,
-  HStack,
   InputRightElement,
   Stack,
   Button,
@@ -16,6 +15,7 @@ import {
   Text,
   useColorModeValue,
   Link,
+  Toast,
 } from "@chakra-ui/react";
 import { useState } from "react";
 import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
@@ -35,10 +35,10 @@ export default function Login() {
         email,
         password,
       });
-      console.log(data);
       router.push("/onbording");
     } catch (error) {
       console.log(error);
+      
     }
   };
 
