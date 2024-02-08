@@ -19,6 +19,8 @@ type UserType = {
   last_sign_in_at: string;
   phone: any;
   role: string;
+  firstName:string;
+  lastNAme:string;
   updated_at: string;
 };
 

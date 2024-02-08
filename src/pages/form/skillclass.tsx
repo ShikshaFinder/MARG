@@ -26,8 +26,7 @@ interface State {
 function formm() {
   const Router = useRouter();
   const toast = useToast();
-  const { user } = useAuthContext() ;
-
+  const { user } = useAuthContext();
   const form = useForm();
 
   const { register, handleSubmit, watch } = form;

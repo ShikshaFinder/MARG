@@ -86,7 +86,7 @@ export default function Home() {
             <Text>
               Here at Shiksha Finder You can upload <b>Demo Lecture</b> of your
               schools and Education platform so that students can come and
-              Expore &nbsp;
+              Explore &nbsp;
               <b>The Quality Of Education </b> You Are Providing.
             </Text>
             <Stack
