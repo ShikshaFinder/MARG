@@ -36,7 +36,7 @@ export default function SignupCard() {
         password,
 
         options: {
-          emailRedirectTo: "https://platform.shikshafinder.com/",
+          emailRedirectTo: "https://shikshafinder.com/whichuser",
           data: {
             firstName,
             lastName,
