@@ -137,7 +137,7 @@ export default function SignupCard() {
                 Already a user?{" "}
                 <Link
                   href={"/login"}
-                  style={{ color: "blue", textDecoration: "underline" }}
+                  style={{ color: "blue.400", textDecoration: "underline" }}
                 >
                   login
                 </Link>

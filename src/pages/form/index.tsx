@@ -21,7 +21,7 @@ function form() {
   } catch (error) {
     console.log(error);
   }
-router.push(institute);
+router.push("form/"+institute);
 }
 
 
@@ -44,7 +44,7 @@ const { user } = useAuthContext() ;
           <Button
             colorScheme="teal"
             size="md"
-            onClick={() => addInstitution("coaching class")}
+            onClick={() => addInstitution("coachingclass")}
           >
             I Have A Coaching Center 🏢
           </Button>

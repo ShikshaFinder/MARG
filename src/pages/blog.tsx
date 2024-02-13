@@ -204,7 +204,7 @@ const Parent = () => {
             attracting curious customers!
             <Text
               as="span"
-              color="blue"
+              color="blue.400"
               textDecoration="underline"
               cursor="pointer"
             >
@@ -218,7 +218,7 @@ const Parent = () => {
             right time.
             <Text
               as="span"
-              color="blue"
+              color="blue.400"
               textDecoration="underline"
               cursor="pointer"
             >
@@ -231,7 +231,7 @@ const Parent = () => {
             more students with more good reviews.
             <Text
               as="span"
-              color="blue"
+              color="blue.400"
               textDecoration="underline"
               cursor="pointer"
             >
@@ -246,7 +246,7 @@ const Parent = () => {
             so easy and great.
             <Text
               as="span"
-              color="blue"
+              color="blue.400"
               textDecoration="underline"
               cursor="pointer"
             >

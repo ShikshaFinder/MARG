@@ -47,7 +47,7 @@ const Contact = () => {
   const onSubmit = async (data: any) => {
     const { error } = await supabase.from("contactus").insert([{ ...data }]);
     if (error) {
-      console.error("Error submitting vote:", error);
+      console.error("Error submitting feedback:", error);
     } else {
       handleSubmitt();
     }
@@ -55,8 +55,8 @@ const Contact = () => {
 
   const handleSubmitt = () => {
     toast({
-      title: "your feedback is submitted",
-      description: "Thank you for your vote",
+      title: "Thank you for your feedback 👍",
+      description: "Your feedback is important to us. We will get back to you soon.",
       status: "success",
       duration: 3000,
       isClosable: true,

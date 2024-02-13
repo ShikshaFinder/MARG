@@ -101,7 +101,7 @@ const Index = () => {
                 href={"/"}
                 rounded="md"
                 color="white"
-                bg="blue"
+                bg="blue.400"
                 _hover={{ bg: "twitter.500" }}
               >
                 Home Page
