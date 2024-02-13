@@ -18,7 +18,7 @@ import { useToast } from "@chakra-ui/react";
 import { useAuthContext } from "@/context";
 
 function uploadDemolecture() {
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit, setValue } = useForm();
   const Router = useRouter();
   const toast = useToast();
   const { user } = useAuthContext() ;
@@ -35,6 +35,23 @@ function uploadDemolecture() {
   };
 
   const onSubmit = async (data: any) => {
+
+
+
+    const videoId = extractVideoId(data.videolink);
+    if (videoId) {
+      data.videolink = videoId;
+    }else{
+       toast({
+         title: "Error",
+         description: "Invalid YouTube video URL",
+         status: "error",
+         duration: 3000,
+         isClosable: true,
+       });
+       return;
+    }
+
     const { error } = await supabase
       .from("schoolDemo")
       .insert([{ ...data, user_id: user.id }]);
@@ -51,6 +68,17 @@ function uploadDemolecture() {
       handleSubmitt();
     }
   };
+
+  function extractVideoId(url: string) {
+    const prefix = "https://youtu.be/";
+    if (url.startsWith(prefix)) {
+      const idAndParams = url.slice(prefix.length);
+      const [videoId] = idAndParams.split("?");
+      return videoId;
+    } else {
+      return null;
+    }
+  }
 
   return (
     <>
@@ -109,11 +137,16 @@ function uploadDemolecture() {
               />
             </FormControl>
             <br />
+            <FormControl isRequired>
+              <FormLabel>Youtube video link</FormLabel>
 
-            <Button>
-              {" "}
-              <input type="file" accept="video/*" />
-            </Button>
+              <Input
+                {...register("videolink", { required: true })}
+                name="videolink"
+                placeholder="enter the youtube video link"
+              />
+            </FormControl>
+
             <br />
             <br />
             <Button
