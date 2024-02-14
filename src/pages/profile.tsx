@@ -18,14 +18,12 @@ import Leaderbord from "../components/Leaderbord";
 import supabase from "../../supabase";
 import { useRouter } from "next/router";
 
-
 function Profile() {
-
-    const router = useRouter();
+  const router = useRouter();
   const CustomTab = React.forwardRef<HTMLElement, any>((props, ref) => {
     const tabProps = useTab({ ...props, ref });
     const isSelected = !!tabProps["aria-selected"];
-    const { user } = useAuthContext() ;
+    const { user } = useAuthContext();
 
     const [userData, setUserData] = useState<any>();
     console.log(user.lastName);
@@ -42,18 +40,17 @@ function Profile() {
         router.push("/form");
       }
     }
-    
-  useEffect(() => {
-    getStudent();
-  }, [user]);
-  console.log(user.id);
- if (!userData)
-   return (
-     <Center>
-       <Spinner color="green.500" />
-     </Center>
-   );
 
+    useEffect(() => {
+      getStudent();
+    }, [user]);
+    console.log(user.id);
+    if (!userData)
+      return (
+        <Center>
+          <Spinner color="green.500" />
+        </Center>
+      );
 
     const styles = useMultiStyleConfig("Tabs", tabProps);
 

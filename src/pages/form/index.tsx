@@ -58,7 +58,7 @@ const { user } = useAuthContext() ;
           <Button
             colorScheme="teal"
             size="md"
-            onClick={() => addInstitution("skillClass")}
+            onClick={() => addInstitution("skillclass")}
           >
             I Have A Skill Class 🎨
           </Button>
