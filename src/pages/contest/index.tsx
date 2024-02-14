@@ -5,6 +5,7 @@ import Contestinfo from "../../components/contesti";
 function contest() {
   return (
     <>
+    
       <Bestschool />
       <Contestinfo />
     </>

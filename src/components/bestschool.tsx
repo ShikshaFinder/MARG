@@ -22,22 +22,25 @@ import {
   Input,
 } from "@chakra-ui/react";
 import Link from "next/link";
+import Copybutton from "../components/Copybutton";
 
 // import  from "next/image";
 
 
 import React from 'react'
 
+
 function bestschool() {
 Example(); 
     
+
   return (
     <Accordion>
       <AccordionItem>
         <h2>
           <AccordionButton _expanded={{ bg: "yellow", color: "white" }}>
             <Box as="span" flex="1" textAlign="left">
-              <Text as="mark"> DO you have satisfied Students ?</Text>
+              <Text as="mark"> Do you have satisfied Students ?</Text>
             </Box>
             <AccordionIcon />
           </AccordionButton>
@@ -74,9 +77,7 @@ Example();
               <CardFooter>
                 <Link href={"/contesti"}>
 
-                  <Button variant="solid" colorScheme="green">
-                    Participate Now
-                  </Button>
+                 <Copybutton/>
                 </Link>
                 &nbsp; &nbsp;
                 <Button colorScheme="teal" variant="outline">
