@@ -209,12 +209,26 @@ function CoachingForm() {
                 />
               </FormControl>
               <br />
-              <FormControl>
-                <FormLabel>Board</FormLabel>
-                <Input
-                  {...register("Board", { required: false })}
+              <FormControl as="fieldset">
+                <FormLabel as="legend">Board</FormLabel>
+                <Controller
                   name="Board"
-                  placeholder="Board"
+                  control={control}
+                  defaultValue={[]}
+                  rules={{ required: true }}
+                  render={({ field }) => (
+                    <CheckboxGroup {...field}>
+                      <HStack spacing="24px" wrap="wrap">
+                        {" "}
+                        <Checkbox value="CBSE">CBSE</Checkbox>
+                        <Checkbox value="ICSE">ICSE</Checkbox>
+                        <Checkbox value="State">State Board</Checkbox>
+                        <Checkbox value="IB">IB</Checkbox>
+                        <Checkbox value="AISSCE">AISSCE</Checkbox>
+                        <Checkbox value="NIOS">NIOS</Checkbox>
+                      </HStack>
+                    </CheckboxGroup>
+                  )}
                 />
               </FormControl>
               <br />

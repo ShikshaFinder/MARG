@@ -185,7 +185,7 @@ function formm() {
                 <Input
                   {...register("Board", { required: false })}
                   name="Board"
-                  placeholder="Board"
+                  placeholder="Board / If applicable"
                 />
               </FormControl>
               <br />
