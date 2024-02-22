@@ -1,7 +1,6 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import { useForm } from "react-hook-form";
-import { useToast } from "@chakra-ui/react";
+import { useForm, Controller } from "react-hook-form";
 import supabase from "../../../supabase";
 import { useAuthContext } from "@/context";
 interface State {
@@ -21,8 +20,8 @@ import {
   CardBody,
   CheckboxGroup,
   Select,
+  useToast,
 } from "@chakra-ui/react";
-import { Controller } from "react-hook-form";
 import { useRouter } from "next/router";
 import { state } from "@/components/state";
 
