@@ -187,7 +187,7 @@ function formm() {
               </FormControl>{" "}
               <br />
               <FormControl isRequired>
-                <FormLabel>Standard/Exam </FormLabel>
+                <FormLabel>Standard </FormLabel>
                 <Controller
                   name="Standard"
                   control={control}
@@ -204,12 +204,6 @@ function formm() {
                       </HStack>
                     </CheckboxGroup>
                   )}
-                />
-                <br />
-                <Input
-                  {...register("Standard", { required: false })}
-                  name="Standard"
-                  placeholder="If Teaching for any exam than mention here"
                 />
               </FormControl>
               <br />
@@ -233,6 +227,15 @@ function formm() {
                       </HStack>
                     </CheckboxGroup>
                   )}
+                />
+              </FormControl>
+              <br />
+              <FormControl isRequired>
+                <FormLabel> exam</FormLabel>
+                <Input
+                  {...register("exam", { required: false })}
+                  name="exam"
+                  placeholder="JEE,NEET,etc"
                 />
               </FormControl>
               <br />

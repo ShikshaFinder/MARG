@@ -6,13 +6,9 @@ import {
   FormControl,
   FormLabel,
   Heading,
-  Input,
-  Checkbox,
   Stack,
-  HStack,
   Card,
   CardBody,
-  CheckboxGroup,
   Select,
   useToast,
 } from "@chakra-ui/react";
@@ -23,6 +19,7 @@ interface State {
   districts: string[];
   state: string;
 }
+import { Checkbox, CheckboxGroup, HStack, Input } from "@chakra-ui/react";
 //the objective of making this page is that we want to price them according to district and 
 //state and here we will take information regarding the target audience ,i.e the students they are targeting,state ,district and standard wise.
 //but the problem is it is going to be a lot more variable in the first case so we have to make sure we can do it correctly
@@ -48,12 +45,12 @@ function marketingDetail() {
       duration: 3000,
       isClosable: true,
     });
-    Router.push("/contest");
+    Router.push("/analytics");
   };
 
   const onSubmit = async (data: any) => {
     const { error } = await supabase
-      .from("coaching")
+      .from("marketingDetails")
       .insert([{ ...data, user_id: user.id }]);
     if (error) {
       console.error("Error submitting Form:", error);
@@ -83,43 +80,11 @@ function marketingDetail() {
             </Heading>
             <br />
             <FormControl isRequired>
-              <FormLabel>Name Of Coaching</FormLabel>
-              <Input
-                {...register("coachingname", {
-                  required: true,
-                })}
-                name="coachingname"
-                placeholder="coaching name"
-                type="text"
-              />
-            </FormControl>
-            <br />
-            <FormControl isRequired>
-              <FormLabel>Discription</FormLabel>
-              <Input
-                {...register("discription", {
-                  required: true,
-                })}
-                name="discription"
-                placeholder="Facilities,Fees,etc"
-              />
-            </FormControl>
-            <br />
-            <FormLabel>Location</FormLabel>
-            <Input
-              {...register("location", {
-                required: true,
-              })}
-              name="location"
-              placeholder="Exact address of institute"
-            />
-            <br />
-            <FormControl isRequired>
               <FormLabel>State</FormLabel>
               <Select
                 {...register("State", { required: true })}
                 name="State"
-                placeholder="Select State"
+                placeholder="Select state of your target audience"
               >
                 {states.map((stateObj) => (
                   <option key={stateObj.state} value={stateObj.state}>
@@ -134,7 +99,7 @@ function marketingDetail() {
               <Select
                 {...register("District", { required: true })}
                 name="District"
-                placeholder="Select District"
+                placeholder="Select District of your target audience"
               >
                 {districts.map((district) => (
                   <option key={district} value={district}>
@@ -143,6 +108,83 @@ function marketingDetail() {
                 ))}
               </Select>
             </FormControl>{" "}
+            <br />
+            <br />
+            <FormControl isRequired>
+              <FormLabel>Standards of your target audience</FormLabel>
+              <Controller
+                name="Standard"
+                control={control}
+                defaultValue={[]}
+                rules={{ required: true }}
+                render={({ field }) => (
+                  <CheckboxGroup {...field}>
+                    <HStack spacing="24px" wrap="wrap">
+                      <Checkbox value="Kg">Kinder Garden</Checkbox>
+                      <Checkbox value="ten">1-10</Checkbox>
+                      <Checkbox value="science">11-12 Science</Checkbox>
+                      <Checkbox value="Commerce">11-12 Commerce</Checkbox>
+                      <Checkbox value="Arts">11-12 Arts</Checkbox>
+                    </HStack>
+                  </CheckboxGroup>
+                )}
+              />
+            </FormControl>
+            <br />
+            <br />
+            <FormControl as="fieldset">
+              <FormLabel as="legend">
+                Board in which your target audience studies
+              </FormLabel>
+              <Controller
+                name="Board"
+                control={control}
+                defaultValue={[]}
+                rules={{ required: true }}
+                render={({ field }) => (
+                  <CheckboxGroup {...field}>
+                    <HStack spacing="24px" wrap="wrap">
+                      {" "}
+                      <Checkbox value="CBSE">CBSE</Checkbox>
+                      <Checkbox value="ICSE">ICSE</Checkbox>
+                      <Checkbox value="IB">IB</Checkbox>
+                      <Checkbox value="AISSCE">AISSCE</Checkbox>
+                      <Checkbox value="NIOS">NIOS</Checkbox>
+                      <Checkbox value="State">State Board</Checkbox>
+                    </HStack>
+                  </CheckboxGroup>
+                )}
+              />
+            </FormControl>
+            <br />
+            <FormControl isRequired>
+              <FormLabel> examinations your target audience see</FormLabel>
+              <Input
+                {...register("exam", { required: false })}
+                name="exam"
+                placeholder="JEE,NEET,etc"
+              />
+            </FormControl>
+            <br />
+            <FormControl as="fieldset">
+              <FormLabel as="legend">Medium you want to target</FormLabel>
+              <Controller
+                name="medium"
+                control={control}
+                defaultValue={[]}
+                rules={{ required: true }}
+                render={({ field }) => (
+                  <CheckboxGroup {...field}>
+                    <HStack spacing="24px">
+                      <Checkbox value="Hindi">Hindi Medium</Checkbox>
+                      <Checkbox value="English">English Medium</Checkbox>
+                      <Checkbox value="Native">Native</Checkbox>
+                    </HStack>
+                  </CheckboxGroup>
+                )}
+              />
+            </FormControl>
+            <br />
             <br />
             <Button
               colorScheme="teal"

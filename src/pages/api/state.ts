@@ -10,7 +10,6 @@ export default function handler(
   req: NextApiRequest,
   res: NextApiResponse<Data>
 ) {
-  // res.status(200).json({ name: 'Shiksha Finder' })
   fs.readFile('state.json', 'utf8', function(err, data) {
     if (err) throw err;
     res.status(200).json(JSON.parse(data));

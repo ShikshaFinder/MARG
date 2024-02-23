@@ -7,7 +7,6 @@ import {
   Stack,
   Card,
   CardBody,
-  Select,
   Button,
   Textarea,
 } from "@chakra-ui/react";
