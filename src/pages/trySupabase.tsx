@@ -39,3 +39,13 @@
 // }
 
 // export default trySupabase;
+
+import React from 'react'
+
+function trySupabase() {
+  return (
+    <div>trySupabase</div>
+  )
+}
+
+export default trySupabase
