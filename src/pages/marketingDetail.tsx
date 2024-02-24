@@ -48,6 +48,9 @@ function marketingDetail() {
     Router.push("/analytics");
   };
 
+  if(!user){
+    return <div>loading</div>
+  }
   const onSubmit = async (data: any) => {
     const { error } = await supabase
       .from("marketingDetails")

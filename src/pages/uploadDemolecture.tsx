@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   FormControl,
   FormLabel,
@@ -17,10 +17,24 @@ import { useToast } from "@chakra-ui/react";
 import { useAuthContext } from "@/context";
 
 function uploadDemolecture() {
+  const router = useRouter();
   const { register, handleSubmit, setValue } = useForm();
   const Router = useRouter();
   const toast = useToast();
-  const { user } = useAuthContext() ;
+  const { user } = useAuthContext();
+  useEffect(() => {
+    // console.log("here", user);
+
+    // setTimeout(() => {
+    if (!user) {
+      // console.log("here in user");
+      Router.push("/login");
+    } else if (user.user_metadata && !user.user_metadata.lastName) {
+      Router.push("/form");
+    }
+    // }, 2000);
+    // console.log("here", user);
+  }, [user]);
 
   const handleSubmitt = () => {
     toast({
@@ -34,22 +48,23 @@ function uploadDemolecture() {
   };
 
   const onSubmit = async (data: any) => {
-
-
-
     const videoId = extractVideoId(data.videolink);
     if (videoId) {
       data.videolink = videoId;
-    }else{
-       toast({
-         title: "Error",
-         description: "Invalid YouTube video URL",
-         status: "error",
-         duration: 3000,
-         isClosable: true,
-       });
-       return;
+    } else {
+      toast({
+        title: "Error",
+        description: "Invalid YouTube video URL",
+        status: "error",
+        duration: 3000,
+        isClosable: true,
+      });
+      return;
     }
+
+     if(!user){
+      return
+     }
 
     const { error } = await supabase
       .from("schoolDemo")

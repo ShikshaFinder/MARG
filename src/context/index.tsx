@@ -2,42 +2,33 @@
 
 import { createContext, useContext, useEffect, useState } from "react";
 import supabase from "../../supabase";
+import { AuthUser } from "@supabase/supabase-js";
 
-type UserType = {
-  app_metadata: {
-    provider: string;
-    providers: string[];
-  };
-  aud: string;
-  confirmation_sent_at: string;
-  confirmed_at: string;
-  created_at: string;
-  email: string;
-  email_confirmed_at: string;
-  id: string;
-  identities: Array<any>;
-  last_sign_in_at: string;
-  phone: any;
-  role: string;
-  firstName:string;
-  lastName:string;
-  updated_at: string;
-};
 
-const AuthContext = createContext({});
+
+const AuthContext = createContext<{
+  user: AuthUser | undefined;
+}>({
+  user: undefined,
+});
+
 
 export const AuthContextProvider = ({ children }: any) => {
-  const [user, setUser] = useState({});
+  const [user, setUser] = useState<AuthUser | undefined>();
   const fetcCurrentUser = async () => {
     try {
       const {
         data: { user },
+        error,
       } = await supabase.auth.getUser();
       if (user) {
         setUser(user);
+      } else {
+        setUser(undefined);
+        console.log(error);
       }
     } catch (error) {
-      console.log(error);
+      setUser(undefined);
     } finally {
     }
   };
@@ -53,4 +44,5 @@ export const AuthContextProvider = ({ children }: any) => {
 
 export default AuthContextProvider;
 
-export const useAuthContext = () => useContext(AuthContext) as { user: UserType };
+export const useAuthContext = () =>
+  useContext(AuthContext)

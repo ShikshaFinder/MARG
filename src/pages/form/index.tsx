@@ -26,7 +26,7 @@ router.push("form/"+institute);
 
 
 const { user } = useAuthContext() ;
- console.log(user.lastName)
+//  console.log(user.lastName)
 
   return (
     <>

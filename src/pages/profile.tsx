@@ -15,8 +15,9 @@ import {
 import { useAuthContext } from "@/context";
 import Profilee from "../components/profile";
 import Leaderbord from "../components/Leaderbord";
-import supabase from "../../supabase";
+// import supabase from "../../supabase";
 import { useRouter } from "next/router";
+
 
 function Profile() {
   const router = useRouter();
@@ -24,33 +25,40 @@ function Profile() {
     const tabProps = useTab({ ...props, ref });
     const isSelected = !!tabProps["aria-selected"];
     const { user } = useAuthContext();
-
-    const [userData, setUserData] = useState<any>();
-    console.log(user.lastName);
-
-    async function getStudent() {
-      try {
-        let { data, error } = await supabase
-          .from("School")
-          .select("*")
-          .eq("user_id", user.id);
-
-        setUserData(data);
-      } catch (error) {
-        router.push("/form");
-      }
+    if (!user) {
+      return <div>loading...</div>;
     }
 
-    useEffect(() => {
-      getStudent();
-    }, [user]);
-    console.log(user.id);
-    if (!userData)
-      return (
-        <Center>
-          <Spinner color="green.500" />
-        </Center>
-      );
+
+    const [userData, setUserData] = useState<any>();
+
+    if (!user) {
+      return <div>loading...</div>;
+    }
+
+    // async function getStudent() {
+    //   try {
+    //     let { data, error } = await supabase
+    //       .from("School")
+    //       .select("*")
+    //       .eq("user_id", user.id);
+
+    //     setUserData(data);
+    //   } catch (error) {
+    //     router.push("/form");
+    //   }
+    // }
+
+    // useEffect(() => {
+    //   getStudent();
+    // }, [user]);
+    // console.log(user.id);
+    // if (!userData)
+    //   return (
+    //     <Center>
+    //       <Spinner color="green.500" />
+    //     </Center>
+    //   );
 
     const styles = useMultiStyleConfig("Tabs", tabProps);
 

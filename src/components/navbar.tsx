@@ -298,9 +298,9 @@ const NAV_ITEMS: Array<NavItem> = [
         href: "/form",
       },
       {
-        label: "Reach out to students ",
+        label: "Upload demo lectures",
         subLabel: "Let the students know the quality of your Education",
-        href: "/marketing",
+        href: "/uploadDemolecture",
       },
     ],
   },
