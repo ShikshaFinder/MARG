@@ -25,15 +25,14 @@ function uploadDemolecture() {
   useEffect(() => {
     // console.log("here", user);
 
-    // setTimeout(() => {
+    setTimeout(() => {
     if (!user) {
       // console.log("here in user");
       Router.push("/login");
     } else if (user.user_metadata && !user.user_metadata.lastName) {
       Router.push("/form");
     }
-    // }, 2000);
-    // console.log("here", user);
+    }, 2000);
   }, [user]);
 
   const handleSubmitt = () => {
