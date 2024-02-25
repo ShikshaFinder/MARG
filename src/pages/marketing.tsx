@@ -3,7 +3,6 @@ import { ReactElement } from "react";
 import { Box, SimpleGrid, Icon, Text, Stack, Flex } from "@chakra-ui/react";
 import { FcAssistant, FcDonate, FcInTransit } from "react-icons/fc";
 import Pricing from "../components/pricing"
-import MarketingForm from "@/components/marketingform";
 
 interface FeatureProps {
   title: string;
@@ -60,7 +59,7 @@ export default function SimpleThreeColumns() {
           />
         </SimpleGrid>
       </Box>
-      <MarketingForm/>
+      
       <Pricing/>
     </>
   );

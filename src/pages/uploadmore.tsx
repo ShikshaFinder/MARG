@@ -1,28 +1,27 @@
-import React from "react";
-import Card from "../components/card";
-import { Stack, Button, Center } from "@chakra-ui/react";
-import Link from "next/link";
+"use client";
 
-function uploadmore() {
+import { Box, Heading, Text, Button, Center } from "@chakra-ui/react";
+import { CheckCircleIcon } from "@chakra-ui/icons";
+import Link from "next/link";
+export default function Success() {
   return (
-    <>
-      <Stack>
-        <Card
-          icon={
-            "https://images.unsplash.com/photo-1497561813398-8fcc7a37b567?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-          }
-          skillname="You have successfully uploaded the demo lecture "
-        />
-        <Link href="/uploadDemolecture">
+    <Box textAlign="center" py={10} px={6}>
+      <CheckCircleIcon boxSize={"50px"} color={"green.500"} />
+      <Heading as="h2" size="xl" mt={6} mb={2}>
+        You have succesfully uploaded your demo lecture
+      </Heading>
+      <Text color={"gray.500"}>
+        You can add more demo lectures and provide more insights to your
+        students about your quality of education.
+      </Text>
+      <br />
+      <Link href="/uploadDemolecture">
+        {" "}
+        <Center>
           {" "}
-          <Center>
-            {" "}
-            <Button>Upload more</Button>
-          </Center>
-        </Link>
-      </Stack>
-    </>
+          <Button>Upload more</Button>
+        </Center>
+      </Link>
+    </Box>
   );
 }
-
-export default uploadmore;

@@ -10,6 +10,7 @@ import {
   SimpleGrid,
   useColorModeValue,
 } from "@chakra-ui/react";
+import Link from "next/link";
 // Here we have used react-icons package for the icons
 import { BiCheck } from "react-icons/bi";
 import { IoIosListBox, IoIosRocket } from "react-icons/io";
@@ -80,6 +81,7 @@ interface PricingCardProps {
   price: string;
   features: string[];
   icon: IconType;
+  
 }
 
 const PricingCard = ({ title, price, icon, features }: PricingCardProps) => {
@@ -115,15 +117,18 @@ const PricingCard = ({ title, price, icon, features }: PricingCardProps) => {
           </HStack>
         ))}
       </VStack>
-      <Button
-        colorScheme="teal"
-        variant="solid"
-        size="md"
-        rounded="md"
-        w="100%"
-      >
-        Get Started
-      </Button>
+      <Link href="/marektingform"> 
+        {" "}
+        <Button
+          colorScheme="teal"
+          variant="solid"
+          size="md"
+          rounded="md"
+          w="100%"
+        >
+          Get Started
+        </Button>
+      </Link>
     </Box>
   );
 };

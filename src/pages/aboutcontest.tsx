@@ -115,7 +115,7 @@ export default function SplitWithImage() {
           </Flex>
         </SimpleGrid>
       </Container>
-      <Card style={{ backgroundColor: "yellow" }}>
+      <Card bg={useColorModeValue("blue.50", "blue.900")}>
         <CardBody>
           <Text>
             The contest is organized based on districts and categories,
