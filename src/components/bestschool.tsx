@@ -1,11 +1,6 @@
 'use client'
 import {
-  Accordion,
-  AccordionItem,
-  AccordionButton,
-  AccordionPanel,
-  AccordionIcon,
-  Box,
+ 
   Card,
   Stack,
   CardBody,
@@ -17,6 +12,7 @@ import {
 } from "@chakra-ui/react";
 import Link from "next/link";
 import Copybutton from "../components/Copybutton";
+import Whatsapp from "../components/whatsapp";  
 
 
 
@@ -27,7 +23,6 @@ function bestschool() {
     
 
   return (
- 
     <>
       <Text as="mark"> Do you have satisfied Students ?</Text>
       <Card
@@ -63,17 +58,11 @@ function bestschool() {
               <Copybutton />
             </Link>
             &nbsp; &nbsp;
-            <Link href="/aboutcontest">
-              {" "}
-              <Button colorScheme="teal" variant="outline">
-                Know More
-              </Button>
-            </Link>
+          <Whatsapp/>
           </CardFooter>
         </Stack>
       </Card>
     </>
-
   );
 }
 

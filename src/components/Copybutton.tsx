@@ -18,7 +18,7 @@ function Copybutton() {
   
  
 
-   <Button onClick={handleClick}>Copy URL</Button>
+   <Button colorScheme='linkedin'  onClick={handleClick}>Copy URL</Button>
   
   </>
   )
