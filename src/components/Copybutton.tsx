@@ -5,7 +5,7 @@ function Copybutton() {
      const schoolName = "schoolname"; // Replace with actual school name
 
      const handleClick = async () => {
-       const url = `https://shikshafinder.com/contest/${schoolName}`;
+       const url = `https://shikshafinder.com/vote/${schoolName}`;
        try {
          await navigator.clipboard.writeText(url);
          console.log("URL copied to clipboard");

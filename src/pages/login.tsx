@@ -19,17 +19,27 @@ import {
 } from "@chakra-ui/react";
 import { useState } from "react";
 import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
+import { useToast } from "@chakra-ui/react";
 
 export default function Login() {
   const router = useRouter(); // Initialize the router
-
-  //   const [firstName, setFirstName] = useState("");
-  //   const [lastName, setLastName] = useState("");
+const toast = useToast();
+ 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
 
   const Signin = async () => {
+    if (!email || !password) {
+      toast({
+        title: "Error.",
+        description: "Email and password fields are required",
+        status: "error",
+        duration: 5000,
+        isClosable: true,
+      });
+      return;
+    }
     try {
       const { data, error } = await supabase.auth.signInWithPassword({
         email,

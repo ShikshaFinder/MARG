@@ -1,5 +1,5 @@
 "use client";
-import { useRouter } from "next/router"; 
+import { useRouter } from "next/router";
 import supabase from "../../supabase";
 import {
   Flex,
@@ -19,9 +19,11 @@ import {
 } from "@chakra-ui/react";
 import { useState } from "react";
 import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
+import { useToast } from "@chakra-ui/react";
 
 export default function SignupCard() {
   const router = useRouter(); // Initialize the router
+  const toast = useToast();
 
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -30,11 +32,20 @@ export default function SignupCard() {
   const [showPassword, setShowPassword] = useState(false);
 
   const signUpNewUser = async () => {
+    if (!email || !password || !firstName || !lastName) {
+      toast({
+        title: "Error.",
+        description: "Email field is required",
+        status: "error",
+        duration: 5000,
+        isClosable: true,
+      });
+      return;
+    }
     try {
       const { data, error } = await supabase.auth.signUp({
         email,
         password,
-
         options: {
           emailRedirectTo: "https://shikshafinder.com/whichuser",
           data: {
@@ -46,7 +57,6 @@ export default function SignupCard() {
       router.push("/checkmail");
     } catch (error) {
       console.log(error);
-  
     }
   };
 
@@ -88,7 +98,7 @@ export default function SignupCard() {
                 <FormControl id="lastName">
                   <FormLabel>Last Name</FormLabel>
                   <Input
-                  name="lastName"
+                    name="lastName"
                     type="text"
                     onChange={(e) => setLastName(e.target.value)}
                   />

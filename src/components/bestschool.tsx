@@ -14,39 +14,20 @@ import {
   Text,
   Image,
   Button,
-  useClipboard,
-  Editable,
-  EditableInput,
-  EditablePreview,
-  Flex,
-  Input,
 } from "@chakra-ui/react";
 import Link from "next/link";
 import Copybutton from "../components/Copybutton";
 
-// import  from "next/image";
 
 
 import React from 'react'
 
 
 function bestschool() {
-Example(); 
     
 
   return (
-    // <Accordion>
-    //   <AccordionItem>
-    //     <h2>
-    //       <AccordionButton _expanded={{ bg: "yellow", color: "white" }}>
-    //         <Box as="span" flex="1" textAlign="left">
-    //           <Text as="mark"> Do you have satisfied Students ?</Text>
-    //         </Box>
-    //         <AccordionIcon />
-    //       </AccordionButton>
-    //     </h2>
-
-    //     <AccordionPanel>
+ 
     <>
       <Text as="mark"> Do you have satisfied Students ?</Text>
       <Card
@@ -92,35 +73,8 @@ Example();
         </Stack>
       </Card>
     </>
-    //     </AccordionPanel>
-    //   </AccordionItem>
-    // </Accordion>
+
   );
 }
 
 export default bestschool
-
- function Example() {
-      const placeholder = "text to be copied...";
-      const { onCopy, value, setValue, hasCopied } = useClipboard("");
-
-      return (
-        <>
-          <Flex mb={2}>
-            <Input
-              placeholder={placeholder}
-              value={value}
-              onChange={(e) => {
-                setValue(e.target.value);
-              }}
-              mr={2}
-            />
-            <Button onClick={onCopy}>{hasCopied ? "Copied!" : "Copy"}</Button>
-          </Flex>
-          <Editable placeholder="Paste here">
-            <EditablePreview width="100%" />
-            <EditableInput />
-          </Editable>
-        </>
-      );
-    }
