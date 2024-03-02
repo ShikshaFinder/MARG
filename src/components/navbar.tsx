@@ -23,6 +23,7 @@ import {
   ChevronRightIcon,
 } from "@chakra-ui/icons";
 import { useAuthContext } from "@/context";
+import { useRouter } from "next/router";
 
 
 export default function Navbar() {

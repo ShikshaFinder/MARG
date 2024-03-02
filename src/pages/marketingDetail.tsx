@@ -49,7 +49,8 @@ function marketingDetail() {
   };
 
   if(!user){
-    return <div>loading</div>
+    return (<div>loading/no user found ,if it is taking longer than usual ,please signup/signin
+      .</div>)
   }
   const onSubmit = async (data: any) => {
     const { error } = await supabase

@@ -47,7 +47,12 @@ function formm() {
     });
     Router.push("/contest");
   };
-if(!user){return <div>loading...</div>} 
+if(!user){   return (
+  <div>
+    loading/no user found ,if it is taking longer than usual ,please{" "}
+    <a href="signup">signup</a>__ /__<a href="/signin">signin</a>.
+  </div>
+);} 
   const onSubmit = async (data: any) => {
     const { error } = await supabase
       .from("School")

@@ -26,14 +26,16 @@ function Profile() {
     const isSelected = !!tabProps["aria-selected"];
     const { user } = useAuthContext();
     if (!user) {
-      return <div>loading...</div>;
+      return  (<div>loading/no user found ,if it is taking longer than usual ,please signup/signin
+      .</div>)
     }
 
 
     const [userData, setUserData] = useState<any>();
 
     if (!user) {
-      return <div>loading...</div>;
+      return   (<div>loading/no user found ,if it is taking longer than usual ,please signup/signin
+      .</div>)
     }
 
     // async function getStudent() {
