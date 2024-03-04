@@ -81,7 +81,6 @@ interface PricingCardProps {
   price: string;
   features: string[];
   icon: IconType;
-  
 }
 
 const PricingCard = ({ title, price, icon, features }: PricingCardProps) => {
@@ -117,7 +116,7 @@ const PricingCard = ({ title, price, icon, features }: PricingCardProps) => {
           </HStack>
         ))}
       </VStack>
-      <Link href="/marektingform"> 
+      <Link href="/marktingDetaiil">
         {" "}
         <Button
           colorScheme="teal"

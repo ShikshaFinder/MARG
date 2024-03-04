@@ -8,7 +8,6 @@ const handler: NextApiHandler = async (req, res) => {
   if (code) {
     const supabase = createPagesServerClient({ req, res });
     await supabase.auth.exchangeCodeForSession(String(code));
-    // console.log("new user created");
   }
 
   res.redirect("/");

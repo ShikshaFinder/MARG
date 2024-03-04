@@ -73,8 +73,6 @@ if(!user){   return (
 
   const [states, setStates] = useState<State[]>(state.states);
 
- 
-
 
     const districts =
       states.find((state) => state.state === selectedState)?.districts || [];
