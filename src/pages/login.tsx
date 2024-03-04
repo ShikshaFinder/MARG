@@ -40,10 +40,10 @@ const toast = useToast();
       return;
     }
     try {
-      const { data, error } = await supabase.auth.signInWithPassword({
-        email,
-        password,
-      });
+     const { data, error } = await supabase.auth.signInWithPassword({
+       email,
+       password,
+     });
       router.push("/onbording");
     } catch (error) {
       console.log(error);
