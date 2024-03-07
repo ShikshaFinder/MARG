@@ -3,6 +3,7 @@ import StudentCard from "@/components/studentCard";
 import supabase from "../../supabase";
 import { useAuthContext } from "@/context";
 import { useEffect, useState } from "react";
+import { Text } from "@chakra-ui/react";
 
 function studentlist() {
   const { user } = useAuthContext();
@@ -26,9 +27,13 @@ function studentlist() {
 
   return (
     <>
-      {userData && userData.map((admissionform: { name: string }, index) => (
-        <StudentCard text={admissionform.name} />
-      ))}
+      <Text fontSize="5xl">Admission forms</Text>
+      <br />
+
+      {userData &&
+        userData.map((admissionform: { name: string }) => (
+          <StudentCard text={admissionform.name} />
+        ))}
     </>
   );
 }

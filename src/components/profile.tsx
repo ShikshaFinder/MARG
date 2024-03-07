@@ -30,7 +30,7 @@ function profile({name,city,state,email,Board,Medium,Standard}:{name:string,city
             <WrapItem>
               <Link href={"/form"}>
                 {" "}
-                <Avatar size="2xl" name="harsh" borderRadius={"3xl"} />{" "}
+                <Avatar size="2xl" name={name} borderRadius={"3xl"} />{" "}
                 <FaEdit size={24} style={{ alignSelf: "flex-end" }} />
               </Link>
             </WrapItem>
