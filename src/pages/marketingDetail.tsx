@@ -20,6 +20,8 @@ interface State {
   state: string;
 }
 import { Checkbox, CheckboxGroup, HStack, Input } from "@chakra-ui/react";
+
+//this is the page where we will take the information regarding the target audience of the user
 //the objective of making this page is that we want to price them according to district and 
 //state and here we will take information regarding the target audience ,i.e the students they are targeting,state ,district and standard wise.
 //but the problem is it is going to be a lot more variable in the first case so we have to make sure we can do it correctly
