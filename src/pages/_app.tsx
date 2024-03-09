@@ -35,24 +35,29 @@ export default function App({
   const theme = extendTheme({ config });
 
   return (
-    <SessionContextProvider
-      supabaseClient={supabaseClient}
-      initialSession={pageProps.initialSession}
-    >
-      <Analytics />
-
+    <>
       <Head>
-        <title>Shiksha Finder</title>
-        <meta property="og:title" content="Shiksha Finder" key="title" />
+        <link rel="manifest" href="/manifest.json" />
       </Head>
-      <ChakraProvider theme={theme}>
-        <AuthContextProvider>
-          <div className={inter.className}>
-            <Navbar />
-          </div>
-          <Component {...pageProps} />
-        </AuthContextProvider>
-      </ChakraProvider>
-    </SessionContextProvider>
+      <SessionContextProvider
+        supabaseClient={supabaseClient}
+        initialSession={pageProps.initialSession}
+      >
+        <Analytics />
+
+        <Head>
+          <title>Shiksha Finder</title>
+          <meta property="og:title" content="Shiksha Finder" key="title" />
+        </Head>
+        <ChakraProvider theme={theme}>
+          <AuthContextProvider>
+            <div className={inter.className}>
+              <Navbar />
+            </div>
+            <Component {...pageProps} />
+          </AuthContextProvider>
+        </ChakraProvider>
+      </SessionContextProvider>
+    </>
   );
 }

@@ -27,16 +27,18 @@ function profile({
   state,
   email,
   Board,
-  Medium,
-  Standard,
+  medium,
+  standard,
+  mobilenumber,
 }: {
   name: string;
   city: string;
   state: string;
   email: string;
   Board: string;
-  Medium: string;
-  Standard: string;
+  medium: string;
+  standard: string;
+  mobilenumber: string;
 }) {
   return (
     <Container justifyContent={"center"}>
@@ -93,11 +95,11 @@ function profile({
             <WrapItem style={{ marginTop: "10px" }}>
               <FaLanguage />
 
-              <b style={{ textAlign: "center" }}>&nbsp; {Medium}</b>
+              <b style={{ textAlign: "center" }}>&nbsp; {medium}</b>
             </WrapItem>
             <WrapItem style={{ marginTop: "10px" }}>
               <FaSchool />
-              <b style={{ textAlign: "center" }}>&nbsp; {Standard}</b>{" "}
+              <b style={{ textAlign: "center" }}>&nbsp; {standard}</b>{" "}
             </WrapItem>
           </Wrap>
         </CardBody>
