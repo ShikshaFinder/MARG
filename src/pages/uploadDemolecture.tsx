@@ -29,10 +29,10 @@ function uploadDemolecture() {
     if (!user) {
       // console.log("here in user");
       Router.push("/login");
-    } else if (user.user_metadata && !user.user_metadata.lastName) {
+    } else if (user && !user.lastName) {
       Router.push("/form");
     }
-    }, 2000);
+    }, 3000);
   }, [user]);
 
   const handleSubmitt = () => {

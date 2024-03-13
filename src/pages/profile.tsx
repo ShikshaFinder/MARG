@@ -15,12 +15,13 @@ import {
 import { useAuthContext } from "@/context";
 import Profilee from "../components/profile";
 import Leaderbord from "../components/Leaderbord";
-// import supabase from "../../supabase";
 import { useRouter } from "next/router";
 
 
 function Profile() {
   const router = useRouter();
+  const user = useAuthContext();
+  
   const CustomTab = React.forwardRef<HTMLElement, any>((props, ref) => {
     const tabProps = useTab({ ...props, ref });
     const isSelected = !!tabProps["aria-selected"];

@@ -3,10 +3,11 @@ import supabase from "../../supabase";
 import { useToast } from "@chakra-ui/react";
 import { Button } from "@chakra-ui/react";
 import { Stack } from "@chakra-ui/react";
+import { useRouter } from "next/router";
 
 function signout() {
   const toast = useToast();
-
+  const router = useRouter();
   const handleSignOut = async () => {
     const { error } = await supabase.auth.signOut();
     if (error) {
@@ -24,7 +25,10 @@ function signout() {
         status: "success",
         duration: 3000,
         isClosable: true,
-      });
+      },
+      
+      );
+      router.push("/login");
     }
   };
 
