@@ -19,6 +19,7 @@ import {
   FaMailchimp,
   FaMapMarkerAlt,
   FaSchool,
+  FaSignOutAlt,
 } from "react-icons/fa";
 import Link from "next/link";
 function profile({
@@ -75,10 +76,10 @@ function profile({
             <WrapItem style={{ marginTop: "10px" }}>
               <FaHeart />
               <b
-                color="blue.400"
+                
                 style={{
                   textAlign: "center",
-                  color: "blue",
+                  color: "#90CAF9",
                   textDecoration: "underline",
                 }}
               >
@@ -98,6 +99,17 @@ function profile({
             <WrapItem style={{ marginTop: "10px" }}>
               <FaSchool />
               <b style={{ textAlign: "center" }}>&nbsp; {Standard}</b>{" "}
+            </WrapItem>
+            <WrapItem style={{ marginTop: "10px" }}>
+              <FaSignOutAlt />
+              <b
+                style={{
+                  textAlign: "center",
+                  color: "#EF9A9A",
+                }}
+              >
+                <Link href={"/signout"}> &nbsp; Signout</Link>
+              </b>
             </WrapItem>
           </Wrap>
         </CardBody>

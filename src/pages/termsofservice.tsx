@@ -47,6 +47,7 @@ function termsofservice() {
           become effective, you agree to be bound by the revised terms. If you
           do not agree to the new terms, please stop using the Service.
         </p>
+        <a href="terms">Terms</a>
         <p>Contact Us</p>
         <p> If you have any questions about these Terms, please contact us.</p>
       </p>
