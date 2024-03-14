@@ -126,7 +126,7 @@ const Contact = () => {
                   })}
                   name="Name"
                   type="text"
-                  placeholder="Ahmad"
+                  placeholder="Bahubali"
                   rounded="md"
                 />
               </FormControl>
