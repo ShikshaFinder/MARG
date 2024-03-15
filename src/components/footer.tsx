@@ -78,8 +78,8 @@ export default function SmallCentered() {
           <Box as={Link} href={"/blog"}>
             Blog
           </Box>
-          <Box as="a" href={"/contactus"}>
-            Contact
+          <Box as={Link} href={"/contactus"}>
+            Contact Us
           </Box>
         </Stack>
       </Container>
