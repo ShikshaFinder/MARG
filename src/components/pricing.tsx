@@ -116,7 +116,7 @@ const PricingCard = ({ title, price, icon, features }: PricingCardProps) => {
           </HStack>
         ))}
       </VStack>
-      <Link href="/marktingDetaiil">
+      <Link href="/marketingDetail">
         {" "}
         <Button
           colorScheme="teal"
