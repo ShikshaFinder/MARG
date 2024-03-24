@@ -31,10 +31,7 @@ function formm() {
   const Router = useRouter();
   const toast = useToast();
   const { user } = useAuthContext();
-  // const storageAccountName = "blobimageshikshafinder";
-  // const storageAccountKey =
-  //   "7Y96w6f2KGL82uzb8/s8VPHpiB3s+dDiwiR/+87CyNE6+yD5B6bYJN2lXEjFk2SDW1+cCOr/XqBw+AStMXbcOA==";
-  // const containerName = "shikshafinder";
+ 
 
   const accountName = "blobimageshikshafinder";
   const sasUrl = `BlobEndpoint=https://${accountName}.blob.core.windows.net/;QueueEndpoint=https://blobimageshikshafinder.queue.core.windows.net/;FileEndpoint=https://blobimageshikshafinder.file.core.windows.net/;TableEndpoint=https://blobimageshikshafinder.table.core.windows.net/;SharedAccessSignature=sv=2022-11-02&ss=bfqt&srt=sco&sp=rwdlacupiytf&se=2024-03-24T15:05:40Z&st=2024-03-24T07:05:40Z&spr=https&sig=voJuCf6gzjnavslfN0dPNcgscuIuCCDR2j9l8TQ9Q68%3D`;
