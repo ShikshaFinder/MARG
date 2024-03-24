@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@azure/identity": "^4.0.1",
     "@azure/storage-blob": "^12.17.0",
     "@chakra-ui/icons": "^2.1.0",
     "@chakra-ui/next-js": "^2.1.5",
@@ -25,6 +26,7 @@
     "@types/react-dom": "18.2.7",
     "@types/react-slick": "^0.23.13",
     "@vercel/analytics": "^1.1.1",
+    "dotenv": "^16.4.5",
     "framer-motion": "^10.16.4",
     "next": "^13.5.6",
     "next-pwa": "^5.6.0",

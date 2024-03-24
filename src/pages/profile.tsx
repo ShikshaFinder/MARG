@@ -16,52 +16,59 @@ import { useAuthContext } from "@/context";
 import Profilee from "../components/profile";
 import Leaderbord from "../components/Leaderbord";
 import { useRouter } from "next/router";
-
+import supabase from "../../supabase";
 
 function Profile() {
   const router = useRouter();
-  const user = useAuthContext();
-  
+  // const user = useAuthContext();
+const  user = useAuthContext();
   const CustomTab = React.forwardRef<HTMLElement, any>((props, ref) => {
     const tabProps = useTab({ ...props, ref });
     const isSelected = !!tabProps["aria-selected"];
-    const { user } = useAuthContext();
+    
     if (!user) {
-      return  (<div>loading/no user found ,if it is taking longer than usual ,please signup/signin
-      .</div>)
+      return (
+        <div>
+          loading/no user found ,if it is taking longer than usual ,please{" "}
+          <a href="/signup">signup</a> <a href="/signin">signin</a>.
+        </div>
+      );
     }
-
 
     const [userData, setUserData] = useState<any>();
 
     if (!user) {
-      return   (<div>loading/no user found ,if it is taking longer than usual ,please signup/signin
-      .</div>)
+      return (
+        <div>
+          loading/no user found ,if it is taking longer than usual ,please
+          signup/signin .
+        </div>
+      );
     }
 
-    // async function getStudent() {
-    //   try {
-    //     let { data, error } = await supabase
-    //       .from("School")
-    //       .select("*")
-    //       .eq("user_id", user.id);
+    async function getStudent() {
+      try {
+        let { data, error } = await supabase
+          .from("School")
+          .select("*")
+          .eq("user_id", user.id);
 
-    //     setUserData(data);
-    //   } catch (error) {
-    //     router.push("/form");
-    //   }
-    // }
+        setUserData(data);
+      } catch (error) {
+        router.push("/form");
+      }
+    }
 
-    // useEffect(() => {
-    //   getStudent();
-    // }, [user]);
-    // console.log(user.id);
-    // if (!userData)
-    //   return (
-    //     <Center>
-    //       <Spinner color="green.500" />
-    //     </Center>
-    //   );
+    useEffect(() => {
+      getStudent();
+    }, [user]);
+    console.log(user.id);
+    if (!userData)
+      return (
+        <Center>
+          <Spinner color="green.500" />
+        </Center>
+      );
 
     const styles = useMultiStyleConfig("Tabs", tabProps);
 

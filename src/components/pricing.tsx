@@ -9,9 +9,11 @@ import {
   Button,
   SimpleGrid,
   useColorModeValue,
-} from "@chakra-ui/react";
+} from "@chakra-ui/react";  
 import Link from "next/link";
+
 // Here we have used react-icons package for the icons
+
 import { BiCheck } from "react-icons/bi";
 import { IoIosListBox, IoIosRocket } from "react-icons/io";
 import { FaServer } from "react-icons/fa";

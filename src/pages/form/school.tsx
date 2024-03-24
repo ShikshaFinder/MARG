@@ -1,4 +1,4 @@
-"use client";
+// "use client";
 
 import React, { useState, useEffect } from "react";
 import { useForm, Controller } from "react-hook-form";
@@ -25,17 +25,25 @@ import {
 } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import { state } from "@/components/state";
+import { BlobServiceClient } from "@azure/storage-blob";
 
 function formm() {
   const Router = useRouter();
   const toast = useToast();
-  const { user } = useAuthContext() 
+  const { user } = useAuthContext();
+  // const storageAccountName = "blobimageshikshafinder";
+  // const storageAccountKey =
+  //   "7Y96w6f2KGL82uzb8/s8VPHpiB3s+dDiwiR/+87CyNE6+yD5B6bYJN2lXEjFk2SDW1+cCOr/XqBw+AStMXbcOA==";
+  // const containerName = "shikshafinder";
+
+  const accountName = "blobimageshikshafinder";
+  const sasUrl = `BlobEndpoint=https://${accountName}.blob.core.windows.net/;QueueEndpoint=https://blobimageshikshafinder.queue.core.windows.net/;FileEndpoint=https://blobimageshikshafinder.file.core.windows.net/;TableEndpoint=https://blobimageshikshafinder.table.core.windows.net/;SharedAccessSignature=sv=2022-11-02&ss=bfqt&srt=sco&sp=rwdlacupiytf&se=2024-03-24T15:05:40Z&st=2024-03-24T07:05:40Z&spr=https&sig=voJuCf6gzjnavslfN0dPNcgscuIuCCDR2j9l8TQ9Q68%3D`;
+
+  const blobServiceClient = BlobServiceClient.fromConnectionString(sasUrl);
 
   const form = useForm();
 
   const { register, handleSubmit, control, watch } = form;
-    const selectedState = watch("State");
-
 
   const handleSubmitt = () => {
     toast({
@@ -47,13 +55,42 @@ function formm() {
     });
     Router.push("/contest");
   };
-if(!user){   return (
-  <div>
-    loading/no user found ,if it is taking longer than usual ,please{" "}
-    <a href="signup">signup</a>__ /__<a href="/signin">signin</a>.
-  </div>
-);} 
+  if (!user) {
+    return (
+      <div>
+        loading/no user found ,if it is taking longer than usual ,please{" "}
+        <a href="signup">signup</a>__ /__<a href="/signin">signin</a>.
+      </div>
+    );
+  }
+
+  const uploadImageToBlobStorage = async (file: any) => {
+    console.log(file);
+    const containerName = "shikshafinder";
+    const containerClient = blobServiceClient.getContainerClient(containerName);
+    const blobName = Date.now() + "-" + file.name;
+    const blockBlobClient = containerClient.getBlockBlobClient(blobName);
+    const uploadBlobResponse = await blockBlobClient.upload(file, file.size);
+
+    const public_url = `https://${accountName}.blob.core.windows.net/${containerName}/${blobName}`;
+    return public_url;
+  };
+
   const onSubmit = async (data: any) => {
+    try {
+      const public_url = await uploadImageToBlobStorage(Image);
+      console.log("public url : ", public_url);
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: (error as Error).message,
+        status: "error",
+        duration: 3000,
+        isClosable: true,
+      });
+      return;
+    }
+
     const { error } = await supabase
       .from("School")
       .insert([{ ...data, user_id: user.id }]);
@@ -73,11 +110,19 @@ if(!user){   return (
 
   const [states, setStates] = useState<State[]>(state.states);
 
+  const [Image, setImage] = useState<any>(null);
 
-    const districts =
-      states.find((state) => state.state === selectedState)?.districts || [];
+  const selectedState = watch("State");
 
+  const districts =
+    states.find((state) => state.state === selectedState)?.districts || [];
 
+  const handleImage = (e: any) => {
+    const file = e.target.files[0];
+    setImage(file);
+    console.log(file);
+    // console.log(Image);
+  };
 
   return (
     <>
@@ -272,7 +317,7 @@ if(!user){   return (
               <br />
               <FormControl isRequired>
                 <FormLabel>Upload cover Image</FormLabel>
-                <Input type="file" accept="image/*" />
+                <Input type="file" accept="image/*" onChange={handleImage} />
               </FormControl>{" "}
               <br />
               <FormControl isRequired>
