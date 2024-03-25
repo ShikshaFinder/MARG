@@ -33,7 +33,6 @@ function formm() {
   const { user } = useAuthContext();
 
   const form = useForm();
-
   const { register, handleSubmit, control, watch } = form;
 
   const handleSubmitt = () => {
