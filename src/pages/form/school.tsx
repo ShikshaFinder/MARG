@@ -31,12 +31,6 @@ function formm() {
   const Router = useRouter();
   const toast = useToast();
   const { user } = useAuthContext();
- 
-
-  const accountName = "blobimageshikshafinder";
-  const sasUrl = `BlobEndpoint=https://${accountName}.blob.core.windows.net/;QueueEndpoint=https://blobimageshikshafinder.queue.core.windows.net/;FileEndpoint=https://blobimageshikshafinder.file.core.windows.net/;TableEndpoint=https://blobimageshikshafinder.table.core.windows.net/;SharedAccessSignature=sv=2022-11-02&ss=bfqt&srt=sco&sp=rwdlacupiytf&se=2024-03-24T15:05:40Z&st=2024-03-24T07:05:40Z&spr=https&sig=voJuCf6gzjnavslfN0dPNcgscuIuCCDR2j9l8TQ9Q68%3D`;
-
-  const blobServiceClient = BlobServiceClient.fromConnectionString(sasUrl);
 
   const form = useForm();
 
@@ -62,10 +56,15 @@ function formm() {
   }
 
   const uploadImageToBlobStorage = async (file: any) => {
+    const accountName = process.env.NEXT_PUBLIC_AZURE_ACCOUNT_NAME;
+    const sasUrl = process.env.NEXT_PUBLIC_AZURE_STORAGE_SAS_URL || "";
+
+    const blobServiceClient = BlobServiceClient.fromConnectionString(sasUrl);
+
     console.log(file);
-    const containerName = "shikshafinder";
+    const containerName = process.env.NEXT_PUBLIC_AZURE_CONTAINER_NAME || "";
     const containerClient = blobServiceClient.getContainerClient(containerName);
-    const blobName = Date.now() + "-" + file.name;
+    const blobName = Date.now() + "_" + file.name;
     const blockBlobClient = containerClient.getBlockBlobClient(blobName);
     const uploadBlobResponse = await blockBlobClient.upload(file, file.size);
 

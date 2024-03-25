@@ -12,8 +12,8 @@ import { useState } from "react";
 import AuthContextProvider from "@/context";
 import Head from "next/head";
 import { Analytics } from "@vercel/analytics/react";
-const { BlobServiceClient } = require("@azure/storage-blob");
-const { v1: uuidv1 } = require("uuid");
+// const { BlobServiceClient } = require("@azure/storage-blob");
+// const { v1: uuidv1 } = require("uuid");
 require("dotenv").config();
 
 
