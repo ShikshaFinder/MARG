@@ -44,6 +44,7 @@ function formm() {
       isClosable: true,
     });
     Router.push("/contest");
+    
   };
   if (!user) {
     return (
