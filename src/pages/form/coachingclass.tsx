@@ -46,7 +46,7 @@ function CoachingForm() {
     Router.push("/contest");
 
   };
-if (!user) {   return (
+if (!user.email) {   return (
   <div>
     loading/no user found ,if it is taking longer than usual ,please{" "}
     <a href="signup">signup</a>__ /__<a href="/signin">signin</a>.

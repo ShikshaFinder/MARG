@@ -21,12 +21,12 @@ import supabase from "../../supabase";
 function Profile() {
   const router = useRouter();
   // const user = useAuthContext();
-const  user = useAuthContext();
+const  {user} = useAuthContext();
   const CustomTab = React.forwardRef<HTMLElement, any>((props, ref) => {
     const tabProps = useTab({ ...props, ref });
     const isSelected = !!tabProps["aria-selected"];
     
-    if (!user) {
+    if (!user.email) {
       return (
         <div>
           loading/no user found ,if it is taking longer than usual ,please{" "}
@@ -37,7 +37,7 @@ const  user = useAuthContext();
 
     const [userData, setUserData] = useState<any>();
 
-    if (!user) {
+    if (!user.email) {
       return (
         <div>
           loading/no user found ,if it is taking longer than usual ,please
@@ -51,7 +51,7 @@ const  user = useAuthContext();
         let { data, error } = await supabase
           .from("School")
           .select("*")
-          .eq("user_id", user.id);
+          // .eq("schoolname",);
 
         setUserData(data);
       } catch (error) {
@@ -62,7 +62,7 @@ const  user = useAuthContext();
     useEffect(() => {
       getStudent();
     }, [user]);
-    console.log(user.id);
+    // console.log(user.id);
     if (!userData)
       return (
         <Center>

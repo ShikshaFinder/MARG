@@ -26,7 +26,7 @@ function uploadDemolecture() {
     // console.log("here", user);
 
     setTimeout(() => {
-    if (!user) {
+    if (!user.email) {
       // console.log("here in user");
       Router.push("/login");
     } else if (user && !user.lastName) {
@@ -61,9 +61,14 @@ function uploadDemolecture() {
       return;
     }
 
-     if(!user){
-      return
-     }
+      if (!user.email) {
+        return (
+          <div>
+            loading/no user found ,if it is taking longer than usual ,please{" "}
+            <a href="signup">signup</a>__ /__<a href="/signin">signin</a>.
+          </div>
+        );
+      }
 
     const { error } = await supabase
       .from("schoolDemo")

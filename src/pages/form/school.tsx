@@ -44,16 +44,15 @@ function formm() {
       isClosable: true,
     });
     Router.push("/contest");
-
   };
-  if (!user) {
-    return (
-      <div>
-        loading/no user found ,if it is taking longer than usual ,please{" "}
-        <a href="signup">signup</a>__ /__<a href="/signin">signin</a>.
-      </div>
-    );
-  }
+   if (!user.email) {
+     return (
+       <div>
+         loading/no user found ,if it is taking longer than usual ,please{" "}
+         <a href="signup">signup</a>__ /__<a href="/signin">signin</a>.
+       </div>
+     );
+   }
 
   const uploadImageToBlobStorage = async (file: any) => {
     const accountName = process.env.NEXT_PUBLIC_AZURE_ACCOUNT_NAME;
