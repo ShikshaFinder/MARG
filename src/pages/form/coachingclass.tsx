@@ -145,8 +145,8 @@ if (!user.email) {   return (
               <FormControl isRequired>
                 <FormLabel>District/city</FormLabel>
                 <Select
-                  {...register("District", { required: true })}
-                  name="District"
+                  {...register("city", { required: true })}
+                  name="city"
                   placeholder="Select District"
                 >
                   {districts.map((district) => (
