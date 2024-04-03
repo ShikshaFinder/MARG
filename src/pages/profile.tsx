@@ -30,7 +30,7 @@ const  {user} = useAuthContext();
       return (
         <div>
           loading/no user found ,if it is taking longer than usual ,please{" "}
-          <a href="/signup">signup</a> <a href="/signin">signin</a>.
+          <a href="/signup">signup</a> <a href="/login">signin</a>.
         </div>
       );
     }
