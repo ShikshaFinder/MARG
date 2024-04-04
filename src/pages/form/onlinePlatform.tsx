@@ -91,26 +91,7 @@ function formm() {
                   placeholder="Facilities,Fees,etc"
                 />
               </FormControl>
-              <br />
-              <FormControl isRequired>
-                <FormLabel>Location</FormLabel>
-                <Input
-                  {...register("location", {
-                    required: true,
-                  })}
-                  name="location"
-                  placeholder="Exact address of institute"
-                />
-                <br />
-                <Input
-                  {...register("locationlink", {
-                    required: false,
-                  })}
-                  name="locationlink"
-                  placeholder="Google map link of coaching class"
-                />
-              </FormControl>
-              <br />
+                           <br />
               <FormControl >
                 <FormLabel>State</FormLabel>
                 <Input
