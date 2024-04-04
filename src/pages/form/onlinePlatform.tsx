@@ -111,11 +111,11 @@ function formm() {
                 />
               </FormControl>
               <br />
-              <FormControl isRequired>
+              <FormControl >
                 <FormLabel>State</FormLabel>
                 <Input
                   {...register("State", {
-                    required: true,
+                    required: false,
                   })}
                   name="State"
                   placeholder="State"
