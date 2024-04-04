@@ -52,6 +52,7 @@ function formm() {
     const { error } = await supabase
       .from("onlineform")
       .insert([{ ...data, user_id: user.id }]);
+      
     if (error) {
       console.error("Error submitting Form:", error);
     } else {
@@ -76,7 +77,7 @@ function formm() {
                     required: true,
                   })}
                   name="coachingname"
-                  placeholder="coaching name"
+                  placeholder="Online Platform Name"
                   type="text"
                 />
               </FormControl>
