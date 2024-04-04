@@ -250,7 +250,7 @@ const Parent = () => {
               textDecoration="underline"
               cursor="pointer"
             >
-              <a href="https://platform.shikshafinder.com/contest">
+              <a href="https://platform.shikshafinder.com/aboutcontest">
                 Get Started
               </a>
             </Text>{" "}

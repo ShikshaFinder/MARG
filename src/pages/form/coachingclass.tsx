@@ -43,7 +43,7 @@ function CoachingForm() {
       duration: 3000,
       isClosable: true,
     });
-    Router.push("/contest");
+    Router.push("/aboutcontest");
 
   };
 if (!user.email) {   return (

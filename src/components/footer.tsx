@@ -69,7 +69,7 @@ export default function SmallCentered() {
           height={300}
         ></Image>
         <Stack direction={"row"} spacing={6}>
-          <Box as={Link} href={"/contest"}>
+          <Box as={Link} href={"/aboutcontest"}>
             contest
           </Box>
           <Box as={Link} href={"/aboutus"}>

@@ -1,6 +1,5 @@
-'use client'
+"use client";
 import {
- 
   Card,
   Stack,
   CardBody,
@@ -12,16 +11,11 @@ import {
 } from "@chakra-ui/react";
 import Link from "next/link";
 import Copybutton from "../components/Copybutton";
-import Whatsapp from "../components/whatsapp";  
+import Whatsapp from "../components/whatsapp";
 
-
-
-import React from 'react'
-
+import React from "react";
 
 function bestschool() {
-    
-
   return (
     <>
       <Text as="mark"> Do you have satisfied Students ?</Text>
@@ -32,8 +26,9 @@ function bestschool() {
       >
         <Image
           objectFit="cover"
-          maxW={{ base: "100%", sm: "200px" }}
-          src="https://images.unsplash.com/photo-1590698933947-a202b069a861?q=80&w=1935&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+          maxW={{ base: "100%", sm: "40%" }}
+          height="50vh"
+          src="https://images.unsplash.com/photo-1516463859456-ce782449bfe0?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
           alt="Caffe Latte"
         />
 
@@ -58,7 +53,7 @@ function bestschool() {
               <Copybutton />
             </Link>
             &nbsp; &nbsp;
-          <Whatsapp/>
+            <Whatsapp />
           </CardFooter>
         </Stack>
       </Card>
@@ -66,4 +61,4 @@ function bestschool() {
   );
 }
 
-export default bestschool
+export default bestschool;

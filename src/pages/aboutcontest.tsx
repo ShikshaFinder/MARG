@@ -12,6 +12,8 @@ import {
   useColorModeValue,
   Card,
   CardBody,
+  Button,
+
 } from "@chakra-ui/react";
 import {
   IoAnalyticsSharp,
@@ -19,6 +21,7 @@ import {
   IoSearchSharp,
 } from "react-icons/io5";
 import { ReactElement } from "react";
+import Link from "next/link";
 
 interface FeatureProps {
   text: string;
@@ -67,6 +70,11 @@ export default function SplitWithImage() {
               This contest is your chance for building trust for your students &
               parents and get the maximum benefites out of Shiksha Finder
             </Text>
+            <Link href={"/contest"}>
+              <Button colorScheme="teal" size="lg">
+                Participate Now
+              </Button>{" "}
+            </Link>
             <Stack
               spacing={4}
               divider={
