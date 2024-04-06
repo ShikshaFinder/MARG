@@ -49,6 +49,8 @@ function marketingDetail() {
     });
     Router.push("/analytics");
   };
+    const [states, setStates] = useState<State[]>(state.states);
+
 
   if(!user.email){
     return (<div>
@@ -73,7 +75,6 @@ function marketingDetail() {
       handleSubmitt();
     }
   };
-  const [states, setStates] = useState<State[]>(state.states);
 
   const districts =
     states.find((state) => state.state === selectedState)?.districts || [];

@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import { useForm, Controller } from "react-hook-form";
-import { useToast } from "@chakra-ui/react";
+import { Img, useToast } from "@chakra-ui/react";
 import supabase from "../../../supabase";
 import { useAuthContext } from "@/context";
 interface State {
@@ -31,9 +31,10 @@ function formm() {
   const Router = useRouter();
   const toast = useToast();
   const { user } = useAuthContext();
-
   const form = useForm();
   const { register, handleSubmit, control, watch } = form;
+  const [states, setStates] = useState<State[]>(state.states);
+  const [Image, setImage] = useState<any>(null);
 
   const handleSubmitt = () => {
     toast({
@@ -45,14 +46,14 @@ function formm() {
     });
     Router.push("/aboutcontest");
   };
-   if (!user.email) {
-     return (
-       <div>
-         loading/no user found ,if it is taking longer than usual ,please{" "}
-         <a href="signup">signup</a>__ /__<a href="/login">signin</a>.
-       </div>
-     );
-   }
+  if (!user.email) {
+    return (
+      <div>
+        loading/no user found ,if it is taking longer than usual ,please{" "}
+        <a href="signup">signup</a>__ /__<a href="/login">signin</a>.
+      </div>
+    );
+  }
 
   const uploadImageToBlobStorage = async (file: any) => {
     const accountName = process.env.NEXT_PUBLIC_AZURE_ACCOUNT_NAME;
@@ -72,9 +73,11 @@ function formm() {
   };
 
   const onSubmit = async (data: any) => {
+    let img_url;
     try {
-      const public_url = await uploadImageToBlobStorage(Image);
-      console.log("public url : ", public_url);
+
+       img_url = await uploadImageToBlobStorage(Image);
+      console.log("public url : ", img_url);
     } catch (error) {
       toast({
         title: "Error",
@@ -85,10 +88,15 @@ function formm() {
       });
       return;
     }
+if(!img_url){
+  console.log("no image found");
+  return;
 
+}
     const { error } = await supabase
       .from("School")
-      .insert([{ ...data, user_id: user.id }]);
+      .insert([{ ...data, user_id: user.id, img: img_url }]);
+
     if (error) {
       console.error("Error submitting Form:", error);
       toast({
@@ -102,10 +110,6 @@ function formm() {
       handleSubmitt();
     }
   };
-
-  const [states, setStates] = useState<State[]>(state.states);
-
-  const [Image, setImage] = useState<any>(null);
 
   const selectedState = watch("State");
 
@@ -223,7 +227,7 @@ function formm() {
                 <FormLabel> DISE code</FormLabel>
                 <Input
                   {...register("DISE", { required: false })}
-                  name="number"
+                  name="DISE"
                   type="number"
                   placeholder="DISE code"
                 />
