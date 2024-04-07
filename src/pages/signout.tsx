@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import supabase from "../../supabase";
 import { useToast } from "@chakra-ui/react";

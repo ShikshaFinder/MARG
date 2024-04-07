@@ -1,4 +1,4 @@
-"use client";
+// "use client";
 import React, { useState, useEffect } from "react";
 import { useForm, Controller } from "react-hook-form";
 import supabase from "../../../supabase";
@@ -24,57 +24,115 @@ import {
 } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import { state } from "@/components/state";
+import { BlobServiceClient } from "@azure/storage-blob";
+
+
+
+
+
+
+
 
 function CoachingForm() {
-  const Router = useRouter();
-  const toast = useToast();
-  const { user } = useAuthContext() ;
-
-  const form = useForm();
-
+ const Router = useRouter();
+ const toast = useToast();
+ const { user } = useAuthContext();
+ const form = useForm();
  const { register, handleSubmit, control, watch } = form;
+ const [states, setStates] = useState<State[]>(state.states);
+ const [Image, setImage] = useState<any>(null);
+
+ const handleSubmitt = () => {
+   toast({
+     title: "Form submitted!",
+     description: "Thank you for your Form",
+     status: "success",
+     duration: 3000,
+     isClosable: true,
+   });
+   Router.push("/aboutcontest");
+ };
+ if (!user.email) {
+   return (
+     <div>
+       loading/no user found ,if it is taking longer than usual ,please{" "}
+       <a href="signup">signup</a>__ /__<a href="/login">signin</a>.
+     </div>
+   );
+ }
+
+ const uploadImageToBlobStorage = async (file: any) => {
+   const accountName = process.env.NEXT_PUBLIC_AZURE_ACCOUNT_NAME;
+   const sasUrl = process.env.NEXT_PUBLIC_AZURE_STORAGE_SAS_URL || "";
+
+   const blobServiceClient = BlobServiceClient.fromConnectionString(sasUrl);
+
+   console.log(file);
+   const containerName = process.env.NEXT_PUBLIC_AZURE_CONTAINER_NAME || "";
+   const containerClient = blobServiceClient.getContainerClient(containerName);
+   const blobName = Date.now() + "_" + file.name;
+   const blockBlobClient = containerClient.getBlockBlobClient(blobName);
+   const uploadBlobResponse = await blockBlobClient.upload(file, file.size);
+
+   const public_url = `https://${accountName}.blob.core.windows.net/${containerName}/${blobName}`;
+   return public_url;
+ };
+
+ const onSubmit = async (data: any) => {
+   let img_url;
+   try {
+     img_url = await uploadImageToBlobStorage(Image);
+     console.log("public url : ", img_url);
+   } catch (error) {
+     toast({
+       title: "Error",
+       description: (error as Error).message,
+       status: "error",
+       duration: 3000,
+       isClosable: true,
+     });
+     return;
+   }
+   if (!img_url) {
+     console.log("no image found");
+     toast({
+       title: "Error",
+       description: "No image found",
+       status: "error",
+       duration: 3000,
+       isClosable: true,
+     });
+     return;
+   }
+   const { error } = await supabase
+     .from("coaching")
+     .insert([{ ...data, user_id: user.id, img: img_url }]);
+
+   if (error) {
+     console.error("Error submitting Form:", error);
+     toast({
+       title: "Error",
+       description: error.message,
+       status: "error",
+       duration: 3000,
+       isClosable: true,
+     });
+   } else {
+     handleSubmitt();
+   }
+ };
+
  const selectedState = watch("State");
 
-  const handleSubmitt = () => {
-    toast({
-      title: "Form submitted!",
-      description: "Thank you for your Form",
-      status: "success",
-      duration: 3000,
-      isClosable: true,
-    });
-    Router.push("/aboutcontest");
+ const districts =
+   states.find((state) => state.state === selectedState)?.districts || [];
 
-  };
-if (!user.email) {   return (
-  <div>
-    loading/no user found ,if it is taking longer than usual ,please{" "}
-    <a href="signup">signup</a>__ /__<a href="/login">signin</a>.
-  </div>
-);}
-  const onSubmit = async (data: any) => {
-    const { error } = await supabase
-      .from("coaching")
-      .insert([{ ...data, user_id: user.id }]);
-    if (error) {
-      console.error("Error submitting Form:", error);
-       toast({
-         title: "Error",
-         description: error.message,
-         status: "error",
-         duration: 3000,
-         isClosable: true,
-       });
-    } else {
-      handleSubmitt();
-    }
-  };
-  const [states, setStates] = useState<State[]>(state.states);
-  
-
-  const districts =
-    states.find((state) => state.state === selectedState)?.districts || [];
-
+ const handleImage = (e: any) => {
+   const file = e.target.files[0];
+   setImage(file);
+   console.log(file);
+   // console.log(Image);
+ };
   return (
     <>
       <>
@@ -266,7 +324,7 @@ if (!user.email) {   return (
               <br />
               <FormControl isRequired>
                 <FormLabel>Upload cover Image</FormLabel>
-                <Input type="file" accept="image/*" />
+                <Input type="file" accept="image/*" onChange={handleImage} />
               </FormControl>{" "}
               <br />
               <FormControl isRequired>
