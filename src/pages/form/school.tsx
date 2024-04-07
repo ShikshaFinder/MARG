@@ -221,6 +221,26 @@ if(!img_url){
                   type="number"
                   placeholder="Contact number"
                 />
+                <FormControl isRequired>
+                  <FormLabel>Number Of Students</FormLabel>
+                  <Select
+                    {...register("studentnumber", { required: true })}
+                    name="studentnumber"
+                    placeholder="Number Of Students"
+                  >
+                    <option value="15">10-20</option>
+                    <option value="25">20-30</option>
+                    <option value="55">50-60</option>
+                    <option value="85">80-90</option>
+                    <option value="125">100-150</option>
+                    <option value="250">200-500</option>
+                    <option value="850">700-1000</option>
+                    <option value="1500">1200-1800</option>
+                    <option value="2250">2000-2500</option>
+                    <option value="3000">more</option>
+                  </Select>
+                </FormControl>
+                <br />
               </FormControl>{" "}
               <br />
               <FormControl isRequired>
