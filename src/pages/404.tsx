@@ -61,7 +61,7 @@ const Index = () => {
               lineHeight={1.2}
               fontWeight="bold"
             >
-              404 Page Not
+              404 Page Not Found
             </chakra.h1>
             <chakra.h1
               color="gray.400"
