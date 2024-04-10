@@ -98,7 +98,10 @@ export default function SmallCentered() {
           justify={{ base: "center", md: "space-between" }}
           align={{ base: "center", md: "center" }}
         >
-          <Text>© GWSF Ventures Pvt Ltd</Text>
+          <a href="/gwsf">
+            {" "}
+            <Text>© GWSF Ventures Pvt Ltd</Text>
+          </a>
           <Stack direction={"row"} spacing={6}>
             <SocialButton
               label={"Twitter"}
