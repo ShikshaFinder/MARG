@@ -10,6 +10,7 @@ import {
   CardBody,
   Button,
   Textarea,
+  Toast,
 } from "@chakra-ui/react";
 import { useForm, Controller } from "react-hook-form";
 import supabase from "../../supabase";
@@ -17,8 +18,8 @@ import { useRouter } from "next/router";
 import { useToast } from "@chakra-ui/react";
 import { useAuthContext } from "@/context";
 
+
 function uploadDemolecture() {
-  const router = useRouter();
   const { register, handleSubmit, setValue } = useForm();
   const Router = useRouter();
   const toast = useToast();
@@ -28,11 +29,16 @@ function uploadDemolecture() {
 
     setTimeout(() => {
     if (!user.email) {
-      // console.log("here in user");
-      Router.push("/login");
-    } else if (user && !user.lastName) {
-      Router.push("/form");
-    }
+toast({
+      title: "Error",
+      description: "Please login to upload demo lecture",
+      status: "error",
+      duration: 3000,
+      isClosable: true,
+    });
+    
+
+    } 
     }, 3000);
   }, [user]);
 

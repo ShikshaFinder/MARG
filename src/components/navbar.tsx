@@ -1,4 +1,3 @@
-"use client";
 import Link from "next/link";
 import {
   Box,
@@ -23,11 +22,9 @@ import {
   ChevronRightIcon,
 } from "@chakra-ui/icons";
 import { useAuthContext } from "@/context";
-import { useRouter } from "next/router";
-
 
 export default function Navbar() {
-   const { user } = useAuthContext() 
+  const { user } = useAuthContext();
   const { isOpen, onToggle } = useDisclosure();
 
   return (
@@ -77,7 +74,7 @@ export default function Navbar() {
           direction={"row"}
           spacing={6}
         >
-          {user && user.email ? (
+          {user ?  (
             <Button
               as={Link}
               href={"/profile"}
@@ -330,4 +327,3 @@ const NAV_ITEMS: Array<NavItem> = [
     href: "/marketing",
   },
 ];
-

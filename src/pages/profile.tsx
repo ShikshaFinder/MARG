@@ -21,10 +21,11 @@ import supabase from "../../supabase";
 function Profile() {
   const router = useRouter();
   // const user = useAuthContext();
-const  {user} = useAuthContext();
+  const  {user} = useAuthContext();
   const CustomTab = React.forwardRef<HTMLElement, any>((props, ref) => {
     const tabProps = useTab({ ...props, ref });
     const isSelected = !!tabProps["aria-selected"];
+    const styles = useMultiStyleConfig("Tabs", tabProps);
     
     if (!user.email) {
       return (
@@ -70,7 +71,6 @@ const  {user} = useAuthContext();
         </Center>
       );
 
-    const styles = useMultiStyleConfig("Tabs", tabProps);
 
     return (
       <Button __css={styles.tab} {...tabProps}>

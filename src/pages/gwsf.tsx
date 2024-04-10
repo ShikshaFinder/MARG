@@ -9,7 +9,7 @@ function gwsf() {
         <title>GWSF Ventures Pvt Ltd</title>
         <meta
           name="description"
-          content="GWSF Ventures Pvt ltd is a company incorporated in march 14,2024. Shiksha Finder is by far the most integral part of our company and GWSF stands for Grow with shiksha finder. our vision is to make an impact on the society. We want to create products and technologies which can solve the problems of businesses as well as of common peoples."
+          content="GWSF Ventures Pvt ltd is a company incorporated in march 14,2024. Shiksha Finder is by far the most integral part of our company and GWSF stands for Grow with shiksha finder. our vision is to make an impact on the society. We want to create products and technologies which can solve the problems of businesses as well as of common people."
         />
       </Head>
       <Heading lineHeight="tall">

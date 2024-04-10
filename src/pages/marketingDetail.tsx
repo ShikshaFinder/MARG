@@ -54,8 +54,10 @@ function marketingDetail() {
 
   if(!user.email){
     return (<div>
-    loading/no user found ,if it is taking longer than usual ,please{" "}
-    <a href="signup">signup</a>__ /__<a href="/login">signin</a>.
+    no user found ,if it is taking longer than usual ,please{" "}
+    <a href="signup">signup</a>__ /__<a href="/login">signin</a>
+    
+   
   </div>)
   }
   const onSubmit = async (data: any) => {
