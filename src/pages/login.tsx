@@ -23,7 +23,7 @@ import { useToast } from "@chakra-ui/react";
 export default function Login() {
   const router = useRouter(); // Initialize the router
   const toast = useToast();
- 
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
@@ -40,11 +40,11 @@ export default function Login() {
       return;
     }
     try {
-     const { data, error } = await supabase.auth.signInWithPassword({
-       email,
-       password,
-     });
-     if(error){
+      const { data, error } = await supabase.auth.signInWithPassword({
+        email,
+        password,
+      });
+      if (error) {
         toast({
           title: "Error.",
           description: "Invalid email or password",
@@ -52,7 +52,7 @@ export default function Login() {
           duration: 5000,
           isClosable: true,
         });
-     }
+      }
       router.push("/onbording");
     } catch (error) {
       console.log(error);
@@ -63,7 +63,6 @@ export default function Login() {
         duration: 5000,
         isClosable: true,
       });
-      
     }
   };
 
@@ -129,7 +128,7 @@ export default function Login() {
             </Stack>
             <Stack pt={6}>
               <Text align={"center"}>
-              Not registered yet?{" "}
+                Not registered yet?{" "}
                 <Link
                   href={"/signup"}
                   style={{ color: "blue.600", textDecoration: "underline" }}
