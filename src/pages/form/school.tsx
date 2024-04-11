@@ -5,6 +5,8 @@ import { useForm, Controller } from "react-hook-form";
 import { Img, useToast } from "@chakra-ui/react";
 import supabase from "../../../supabase";
 import { useAuthContext } from "@/context";
+import Nouser from "@/components/Nouser";
+
 interface State {
   districts: string[];
   state: string;
@@ -48,12 +50,10 @@ function formm() {
   };
   if (!user.email) {
     return (
-      <div>
-        loading/no user found ,if it is taking longer than usual ,please{" "}
-        <a href="signup">signup</a>__ /__<a href="/login">signin</a>.
-      </div>
+     <Nouser/>
     );
   }
+
 
   const uploadImageToBlobStorage = async (file: any) => {
     const accountName = process.env.NEXT_PUBLIC_AZURE_ACCOUNT_NAME;
@@ -89,7 +89,13 @@ function formm() {
       return;
     }
 if(!img_url){
-  console.log("no image found");
+  toast({
+    title: "Error",
+    description: "Image not uploaded",
+    status: "error",
+    duration: 3000,
+    isClosable: true,
+  });
   return;
 
 }

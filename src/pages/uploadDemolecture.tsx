@@ -17,6 +17,7 @@ import supabase from "../../supabase";
 import { useRouter } from "next/router";
 import { useToast } from "@chakra-ui/react";
 import { useAuthContext } from "@/context";
+import Nouser from "@/components/Nouser";
 
 
 function uploadDemolecture() {
@@ -24,23 +25,9 @@ function uploadDemolecture() {
   const Router = useRouter();
   const toast = useToast();
   const { user } = useAuthContext();
-  useEffect(() => {
-    // console.log("here", user);
-
-    setTimeout(() => {
-    if (!user.email) {
-toast({
-      title: "Error",
-      description: "Please login to upload demo lecture",
-      status: "error",
-      duration: 3000,
-      isClosable: true,
-    });
-    
-
-    } 
-    }, 3000);
-  }, [user]);
+   if (!user.email) {
+     return <Nouser />;
+   }
 
   const handleSubmitt = () => {
     toast({
@@ -68,14 +55,7 @@ toast({
       return;
     }
 
-      if (!user.email) {
-        return (
-          <div>
-            loading/no user found ,if it is taking longer than usual ,please{" "}
-            <a href="signup">signup</a>__ /__<a href="/login">signin</a>.
-          </div>
-        );
-      }
+    
 
     const { error } = await supabase
       .from("schoolDemo")

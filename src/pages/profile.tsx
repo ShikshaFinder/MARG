@@ -17,42 +17,26 @@ import Profilee from "../components/profile";
 import Leaderbord from "../components/Leaderbord";
 import { useRouter } from "next/router";
 import supabase from "../../supabase";
+import Nouser from "@/components/Nouser";
 
 function Profile() {
   const router = useRouter();
   // const user = useAuthContext();
-  const  {user} = useAuthContext();
+  const { user } = useAuthContext();
+  if (!user.email) {
+    return <Nouser />;
+  }
   const CustomTab = React.forwardRef<HTMLElement, any>((props, ref) => {
     const tabProps = useTab({ ...props, ref });
     const isSelected = !!tabProps["aria-selected"];
     const styles = useMultiStyleConfig("Tabs", tabProps);
-    
-    if (!user.email) {
-      return (
-        <div>
-          loading/no user found ,if it is taking longer than usual ,please{" "}
-          <a href="/signup">signup</a> <a href="/login">signin</a>.
-        </div>
-      );
-    }
 
     const [userData, setUserData] = useState<any>();
 
-    if (!user.email) {
-      return (
-        <div>
-          loading/no user found ,if it is taking longer than usual ,please
-          signup/signin .
-        </div>
-      );
-    }
-
     async function getStudent() {
       try {
-        let { data, error } = await supabase
-          .from("School")
-          .select("*")
-          // .eq("schoolname",);
+        let { data, error } = await supabase.from("School").select("*");
+        // .eq("schoolname",);
 
         setUserData(data);
       } catch (error) {
@@ -70,7 +54,6 @@ function Profile() {
           <Spinner color="green.500" />
         </Center>
       );
-
 
     return (
       <Button __css={styles.tab} {...tabProps}>
