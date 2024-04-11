@@ -1,6 +1,7 @@
 "use client";
 import { useRouter } from "next/router"; // Import the useRouter hook
 import supabase from "../../supabase";
+import { FaGoogle } from "react-icons/fa"; 
 import {
   Flex,
   Box,
@@ -23,7 +24,14 @@ import { useToast } from "@chakra-ui/react";
 export default function Login() {
   const router = useRouter(); // Initialize the router
   const toast = useToast();
-
+  async function SignIn() {
+    const { data, error } = await supabase.auth.signInWithOAuth({
+      provider: "google",
+      options: {
+        redirectTo: "https://platform.shikshafinder.com/",
+      },
+    });
+  }
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
@@ -52,6 +60,7 @@ export default function Login() {
           duration: 5000,
           isClosable: true,
         });
+
       }
       router.push("/onbording");
     } catch (error) {
@@ -136,6 +145,13 @@ export default function Login() {
                   Signup
                 </Link>
               </Text>
+              <Button
+                colorScheme="telegram"
+                onClick={SignIn}
+                leftIcon={<FaGoogle />}
+              >
+                Signin with Google
+              </Button>
             </Stack>
           </Stack>
         </Box>
