@@ -20,6 +20,7 @@ import {
 import { useState } from "react";
 import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
 import { FaGoogle } from "react-icons/fa";
+import { useToast } from "@chakra-ui/react";
 
 export default function SignupCard() {
   const router = useRouter(); // Initialize the router
@@ -31,6 +32,7 @@ export default function SignupCard() {
   const [showPassword, setShowPassword] = useState(false);
 
   const signUpNewUser = async () => {
+    const toast = useToast();
     try {
       const { data, error } = await supabase.auth.signUp({
         email,
@@ -47,6 +49,13 @@ export default function SignupCard() {
       router.push("/checkmail");
     } catch (error) {
       console.log(error);
+      toast({
+        title: "error",
+        description: "Invalid email or password",
+        status: "error",
+        duration: 5000,
+        isClosable: true,
+      });
     }
   };
 
@@ -163,7 +172,7 @@ export default function SignupCard() {
             href="https://platform.shikshafinder.com/privacypolicy"
             // style={{color: "blue"}}
           >
-            Privacy Policy 
+            Privacy Policy
           </a>{" "}
           &{" "}
           <a href="https://platform.shikshafinder.com/termsofservice">

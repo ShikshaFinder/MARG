@@ -22,7 +22,7 @@ import { useToast } from "@chakra-ui/react";
 
 export default function Login() {
   const router = useRouter(); // Initialize the router
-const toast = useToast();
+  const toast = useToast();
  
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -44,9 +44,25 @@ const toast = useToast();
        email,
        password,
      });
+     if(error){
+        toast({
+          title: "Error.",
+          description: "Invalid email or password",
+          status: "error",
+          duration: 5000,
+          isClosable: true,
+        });
+     }
       router.push("/onbording");
     } catch (error) {
       console.log(error);
+      toast({
+        title: "Error.",
+        description: "Invalid email or password",
+        status: "error",
+        duration: 5000,
+        isClosable: true,
+      });
       
     }
   };
