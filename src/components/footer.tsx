@@ -81,6 +81,10 @@ export default function SmallCentered() {
           <Box as={Link} href={"/contactus"}>
             Contact Us
           </Box>
+          <a href="https://marketing.shikshafinder.com/">
+            {" "}
+            <Box>Marketing portal for industries</Box>
+          </a>
         </Stack>
       </Container>
 

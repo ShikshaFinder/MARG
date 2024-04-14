@@ -9,8 +9,12 @@ import {
   Button,
   SimpleGrid,
   useColorModeValue,
+  Alert,
+  AlertIcon,
+  Link,
 } from "@chakra-ui/react";  
-import Link from "next/link";
+import { ExternalLinkIcon } from "@chakra-ui/icons";
+
 
 // Here we have used react-icons package for the icons
 
@@ -58,6 +62,14 @@ const plansList = [
 const ThreeTiersPricing = () => {
   return (
     <Container maxW="7xl" py="8" px="0">
+      <Alert status="warning">
+        <AlertIcon />
+        This Platform is for schools ,coaching classes and Skill classes
+        only..If you want to target audience in a larger bucket than{" "}
+        <Link href="   https://marketing.shikshafinder.com/" isExternal>
+      &nbsp;    Marketing with shiksha finder <ExternalLinkIcon mx="2px" />
+        </Link>
+      </Alert>
       <chakra.h2 fontSize="5xl" fontWeight="bold" textAlign="center" mb={5}>
         We guarantee results from our marketing platform 📈
       </chakra.h2>
@@ -87,50 +99,52 @@ interface PricingCardProps {
 
 const PricingCard = ({ title, price, icon, features }: PricingCardProps) => {
   return (
-    <Box
-      minW={{ base: "xs", sm: "xs", lg: "sm" }}
-      rounded="md"
-      bg={useColorModeValue("white", "gray.800")}
-      boxShadow="md"
-      marginInline="auto"
-      my={3}
-      p={6}
-    >
-      <Box textAlign="center">
-        <Icon as={icon} h={10} w={10} color="teal.500" />
-        <chakra.h2 fontSize="2xl" fontWeight="bold">
-          {title}
-        </chakra.h2>
-        <Text fontSize="7xl" fontWeight="bold">
-          {price}
-        </Text>
-        <Text fontSize="md" color="gray.500">
-          Only
-        </Text>
+    <>
+      <Box
+        minW={{ base: "xs", sm: "xs", lg: "sm" }}
+        rounded="md"
+        bg={useColorModeValue("white", "gray.800")}
+        boxShadow="md"
+        marginInline="auto"
+        my={3}
+        p={6}
+      >
+        <Box textAlign="center">
+          <Icon as={icon} h={10} w={10} color="teal.500" />
+          <chakra.h2 fontSize="2xl" fontWeight="bold">
+            {title}
+          </chakra.h2>
+          <Text fontSize="7xl" fontWeight="bold">
+            {price}
+          </Text>
+          <Text fontSize="md" color="gray.500">
+            Only
+          </Text>
+        </Box>
+        <VStack spacing={2} alignItems="flex-start" my={6}>
+          {features.map((feature, index) => (
+            <HStack key={index} spacing={3}>
+              <Icon as={BiCheck} h={4} w={4} color="green.500" />
+              <Text fontSize="md" color={useColorModeValue("black", "white")}>
+                {feature}
+              </Text>
+            </HStack>
+          ))}
+        </VStack>
+        <Link href="/marketingDetail">
+          {" "}
+          <Button
+            colorScheme="teal"
+            variant="solid"
+            size="md"
+            rounded="md"
+            w="100%"
+          >
+            Get Started
+          </Button>
+        </Link>
       </Box>
-      <VStack spacing={2} alignItems="flex-start" my={6}>
-        {features.map((feature, index) => (
-          <HStack key={index} spacing={3}>
-            <Icon as={BiCheck} h={4} w={4} color="green.500" />
-            <Text fontSize="md" color={useColorModeValue("black", "white")}>
-              {feature}
-            </Text>
-          </HStack>
-        ))}
-      </VStack>
-      <Link href="/marketingDetail">
-        {" "}
-        <Button
-          colorScheme="teal"
-          variant="solid"
-          size="md"
-          rounded="md"
-          w="100%"
-        >
-          Get Started
-        </Button>
-      </Link>
-    </Box>
+    </>
   );
 };
 
