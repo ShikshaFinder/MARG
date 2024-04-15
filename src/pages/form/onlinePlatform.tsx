@@ -1,10 +1,14 @@
-// "use client";
-import React from "react";
-import { useForm } from "react-hook-form";
-import { useToast } from "@chakra-ui/react";
+import React, { useState, useEffect } from "react";
+import { useForm, Controller } from "react-hook-form";
+import { Img, useToast } from "@chakra-ui/react";
 import supabase from "../../../supabase";
 import { useAuthContext } from "@/context";
 import Nouser from "@/components/Nouser";
+
+interface State {
+  districts: string[];
+  state: string;
+}
 import {
   Button,
   FormControl,
@@ -17,114 +21,131 @@ import {
   Card,
   CardBody,
   CheckboxGroup,
+  Select,
 } from "@chakra-ui/react";
-import { Controller } from "react-hook-form";
 import { useRouter } from "next/router";
-import { BlobServiceClient } from "@azure/storage-blob";
 import { state } from "@/components/state";
-interface State {
-  districts: string[];
-  state: string;
-}  
-import { useState } from "react";
+import { BlobServiceClient } from "@azure/storage-blob";
 
 function formm() {
- const Router = useRouter();
- const toast = useToast();
- const { user } = useAuthContext();
- const form = useForm();
- const { register, handleSubmit, control, watch } = form;
- const [states, setStates] = useState<State[]>(state.states);
- const [Image, setImage] = useState<any>(null);
+  const Router = useRouter();
+  const toast = useToast();
+  const { user } = useAuthContext();
+  const form = useForm();
+  const { register, handleSubmit, control, watch } = form;
+  const [states, setStates] = useState<State[]>(state.states);
+  const [Image, setImage] = useState<any>(null);
 
- const handleSubmitt = () => {
-   toast({
-     title: "Form submitted!",
-     description: "Thank you for your Form",
-     status: "success",
-     duration: 3000,
-     isClosable: true,
-   });
-   Router.push("/aboutcontest");
- };
- if (!user.email) {
-   return (
-      <Nouser/>
-   );
- }
+  function extractVideoId(url: string) {
+    const prefix = "https://youtu.be/";
+    if (url.startsWith(prefix)) {
+      const idAndParams = url.slice(prefix.length);
+      const [videoId] = idAndParams.split("?");
+      return videoId;
+    } else {
+      return null;
+    }
+  }
 
- const uploadImageToBlobStorage = async (file: any) => {
-   const accountName = process.env.NEXT_PUBLIC_AZURE_ACCOUNT_NAME;
-   const sasUrl = process.env.NEXT_PUBLIC_AZURE_STORAGE_SAS_URL || "";
+  const handleSubmitt = () => {
+    toast({
+      title: "Form submitted!",
+      description: "Thank you for your Form",
+      status: "success",
+      duration: 3000,
+      isClosable: true,
+    });
+    Router.push("/aboutcontest");
+  };
+  if (!user.email) {
+    return <Nouser />;
+  }
 
-   const blobServiceClient = BlobServiceClient.fromConnectionString(sasUrl);
+  const uploadImageToBlobStorage = async (file: any) => {
+    const accountName = process.env.NEXT_PUBLIC_AZURE_ACCOUNT_NAME;
+    const sasUrl = process.env.NEXT_PUBLIC_AZURE_STORAGE_SAS_URL || "";
 
-   console.log(file);
-   const containerName = process.env.NEXT_PUBLIC_AZURE_CONTAINER_NAME || "";
-   const containerClient = blobServiceClient.getContainerClient(containerName);
-   const blobName = Date.now() + "_" + file.name;
-   const blockBlobClient = containerClient.getBlockBlobClient(blobName);
-   const uploadBlobResponse = await blockBlobClient.upload(file, file.size);
+    const blobServiceClient = BlobServiceClient.fromConnectionString(sasUrl);
 
-   const public_url = `https://${accountName}.blob.core.windows.net/${containerName}/${blobName}`;
-   return public_url;
- };
+    console.log(file);
+    const containerName = process.env.NEXT_PUBLIC_AZURE_CONTAINER_NAME || "";
+    const containerClient = blobServiceClient.getContainerClient(containerName);
+    const blobName = Date.now() + "_" + file.name;
+    const blockBlobClient = containerClient.getBlockBlobClient(blobName);
+    const uploadBlobResponse = await blockBlobClient.upload(file, file.size);
 
- const onSubmit = async (data: any) => {
-   let img_url;
-   try {
-     img_url = await uploadImageToBlobStorage(Image);
-     console.log("public url : ", img_url);
-   } catch (error) {
-     toast({
-       title: "Error",
-       description: (error as Error).message,
-       status: "error",
-       duration: 3000,
-       isClosable: true,
-     });
-     return;
-   }
-   if (!img_url) {
-     console.log("no image found");
-     toast({
+    const public_url = `https://${accountName}.blob.core.windows.net/${containerName}/${blobName}`;
+    return public_url;
+  };
+
+  const onSubmit = async (data: any) => {
+    const videoId = extractVideoId(data.videolink);
+    if (videoId) {
+      data.videolink = videoId;
+    } else {
+      toast({
         title: "Error",
-        description: "No image found",
+        description: "Invalid YouTube video URL",
         status: "error",
         duration: 3000,
         isClosable: true,
       });
-     return;
-   }
-   const { error } = await supabase
-     .from("onlineform")
-     .insert([{ ...data, user_id: user.id, img: img_url }]);
+      return;
+    }
 
-   if (error) {
-     console.error("Error submitting Form:", error);
-     toast({
-       title: "Error",
-       description: error.message,
-       status: "error",
-       duration: 3000,
-       isClosable: true,
-     });
-   } else {
-     handleSubmitt();
-   }
- };
+    let img_url;
+    try {
+      img_url = await uploadImageToBlobStorage(Image);
+      console.log("public url : ", img_url);
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: (error as Error).message,
+        status: "error",
+        duration: 3000,
+        isClosable: true,
+      });
+      return;
+    }
+    if (!img_url) {
+      toast({
+        title: "Error",
+        description: "Image not uploaded",
+        status: "error",
+        duration: 3000,
+        isClosable: true,
+      });
+      return;
+    }
+    const { error } = await supabase
+      .from("onlineform")
+      .insert([{ ...data, user_id: user.id, img: img_url }]);
 
- const selectedState = watch("State");
+    if (error) {
+      console.error("Error submitting Form:", error);
+      toast({
+        title: "Error",
+        description: error.message,
+        status: "error",
+        duration: 3000,
+        isClosable: true,
+      });
+    } else {
+      handleSubmitt();
+    }
+  };
 
- const districts =
-   states.find((state) => state.state === selectedState)?.districts || [];
+  const selectedState = watch("State");
 
- const handleImage = (e: any) => {
-   const file = e.target.files[0];
-   setImage(file);
-   console.log(file);
-   // console.log(Image);
- };
+  const districts =
+    states.find((state) => state.state === selectedState)?.districts || [];
+
+  const handleImage = (e: any) => {
+    const file = e.target.files[0];
+    setImage(file);
+    console.log(file);
+    // console.log(Image);
+  };
 
   return (
     <>
@@ -278,8 +299,13 @@ function formm() {
               </FormControl>{" "}
               <br />
               <FormControl isRequired>
-                <FormLabel>Upload introduction video</FormLabel>
-                <Input type="file" accept="video/*" />
+                <FormLabel> Introduction video Youtube video link</FormLabel>
+
+                <Input
+                  {...register("videolink", { required: true })}
+                  name="videolink"
+                  placeholder="enter the youtube video link"
+                />
               </FormControl>{" "}
               <br />
               <Button

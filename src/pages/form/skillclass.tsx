@@ -118,7 +118,7 @@ function formm() {
       return;
     }
     const { error } = await supabase
-      .from("School")
+      .from("skillclass")
       .insert([{ ...data, user_id: user.id, img: img_url }]);
 
     if (error) {
@@ -291,8 +291,12 @@ function formm() {
               </FormControl>{" "}
               <br />
               <FormControl isRequired>
-                <FormLabel>Upload introduction video</FormLabel>
-                <Input type="file" accept="video/*" />
+                <FormLabel> Introduction Video Youtube Video Link</FormLabel>
+                <Input
+                  {...register("videolink", { required: true })}
+                  name="videolink"
+                  placeholder="enter the youtube video link"
+                />
               </FormControl>{" "}
               <br />
               <Button
