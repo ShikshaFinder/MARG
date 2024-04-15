@@ -1,9 +1,11 @@
-import React from 'react'
-import { Button, Stack } from '@chakra-ui/react'
-import {useRouter} from 'next/router'
+import React from "react";
+import { Button, Stack } from "@chakra-ui/react";
+import { useRouter } from "next/router";
 
 function Nouser() {
-const Router = useRouter();
+  const Router = useRouter();
+
+  
   return (
     <>
       <Stack spacing={8} mx={"auto"} maxW={"lg"} py={12} px={6}>
@@ -30,4 +32,4 @@ const Router = useRouter();
   );
 }
 
-export default Nouser
+export default Nouser;
