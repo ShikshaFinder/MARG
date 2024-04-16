@@ -17,10 +17,10 @@ import {
   useColorModeValue,
   Link,
 } from "@chakra-ui/react";
-import { useState } from "react";
+import { use, useState } from "react";
 import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
-import { FaGoogle } from "react-icons/fa";
 import { useToast } from "@chakra-ui/react";
+import { FaGoogle } from "react-icons/fa";
 
 export default function SignupCard() {
   const router = useRouter(); // Initialize the router
@@ -30,9 +30,18 @@ export default function SignupCard() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
-
+  const toast = useToast();
   const signUpNewUser = async () => {
-    const toast = useToast();
+    if (!email || !password || !firstName) {
+      toast({
+        title: "Error",
+        description: "Please fill all the fields",
+        status: "error",
+        duration: 5000,
+        isClosable: true,
+      });
+      return;
+    }
     try {
       const { data, error } = await supabase.auth.signUp({
         email,
@@ -49,13 +58,6 @@ export default function SignupCard() {
       router.push("/checkmail");
     } catch (error) {
       console.log(error);
-      toast({
-        title: "error",
-        description: "Invalid email or password",
-        status: "error",
-        duration: 5000,
-        isClosable: true,
-      });
     }
   };
 
@@ -150,7 +152,6 @@ export default function SignupCard() {
                 >
                   login
                 </Link>
-                &nbsp;&nbsp;{" "}
                 <Link href="https://qgkjakomwapzuhvnrvgr.supabase.co/auth/v1/authorize?provider=google">
                   &nbsp; &nbsp; &nbsp;{" "}
                   <Button
