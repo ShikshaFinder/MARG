@@ -55,7 +55,7 @@ export default function Login() {
         email,
         password,
       });
-      router.push("/school");
+      router.push("/form");
     } catch (error) {
       console.log(error);
     }
