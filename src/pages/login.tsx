@@ -1,7 +1,8 @@
 "use client";
 import { useRouter } from "next/router"; // Import the useRouter hook
 import supabase from "../../supabase";
-import { FaGoogle } from "react-icons/fa"; 
+import { FaGoogle } from "react-icons/fa";
+
 import {
   Flex,
   Box,
@@ -24,6 +25,11 @@ import { useToast } from "@chakra-ui/react";
 export default function Login() {
   const router = useRouter(); // Initialize the router
   const toast = useToast();
+
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
+
   async function SignIn() {
     const { data, error } = await supabase.auth.signInWithOAuth({
       provider: "google",
@@ -32,9 +38,6 @@ export default function Login() {
       },
     });
   }
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [showPassword, setShowPassword] = useState(false);
 
   const Signin = async () => {
     if (!email || !password) {
@@ -52,26 +55,9 @@ export default function Login() {
         email,
         password,
       });
-      if (error) {
-        toast({
-          title: "Error.",
-          description: "Invalid email or password",
-          status: "error",
-          duration: 5000,
-          isClosable: true,
-        });
-
-      }
-      router.push("/onbording");
+      router.push("/school");
     } catch (error) {
       console.log(error);
-      toast({
-        title: "Error.",
-        description: "Invalid email or password",
-        status: "error",
-        duration: 5000,
-        isClosable: true,
-      });
     }
   };
 
