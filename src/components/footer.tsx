@@ -62,7 +62,7 @@ export default function SmallCentered() {
         align={"center"}
       >
         <Image
-          src="/sfv1.png"
+          src="/icon-512x512.png"
           alt="Shiksha Finder Logo"
           className="Container"
           width={200}
