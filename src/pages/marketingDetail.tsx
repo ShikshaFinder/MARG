@@ -228,9 +228,9 @@ function marketingDetail() {
             <FormControl isRequired>
               <FormLabel> The site where you want them to redirect</FormLabel>
               <Input
-                {...register("redirecturl", { required: false })}
+                {...register("redirecturl", { required: true })}
                 name="redirecturl"
-                placeholder="Your site URL/Your youtube channel URL/Your app URL"
+                placeholder="https:///Your youtube channel URL/Your app URL"
               />
             </FormControl>
             <br />
