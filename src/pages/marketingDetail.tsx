@@ -225,6 +225,15 @@ function marketingDetail() {
               />
             </FormControl>
             <br />
+            <FormControl isRequired>
+              <FormLabel> The site where you want them to redirect</FormLabel>
+              <Input
+                {...register("redirecturl", { required: false })}
+                name="redirecturl"
+                placeholder="Your site URL/Your youtube channel URL/Your app URL"
+              />
+            </FormControl>
+            <br />
             <FormControl as="fieldset">
               <FormLabel as="legend">Medium you want to target</FormLabel>
               <Controller
