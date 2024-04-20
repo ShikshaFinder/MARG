@@ -2,8 +2,8 @@ import React, { useState, useEffect } from "react";
 import { Button } from "@chakra-ui/react";
 import Link from "next/link";
 
-function Copybutton() {
-  const schoolName = "schoolname"; // Replace with actual school name
+function Copybutton({ schoolName }: { schoolName: string}) {
+  // Replace with actual school name
 
   const handleClick = async () => {
     let url = `https://shikshafinder.com/vote/${schoolName}`;

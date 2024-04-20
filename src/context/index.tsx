@@ -2,6 +2,8 @@
 
 import { createContext, useContext, useEffect, useState } from "react";
 import supabase from "../../supabase";
+import { useUser } from "../../store";
+
 
 type UserType = {
   app_metadata: {
@@ -28,6 +30,8 @@ type UserType = {
 const AuthContext = createContext({});
 
 export const AuthContextProvider = ({ children }: any) => {
+    const setUserStore = useUser((state) => state.setUser);
+
   const [user, setUser] = useState({});
   const fetcCurrentUser = async () => {
     try {
@@ -36,6 +40,13 @@ export const AuthContextProvider = ({ children }: any) => {
       } = await supabase.auth.getUser();
       if (user) {
         setUser(user);
+        const { data, error } = await supabase
+          .from("School")
+          .select("*")
+          .eq("user_id", user.id)
+          .single();
+
+        setUserStore(data);
       }
     } catch (error) {
       console.log(error);
