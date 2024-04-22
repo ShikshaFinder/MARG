@@ -46,7 +46,7 @@ studentnumber
         <CardBody>
           <Wrap justifyContent={"center"} spacing={4} direction="column">
             <WrapItem>
-              <Link href={"/form"}>
+              <Link href={"/updateprofile"}>
                 {" "}
                 <Avatar size="2xl" name={name} borderRadius={"3xl"} />{" "}
                 <FaEdit size={24} style={{ alignSelf: "flex-end" }} />

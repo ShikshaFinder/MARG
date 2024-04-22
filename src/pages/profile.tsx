@@ -28,6 +28,7 @@ function Profile() {
   }
 
     const useUse = useUser((state) => state.user);
+    console.log(useUse);
 
   const CustomTab = React.forwardRef<HTMLElement, any>((props, ref) => {
     const tabProps = useTab({ ...props, ref });
