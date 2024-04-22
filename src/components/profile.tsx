@@ -30,6 +30,7 @@ function profile({
   Board,
   Medium,
   Standard,
+studentnumber
 }: {
   name: string;
   city: string;
@@ -38,6 +39,7 @@ function profile({
   Board: string;
   Medium: string;
   Standard: string;
+  studentnumber: number;
 }) {
   const { user } = useAuthContext();
   console.log("user", user.user_metadata.lastName);
@@ -73,7 +75,7 @@ function profile({
             </WrapItem>
             <WrapItem style={{ marginTop: "10px" }}>
               <FaCoins />
-              <b style={{ textAlign: "center" }}> 30 </b>
+              <b style={{ textAlign: "center" }}> {studentnumber} </b>
             </WrapItem>
             <WrapItem style={{ marginTop: "10px" }}>
               <FaHeart />

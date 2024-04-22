@@ -36,29 +36,10 @@ function Profile() {
     const isSelected = !!tabProps["aria-selected"];
     const styles = useMultiStyleConfig("Tabs", tabProps);
 
-    const [userData, setUserData] = useState<any>();
 
-    async function getStudent() {
-      try {
-        let { data, error } = await supabase.from("School").select("*");
-        // .eq("schoolname",);
-
-        setUserData(data);
-      } catch (error) {
-        router.push("/form");
-      }
-    }
-
-    useEffect(() => {
-      getStudent();
-    }, [user]);
+   
     // console.log(user.id);
-    if (!userData)
-      return (
-        <Center>
-          <Spinner color="green.500" />
-        </Center>
-      );
+  
 
     return (
       <Button __css={styles.tab} {...tabProps}>
@@ -81,13 +62,14 @@ function Profile() {
           <TabPanel>
             {" "}
             <Profilee
-              name="harsh"
-              email="ceo@shikshafinder.com"
-              state="Gujrat"
-              Board="CBSE"
-              Medium="English"
-              Standard="10th"
-              city="Ahmedabad"
+              name={useUse?.schoolname || "Shiksha Finder"}
+              email={useUse?.email || "youmail@gmail.com"}
+              state={useUse?.State || "Gujarat"}
+              Board={useUse?.Board || "GSEB"}
+              Medium={useUse?.medium || "English"}
+              Standard={useUse?.Standard || "10th"}
+              city={useUse?.District || "Ahmedabad"}
+              studentnumber={useUse?.studentnumber || 0}
             />
           </TabPanel>
           <TabPanel>
