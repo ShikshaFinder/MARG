@@ -8,8 +8,7 @@ import {
   Text,
   Image,
 } from "@chakra-ui/react";
-import Link from "next/link";
-import { useUser } from "../../../store";
+import {useUser}  from "../../../store";
 
 import Copybutton from "../../components/Copybutton";
 import Whatsapp from "../../components/whatsapp";

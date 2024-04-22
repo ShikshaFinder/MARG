@@ -1,6 +1,7 @@
 // "use client";
 import { Container } from "@chakra-ui/react";
 import React from "react";
+import { useAuthContext } from "@/context";
 import {
   Avatar,
   WrapItem,
@@ -38,6 +39,8 @@ function profile({
   Medium: string;
   Standard: string;
 }) {
+  const { user } = useAuthContext();
+  console.log("user", user.user_metadata.lastName);
   return (
     <Container justifyContent={"center"}>
       <Card>
@@ -75,7 +78,6 @@ function profile({
             <WrapItem style={{ marginTop: "10px" }}>
               <FaHeart />
               <b
-                
                 style={{
                   textAlign: "center",
                   color: "#90CAF9",

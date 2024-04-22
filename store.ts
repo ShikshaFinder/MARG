@@ -11,11 +11,14 @@ type User = {
 
 
 
-export const useUser = create<User>((set) => ({
+
+
+
+ export const useUser = create<User>((set) => ({
   user: null,
   setUser: (user: string | null) => set(() => ({ user })),
 }))
-
 //import Shikshacoin balance updating shiksha coin balance
 // import { useStore } from "@/store";
 
+  
