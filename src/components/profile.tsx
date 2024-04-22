@@ -1,7 +1,6 @@
 // "use client";
 import { Container } from "@chakra-ui/react";
 import React from "react";
-import { useAuthContext } from "@/context";
 import {
   Avatar,
   WrapItem,
@@ -41,8 +40,6 @@ studentnumber
   Standard: string;
   studentnumber: number;
 }) {
-  const { user } = useAuthContext();
-  console.log("user", user.user_metadata.lastName);
   return (
     <Container justifyContent={"center"}>
       <Card>
