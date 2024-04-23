@@ -25,7 +25,7 @@ function studentData() {
 
     useEffect(() => {
       getSchool();
-    }, [user]);
+    }, []);
 
     
 

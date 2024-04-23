@@ -23,7 +23,7 @@ function studentlist() {
 
   useEffect(() => {
     getSchool();
-  }, [user]);
+  }, []);
 
   return (
     <>
