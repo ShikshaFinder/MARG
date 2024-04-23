@@ -43,6 +43,16 @@ function CoachingForm() {
  const { register, handleSubmit, control, watch } = form;
  const [states, setStates] = useState<State[]>(state.states);
  const [Image, setImage] = useState<any>(null);
+  function extractVideoId(url: string) {
+     const prefix = "https://youtu.be/";
+     if (url.startsWith(prefix)) {
+       const idAndParams = url.slice(prefix.length);
+       const [videoId] = idAndParams.split("?");
+       return videoId;
+     } else {
+       return null;
+     }
+   }
 
  const handleSubmitt = () => {
    toast({
@@ -78,6 +88,21 @@ function CoachingForm() {
  };
 
  const onSubmit = async (data: any) => {
+      const videoId = extractVideoId(data.videolink);
+      if (videoId) {
+        data.videolink = videoId;
+      } else {
+        toast({
+          title: "Error",
+          description: "Invalid YouTube video URL",
+          status: "error",
+          duration: 3000,
+          isClosable: true,
+        });
+        return;
+      }
+
+
    let img_url;
    try {
      img_url = await uploadImageToBlobStorage(Image);
@@ -326,9 +351,15 @@ function CoachingForm() {
                 <Input type="file" accept="image/*" onChange={handleImage} />
               </FormControl>{" "}
               <br />
+              <br />
               <FormControl isRequired>
-                <FormLabel>Upload introduction video</FormLabel>
-                <Input type="file" accept="video/*" />
+                <FormLabel> Introduction video Youtube video link</FormLabel>
+
+                <Input
+                  {...register("videolink", { required: true })}
+                  name="videolink"
+                  placeholder="enter the youtube video link"
+                />
               </FormControl>{" "}
               <br />
               <Button
