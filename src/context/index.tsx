@@ -62,7 +62,7 @@ export const AuthContextProvider = ({ children }: any) => {
 
   useEffect(() => {
     fetcCurrentUser();
-  }, [user]);
+  }, []);
 
   return (
     <AuthContext.Provider value={{ user }}>{children}</AuthContext.Provider>
