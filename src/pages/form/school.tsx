@@ -38,16 +38,16 @@ function formm() {
   const [states, setStates] = useState<State[]>(state.states);
   const [Image, setImage] = useState<any>(null);
 
-   function extractVideoId(url: string) {
-     const prefix = "https://youtu.be/";
-     if (url.startsWith(prefix)) {
-       const idAndParams = url.slice(prefix.length);
-       const [videoId] = idAndParams.split("?");
-       return videoId;
-     } else {
-       return null;
-     }
-   }
+  function extractVideoId(url: string) {
+    const prefix = "https://youtu.be/";
+    if (url.startsWith(prefix)) {
+      const idAndParams = url.slice(prefix.length);
+      const [videoId] = idAndParams.split("?");
+      return videoId;
+    } else {
+      return null;
+    }
+  }
 
   const handleSubmitt = () => {
     toast({
@@ -60,11 +60,8 @@ function formm() {
     Router.push("/aboutcontest");
   };
   if (!user.email) {
-    return (
-     <Nouser/>
-    );
+    return <Nouser />;
   }
-
 
   const uploadImageToBlobStorage = async (file: any) => {
     const accountName = process.env.NEXT_PUBLIC_AZURE_ACCOUNT_NAME;
@@ -84,27 +81,23 @@ function formm() {
   };
 
   const onSubmit = async (data: any) => {
-    
     const videoId = extractVideoId(data.videolink);
-     if (videoId) {
-       data.videolink = videoId;
-     } else {
-       toast({
-         title: "Error",
-         description: "Invalid YouTube video URL",
-         status: "error",
-         duration: 3000,
-         isClosable: true,
-       });
-       return;
-     }
-
-
+    if (videoId) {
+      data.videolink = videoId;
+    } else {
+      toast({
+        title: "Error",
+        description: "Invalid YouTube video URL",
+        status: "error",
+        duration: 3000,
+        isClosable: true,
+      });
+      return;
+    }
 
     let img_url;
     try {
-
-       img_url = await uploadImageToBlobStorage(Image);
+      img_url = await uploadImageToBlobStorage(Image);
       console.log("public url : ", img_url);
     } catch (error) {
       toast({
@@ -116,17 +109,16 @@ function formm() {
       });
       return;
     }
-if(!img_url){
-  toast({
-    title: "Error",
-    description: "Image not uploaded",
-    status: "error",
-    duration: 3000,
-    isClosable: true,
-  });
-  return;
-
-}
+    if (!img_url) {
+      toast({
+        title: "Error",
+        description: "Image not uploaded",
+        status: "error",
+        duration: 3000,
+        isClosable: true,
+      });
+      return;
+    }
     const { error } = await supabase
       .from("School")
       .insert([{ ...data, user_id: user.id, img: img_url }]);
