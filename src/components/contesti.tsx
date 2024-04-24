@@ -11,7 +11,6 @@ import {
   useBreakpointValue,
   Button,
 } from "@chakra-ui/react";
-import  Link from "next/link";
 
 const milestones = [
   {
