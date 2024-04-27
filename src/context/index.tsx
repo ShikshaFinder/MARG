@@ -55,9 +55,7 @@ export const AuthContextProvider = ({ children }: any) => {
 
         setUserStore(data);
 
-        if (data == null) {
-          router.push("/form");
-        }
+       
           }
       }
     } catch (error) {
