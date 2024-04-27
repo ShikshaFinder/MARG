@@ -163,7 +163,7 @@ export default function Aboutus() {
           fontWeight={"bold"}
           color={useColorModeValue("gray.700", "gray.50")}
         >
-          You&apos;re in good company
+          Our vision is to promote your quality of education
         </chakra.h1>
         <chakra.h2
           margin={"auto"}
