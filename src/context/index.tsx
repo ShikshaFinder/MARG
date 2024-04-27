@@ -3,6 +3,7 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import supabase from "../../supabase";
 import { useUser } from "../../store";
+import { useRouter } from "next/router";
 
 type UserType = {
   app_metadata: {
@@ -30,6 +31,7 @@ const AuthContext = createContext({});
 
 export const AuthContextProvider = ({ children }: any) => {
   const [user, setUser] = useState({});
+  const router = useRouter();
   const setUserStore = useUser((state) => state.setUser);
   const fetcCurrentUser = async () => {
     try {
@@ -52,6 +54,10 @@ export const AuthContextProvider = ({ children }: any) => {
           .single();
 
         setUserStore(data);
+
+        if (data == null) {
+          router.push("/form");
+        }
           }
       }
     } catch (error) {
