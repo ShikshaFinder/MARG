@@ -105,6 +105,11 @@ export default function SmallCentered() {
           <a href="/gwsf">
             {" "}
             <Text>© GWSF Ventures Pvt Ltd</Text>
+            <Text>
+              {" "}
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Recognised by{" "}
+            </Text>
+            <img src="/images.png" alt="startup india image shiksha finder" />
           </a>
           <Stack direction={"row"} spacing={6}>
             <SocialButton
@@ -132,6 +137,7 @@ export default function SmallCentered() {
               <FaLinkedin />
             </SocialButton>
           </Stack>
+          <Box height={"19"}></Box>
         </Container>
       </Box>
     </Box>
