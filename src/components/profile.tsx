@@ -11,7 +11,7 @@ import {
 } from "@chakra-ui/react";
 import {
   FaAlignLeft,
-  FaCoins,
+  FaPersonBooth,
   FaEdit,
   FaHeart,
   FaLanguage,
@@ -71,7 +71,7 @@ studentnumber
               <b style={{ textAlign: "center" }}>&nbsp;{email}</b>
             </WrapItem>
             <WrapItem style={{ marginTop: "10px" }}>
-              <FaCoins />
+              <FaPersonBooth />&nbsp;
               <b style={{ textAlign: "center" }}> {studentnumber} </b>
             </WrapItem>
             <WrapItem style={{ marginTop: "10px" }}>
