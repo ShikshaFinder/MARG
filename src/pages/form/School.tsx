@@ -121,7 +121,7 @@ function formm() {
     }
     const { error } = await supabase
       .from("School")
-      .insert([{ ...data, user_id: user.id, img: img_url }]);
+      .insert([{ ...data, user_id: user.id, img: img_url, email : user.email}]);
 
     if (error) {
       console.error("Error submitting Form:", error);
@@ -332,15 +332,7 @@ function formm() {
                 />
               </FormControl>
               <br />
-              <FormControl>
-                <FormLabel>email </FormLabel>
-                <Input
-                  {...register("email", { required: false })}
-                  name="email"
-                  placeholder="yourschool@...com"
-                />
-              </FormControl>
-              <br />
+              
               <FormControl as="fieldset">
                 <FormLabel as="legend">Medium</FormLabel>
                 <Controller

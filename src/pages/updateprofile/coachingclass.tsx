@@ -37,8 +37,7 @@ function CoachingForm() {
   const { register, handleSubmit, control, watch } = form;
   const [states, setStates] = useState<State[]>(state.states);
   const [Image, setImage] = useState<any>(null);
-    const useUse = useUser((state) => state.user);
-
+  const useUse = useUser((state) => state.user);
 
   const handleSubmitt = () => {
     toast({
@@ -292,15 +291,6 @@ function CoachingForm() {
                       </HStack>
                     </CheckboxGroup>
                   )}
-                />
-              </FormControl>
-              <br />
-              <FormControl>
-                <FormLabel>email </FormLabel>
-                <Input
-                  {...register("email", { required: false })}
-                  name="email"
-                  placeholder="yourcoaching@...com"
                 />
               </FormControl>
               <br />

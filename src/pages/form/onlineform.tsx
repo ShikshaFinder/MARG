@@ -119,7 +119,7 @@ function formm() {
     }
     const { error } = await supabase
       .from("onlineform")
-      .insert([{ ...data, user_id: user.id, img: img_url }]);
+      .insert([{ ...data, user_id: user.id, img: img_url, email: user.email}]);
 
     if (error) {
       console.error("Error submitting Form:", error);
@@ -262,15 +262,6 @@ function formm() {
                   {...register("Board", { required: false })}
                   name="Board"
                   placeholder="Board / If applicable"
-                />
-              </FormControl>
-              <br />
-              <FormControl>
-                <FormLabel>email </FormLabel>
-                <Input
-                  {...register("email", { required: false })}
-                  name="email"
-                  placeholder="yourcoaching@...com"
                 />
               </FormControl>
               <br />

@@ -346,16 +346,6 @@ function formm() {
                 />
               </FormControl>
               <br />
-              <FormControl>
-                <FormLabel>email </FormLabel>
-                <Input
-                  {...register("email", { required: false })}
-                  name="email"
-                  placeholder="yourschool@...com"
-                    defaultValue={useUse?.email || ""}
-                />
-              </FormControl>
-              <br />
               <FormControl as="fieldset">
                 <FormLabel as="legend">Medium</FormLabel>
                 <Controller

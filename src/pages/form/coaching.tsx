@@ -27,136 +27,125 @@ import { state } from "@/components/state";
 import { BlobServiceClient } from "@azure/storage-blob";
 import Nouser from "@/components/Nouser";
 
-
-
-
-
-
-
-
-
 function CoachingForm() {
- const Router = useRouter();
- const toast = useToast();
- const { user } = useAuthContext();
- const form = useForm();
- const { register, handleSubmit, control, watch } = form;
- const [states, setStates] = useState<State[]>(state.states);
- const [Image, setImage] = useState<any>(null);
+  const Router = useRouter();
+  const toast = useToast();
+  const { user } = useAuthContext();
+  const form = useForm();
+  const { register, handleSubmit, control, watch } = form;
+  const [states, setStates] = useState<State[]>(state.states);
+  const [Image, setImage] = useState<any>(null);
   function extractVideoId(url: string) {
-     const prefix = "https://youtu.be/";
-     if (url.startsWith(prefix)) {
-       const idAndParams = url.slice(prefix.length);
-       const [videoId] = idAndParams.split("?");
-       return videoId;
-     } else {
-       return null;
-     }
-   }
+    const prefix = "https://youtu.be/";
+    if (url.startsWith(prefix)) {
+      const idAndParams = url.slice(prefix.length);
+      const [videoId] = idAndParams.split("?");
+      return videoId;
+    } else {
+      return null;
+    }
+  }
 
- const handleSubmitt = () => {
-   toast({
-     title: "Form submitted!",
-     description: "Thank you for your Form",
-     status: "success",
-     duration: 3000,
-     isClosable: true,
-   });
-   Router.push("/aboutcontest");
- };
- if (!user.email) {
-   return (
-    <Nouser />
-   );
- }
+  const handleSubmitt = () => {
+    toast({
+      title: "Form submitted!",
+      description: "Thank you for your Form",
+      status: "success",
+      duration: 3000,
+      isClosable: true,
+    });
+    Router.push("/aboutcontest");
+  };
+  if (!user.email) {
+    return <Nouser />;
+  }
 
- const uploadImageToBlobStorage = async (file: any) => {
-   const accountName = process.env.NEXT_PUBLIC_AZURE_ACCOUNT_NAME;
-   const sasUrl = process.env.NEXT_PUBLIC_AZURE_STORAGE_SAS_URL || "";
+  const uploadImageToBlobStorage = async (file: any) => {
+    const accountName = process.env.NEXT_PUBLIC_AZURE_ACCOUNT_NAME;
+    const sasUrl = process.env.NEXT_PUBLIC_AZURE_STORAGE_SAS_URL || "";
 
-   const blobServiceClient = BlobServiceClient.fromConnectionString(sasUrl);
+    const blobServiceClient = BlobServiceClient.fromConnectionString(sasUrl);
 
-   console.log(file);
-   const containerName = process.env.NEXT_PUBLIC_AZURE_CONTAINER_NAME || "";
-   const containerClient = blobServiceClient.getContainerClient(containerName);
-   const blobName = Date.now() + "_" + file.name;
-   const blockBlobClient = containerClient.getBlockBlobClient(blobName);
-   const uploadBlobResponse = await blockBlobClient.upload(file, file.size);
+    console.log(file);
+    const containerName = process.env.NEXT_PUBLIC_AZURE_CONTAINER_NAME || "";
+    const containerClient = blobServiceClient.getContainerClient(containerName);
+    const blobName = Date.now() + "_" + file.name;
+    const blockBlobClient = containerClient.getBlockBlobClient(blobName);
+    const uploadBlobResponse = await blockBlobClient.upload(file, file.size);
 
-   const public_url = `https://${accountName}.blob.core.windows.net/${containerName}/${blobName}`;
-   return public_url;
- };
+    const public_url = `https://${accountName}.blob.core.windows.net/${containerName}/${blobName}`;
+    return public_url;
+  };
 
- const onSubmit = async (data: any) => {
-      const videoId = extractVideoId(data.videolink);
-      if (videoId) {
-        data.videolink = videoId;
-      } else {
-        toast({
-          title: "Error",
-          description: "Invalid YouTube video URL",
-          status: "error",
-          duration: 3000,
-          isClosable: true,
-        });
-        return;
-      }
+  const onSubmit = async (data: any) => {
+    const videoId = extractVideoId(data.videolink);
+    if (videoId) {
+      data.videolink = videoId;
+    } else {
+      toast({
+        title: "Error",
+        description: "Invalid YouTube video URL",
+        status: "error",
+        duration: 3000,
+        isClosable: true,
+      });
+      return;
+    }
 
+    let img_url;
+    try {
+      img_url = await uploadImageToBlobStorage(Image);
+      console.log("public url : ", img_url);
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: (error as Error).message,
+        status: "error",
+        duration: 3000,
+        isClosable: true,
+      });
+      return;
+    }
+    if (!img_url) {
+      console.log("no image found");
+      toast({
+        title: "Error",
+        description: "No image found",
+        status: "error",
+        duration: 3000,
+        isClosable: true,
+      });
+      return;
+    }
+    const { error } = await supabase
+      .from("coaching")
+      .insert([{ ...data, user_id: user.id, img: img_url, email: user.email}]);
 
-   let img_url;
-   try {
-     img_url = await uploadImageToBlobStorage(Image);
-     console.log("public url : ", img_url);
-   } catch (error) {
-     toast({
-       title: "Error",
-       description: (error as Error).message,
-       status: "error",
-       duration: 3000,
-       isClosable: true,
-     });
-     return;
-   }
-   if (!img_url) {
-     console.log("no image found");
-     toast({
-       title: "Error",
-       description: "No image found",
-       status: "error",
-       duration: 3000,
-       isClosable: true,
-     });
-     return;
-   }
-   const { error } = await supabase
-     .from("coaching")
-     .insert([{ ...data, user_id: user.id, img: img_url }]);
+    if (error) {
+      console.error("Error submitting Form:", error);
+      toast({
+        title: "Error",
+        description: error.message,
+        status: "error",
+        duration: 3000,
+        isClosable: true,
+      });
+    } else {
+      handleSubmitt();
+    }
+  };
 
-   if (error) {
-     console.error("Error submitting Form:", error);
-     toast({
-       title: "Error",
-       description: error.message,
-       status: "error",
-       duration: 3000,
-       isClosable: true,
-     });
-   } else {
-     handleSubmitt();
-   }
- };
+  const selectedState = watch("State");
 
- const selectedState = watch("State");
+  const districts =
+    states.find((state) => state.state === selectedState)?.districts || [];
 
- const districts =
-   states.find((state) => state.state === selectedState)?.districts || [];
-
- const handleImage = (e: any) => {
-   const file = e.target.files[0];
-   setImage(file);
-   console.log(file);
-   // console.log(Image);
- };
+  const handleImage = (e: any) => {
+    const file = e.target.files[0];
+    setImage(file);
+    console.log(file);
+    // console.log(Image);
+  };
   return (
     <>
       <>
@@ -315,15 +304,6 @@ function CoachingForm() {
                       </HStack>
                     </CheckboxGroup>
                   )}
-                />
-              </FormControl>
-              <br />
-              <FormControl>
-                <FormLabel>email </FormLabel>
-                <Input
-                  {...register("email", { required: false })}
-                  name="email"
-                  placeholder="yourcoaching@...com"
                 />
               </FormControl>
               <br />

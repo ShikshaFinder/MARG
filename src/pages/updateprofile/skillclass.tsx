@@ -287,16 +287,6 @@ function formm() {
                 />{" "}
               </FormControl>
               <br />
-              <FormControl>
-                <FormLabel>email </FormLabel>
-                <Input
-                  {...register("email", { required: false })}
-                  name="email"
-                  placeholder="yourskillclass@...com"
-                  defaultValue={useUse?.email || ""}
-                />
-              </FormControl>
-              <br />
               <FormControl isRequired>
                 <FormLabel>Upload cover Image</FormLabel>
                 <Input type="file" accept="image/*" onChange={handleImage} />
