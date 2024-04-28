@@ -24,15 +24,6 @@ import { FaGoogle } from "react-icons/fa";
 
 export default function SignupCard() {
   const router = useRouter(); // Initialize the router
-   async function SignIn() {
-     const { data, error } = await supabase.auth.signInWithOAuth({
-       provider: "google",
-       options: {
-         redirectTo: "https://platform.shikshafinder.com/",
-       },
-     });
-   }
-
 
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -77,9 +68,6 @@ export default function SignupCard() {
       justify={"center"}
       bg={useColorModeValue("gray.50", "gray.800")}
     >
-      <Button colorScheme="telegram" onClick={SignIn} leftIcon={<FaGoogle />}>
-        Signin with Google
-      </Button>
       <Stack spacing={8} mx={"auto"} maxW={"lg"} py={12} px={6}>
         <Stack align={"center"}>
           <Heading fontSize={"4xl"} textAlign={"center"}>
