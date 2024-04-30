@@ -6,7 +6,7 @@ import { useRouter } from "next/router";
 function form() {
   const router = useRouter();
 
-  async function addInstitution(institute: string) {
+  async function addInstitutionn(institute: string) {
   
 
    
@@ -22,30 +22,30 @@ function form() {
         <Button
           colorScheme="teal"
           size="md"
-          onClick={() => addInstitution("school")}
+          onClick={() => addInstitutionn("school")}
         >
-          I Have A School 🏫
+          Update School Informtion🏫
         </Button>{" "}
         <Button
           colorScheme="teal"
           size="md"
-          onClick={() => addInstitution("coachingclass")}
+          onClick={() => addInstitutionn("coachingclass")}
         >
-          I Have A Coaching Center 🏢
+          Update Coaching Center Informtion🏢
         </Button>
         <Button
           colorScheme="teal"
           size="md"
-          onClick={() => addInstitution("onlinePlatform")}
+          onClick={() => addInstitutionn("onlinePlatform")}
         >
-          I Have A Online Platform 🌎
+          Update Online Platform Informtion🌎
         </Button>
         <Button
           colorScheme="teal"
           size="md"
-          onClick={() => addInstitution("skillclass")}
+          onClick={() => addInstitutionn("skillclass")}
         >
-          I Have A Skill Class 🎨
+          Update Skill Class Informtion 🎨
         </Button>
       </Stack>
     </>

@@ -3,9 +3,15 @@ import { Button, Stack } from "@chakra-ui/react";
 import supabase from "../../../supabase";
 import { useAuthContext } from "@/context";
 import { useRouter } from "next/router";
+import { useUser } from "../../../store";
 
 function form() {
   const router = useRouter();
+  const useUse = useUser();
+    async function addInstitutionn(institute: string) {
+      router.push("updateprofile/" + institute);
+    }
+
 
   async function addInstitution(institute: string) {
     const typeOfInstitute = institute;
@@ -20,8 +26,43 @@ function form() {
     router.push("form/" + institute);
   }
 
-  const { user } = useAuthContext();
-  //  console.log(user.lastName)
+  if (useUse.user !== null) {
+    return (
+      <>
+        <Stack spacing={6} direction="column" align="center">
+          {" "}
+          <Button
+            colorScheme="teal"
+            size="md"
+            onClick={() => addInstitutionn("school")}
+          >
+            Update School Informtion🏫
+          </Button>{" "}
+          <Button
+            colorScheme="teal"
+            size="md"
+            onClick={() => addInstitutionn("coachingclass")}
+          >
+            Update Coaching Center Informtion🏢
+          </Button>
+          <Button
+            colorScheme="teal"
+            size="md"
+            onClick={() => addInstitutionn("onlinePlatform")}
+          >
+            Update Online Platform Informtion🌎
+          </Button>
+          <Button
+            colorScheme="teal"
+            size="md"
+            onClick={() => addInstitutionn("skillclass")}
+          >
+            Update Skill Class Informtion 🎨
+          </Button>
+        </Stack>
+      </>
+    );
+  }
 
   return (
     <>
