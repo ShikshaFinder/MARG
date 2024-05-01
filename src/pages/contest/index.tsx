@@ -8,7 +8,7 @@ import {
   Text,
   Image,
 } from "@chakra-ui/react";
-import {useUser}  from "../../../store";
+import { useUser } from "../../../store";
 
 import Copybutton from "../../components/Copybutton";
 import Whatsapp from "../../components/whatsapp";
@@ -18,7 +18,6 @@ import Contestinfo from "../../components/contesti";
 function contest() {
   const useUse = useUser((state) => state.user);
   console.log("useUse", useUse);
-  
 
   return (
     <>
@@ -53,12 +52,15 @@ function contest() {
           </CardBody>
 
           <CardFooter>
-            {useUse && useUse.user_id && (
+            {useUse && useUse.user_id ? (
               <Copybutton schoolName={useUse.user_id} />
+            ) : (
+              <>please create a platform to get the link</>
             )}
             &nbsp; &nbsp;
-            {useUse && useUse.user_id && (
+            {useUse && useUse.user_id ? (
               <Whatsapp schoolName={useUse.user_id} />
+            ):(<></>
             )}
           </CardFooter>
         </Stack>

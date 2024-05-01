@@ -104,7 +104,7 @@ const StatsWithIcons = () => {
           ))}
         </SimpleGrid>
       </Container>
-      {/* <Studentlist /> */}
+      <Studentlist />
     </>
   );
 };
