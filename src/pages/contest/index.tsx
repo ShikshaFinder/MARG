@@ -7,9 +7,10 @@ import {
   Heading,
   Text,
   Image,
+  Button,
 } from "@chakra-ui/react";
 import { useUser } from "../../../store";
-
+import { useRouter } from "next/router";
 import Copybutton from "../../components/Copybutton";
 import Whatsapp from "../../components/whatsapp";
 
@@ -18,6 +19,7 @@ import Contestinfo from "../../components/contesti";
 function contest() {
   const useUse = useUser((state) => state.user);
   console.log("useUse", useUse);
+  const router = useRouter();
 
   return (
     <>
@@ -55,7 +57,9 @@ function contest() {
             {useUse && useUse.user_id ? (
               <Copybutton schoolName={useUse.user_id} />
             ) : (
-              <>please create a platform to get the link</>
+              <><Button onClick={()=>{
+                router.push("/form");
+              }}>Register platform</Button></>
             )}
             &nbsp; &nbsp;
             {useUse && useUse.user_id ? (

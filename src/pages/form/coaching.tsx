@@ -125,7 +125,7 @@ function CoachingForm() {
       console.error("Error submitting Form:", error);
       toast({
         title: "Error",
-        description: error.message,
+        description: "Error submitting Form",
         status: "error",
         duration: 3000,
         isClosable: true,

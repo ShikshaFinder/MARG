@@ -14,7 +14,7 @@ function signout() {
     if (error) {
       toast({
         title: "Error.",
-        description: error.message,
+        description: "please check internet connection and try again",
         status: "error",
         duration: 5000,
         isClosable: true,

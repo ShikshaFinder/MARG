@@ -102,7 +102,7 @@ function formm() {
     } catch (error) {
       toast({
         title: "Error",
-        description: (error as Error).message,
+        description:"There is an error uploading image please wait and try again.",
         status: "error",
         duration: 3000,
         isClosable: true,
@@ -127,7 +127,7 @@ function formm() {
       console.error("Error submitting Form:", error);
       toast({
         title: "Error",
-        description: error.message,
+        description: "Error submitting Form ! Please try again/contact us",
         status: "error",
         duration: 3000,
         isClosable: true,

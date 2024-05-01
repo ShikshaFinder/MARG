@@ -107,7 +107,7 @@ function marketingDetail() {
       console.error("Error submitting Form:", error);
       toast({
         title: "Error",
-        description: error.message,
+        description: "You can submit one banner ad at a time,if you want to submit more contact us",
         status: "error",
         duration: 3000,
         isClosable: true,

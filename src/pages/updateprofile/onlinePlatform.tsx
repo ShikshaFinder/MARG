@@ -128,7 +128,7 @@ function formm() {
       console.error("Error submitting Form:", error);
       toast({
         title: "Error",
-        description: error.message,
+        description: "Error submitting Form,please try again / contact us",
         status: "error",
         duration: 3000,
         isClosable: true,
