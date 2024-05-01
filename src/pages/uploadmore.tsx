@@ -1,6 +1,6 @@
 "use client";
 
-import { Box, Heading, Text, Button, Center } from "@chakra-ui/react";
+import { Box, Heading, Text, Button, Center,Stack } from "@chakra-ui/react";
 import { CheckCircleIcon } from "@chakra-ui/icons";
 import Link from "next/link";
 export default function Success() {
@@ -19,7 +19,11 @@ export default function Success() {
         {" "}
         <Center>
           {" "}
-          <Button>Upload more</Button>
+          <Stack spacing={8} mx={"auto"} maxW={"lg"} py={12} px={6}>
+            <Button colorScheme="teal" display={"flex"}>
+              Upload more
+            </Button>
+          </Stack>
         </Center>
       </Link>
     </Box>

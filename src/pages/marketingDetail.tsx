@@ -54,7 +54,7 @@ function marketingDetail() {
       duration: 3000,
       isClosable: true,
     });
-    Router.push("/aboutcontest");
+    Router.push("/paynow");
   };
 
   const uploadImageToBlobStorage = async (file: any) => {
@@ -168,6 +168,15 @@ function marketingDetail() {
               </Select>
             </FormControl>{" "}
             <br />
+            <FormControl isRequired>
+              <FormLabel> Mobile Number</FormLabel>
+              <Input
+                {...register("mobile", { required: true })}
+                name="mobile"
+                type="tel"
+                placeholder="Contact number"
+              />
+            </FormControl>{" "}
             <br />
             <FormControl isRequired>
               <FormLabel>Standards of your target audience</FormLabel>
