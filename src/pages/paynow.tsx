@@ -1,18 +1,18 @@
-
-import { Box, Heading, Text,Stack ,Button} from "@chakra-ui/react";
+import { Box, Heading, Text, Stack, Button } from "@chakra-ui/react";
 import { CheckCircleIcon } from "@chakra-ui/icons";
 import { useRouter } from "next/router";
 
 export default function Success() {
-    const router = useRouter();
+  const router = useRouter();
   return (
     <Box textAlign="center" py={10} px={6}>
       <CheckCircleIcon boxSize={"50px"} color={"green.500"} />
       <Heading as="h2" size="xl" mt={6} mb={2}>
-       Congratulations You have successfully submitted your form 
+        Congratulations You have successfully submitted your form
       </Heading>
       <Text color={"gray.500"}>
-       Please Connect with our Customer Support for Completing the Payment & show ads to the most relevant audience.
+        Please Connect with our Customer Support for Completing the Payment &
+        show ads to the most relevant audience.
       </Text>
       <Stack spacing={8} mx={"auto"} maxW={"lg"} py={12} px={6}>
         <Button
@@ -25,8 +25,8 @@ export default function Success() {
           }}
         >
           Connect with Customer Support
-        </Button></Stack>
+        </Button>
+      </Stack>
     </Box>
   );
 }
-   

@@ -9,8 +9,7 @@ import {
   Box,
   useTab,
   useMultiStyleConfig,
-  Center,
-  Spinner,
+ 
 } from "@chakra-ui/react";
 import { useAuthContext } from "@/context";
 import Profilee from "../components/profile";
@@ -61,14 +60,14 @@ function Profile() {
           <TabPanel>
             {" "}
             <Profilee
-              name={useUse?.schoolname || "Shiksha Finder"}
+              name={useUse?.schoolname || useUse?.coachingname || useUse?.skillclassname || "Your Name"}
               email={useUse?.email || "youmail@gmail.com"}
-              state={useUse?.State || "Gujarat"}
-              Board={useUse?.Board || "GSEB"}
+              state={useUse?.State || useUse.website || "Gujarat"}
+              Board={useUse?.Board || useUse?.skilltype || "GSEB"}
               Medium={useUse?.medium || "English"}
-              Standard={useUse?.Standard || "10th"}
-              city={useUse?.District || "Ahmedabad"}
-              studentnumber={useUse?.studentnumber || 0}
+              Standard={useUse?.Standard ||  useUse.subdistrict || "10th"}
+              city={useUse?.District || useUse?.city || "Ahmedabad"}
+              studentnumber={useUse?.studentnumber || useUse.mobile || useUse.mobile1 ||0}
             />
           </TabPanel>
           <TabPanel>
