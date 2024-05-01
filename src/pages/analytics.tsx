@@ -1,4 +1,4 @@
-import React from "react";
+import React, { use } from "react";
 import {
   HStack,
   VStack,
@@ -11,47 +11,85 @@ import {
   Container,
   Stack,
 } from "@chakra-ui/react";
-// Here we have used framer-motion package for animations
+import { useAuthContext } from "@/context";
 import { motion } from "framer-motion";
-// Here we have used react-icons package for the icons
+import supabase from "../../supabase";
 import { HiOutlineMail } from "react-icons/hi";
 import { BsArrowUpShort, BsArrowDownShort } from "react-icons/bs";
 import { AiOutlineLike, AiOutlineEye } from "react-icons/ai";
 import Studentlist from "./studentlist";
+import { useEffect } from "react";
 
 interface StatData {
   id: number;
   label: string;
   score: number;
   icon: any;
-  percentage: string;
 }
 
-const statData: StatData[] = [
-  {
-    id: 1,
-    label: "Total post reactions",
-    score: 1730,
-    icon: AiOutlineLike,
-    percentage: "10%",
-  },
-  {
-    id: 2,
-    label: "Total post views",
-    score: 3245,
-    icon: AiOutlineEye,
-    percentage: "30%",
-  },
-  {
-    id: 3,
-    label: "Total messages",
-    score: 100,
-    icon: HiOutlineMail,
-    percentage: "30%",
-  },
-];
-
 const StatsWithIcons = () => {
+  const { user } = useAuthContext();
+  console.log(user);
+
+  const [userData, setUserData] = React.useState<any>([]);
+
+  async function fetchdata() {
+    if (user && user.user_metadata.lastName === "School") {
+      const { data, error } = await supabase
+        .from("viewschool")
+        .select("view,demolecturesView")
+        .eq("user_id", user.id)
+        .single();
+      setUserData(data);
+    } else if (user && user.user_metadata.lastName === "coaching") {
+      const { data, error } = await supabase
+        .from("viewcoaching")
+        .select("view,demolecturesView")
+        .eq("user_id", user.id)
+        .single();
+      setUserData(data);
+    } else if (user && user.user_metadata.lastName === "onlineform") {
+      const { data, error } = await supabase
+        .from("viewonline")
+        .select("view,demolecturesView")
+        .eq("user_id", user.id)
+        .single();
+      setUserData(data);
+    } else if (user && user.user_metadata.lastName === "skillclass") {
+      const { data, error } = await supabase
+        .from("viewskill")
+        .select("view,demolecturesView")
+        .eq("user_id", user.id)
+        .single();
+      setUserData(data);
+      console.log(data);
+    }
+  }
+  useEffect(() => {
+    fetchdata();
+  }, []);
+
+  const statData: StatData[] = [
+    {
+      id: 1,
+      label: "First page views (introduction of institute)",
+      score: userData && userData.view,
+      icon: AiOutlineLike,
+    },
+    {
+      id: 2,
+      label: "views in demo lectures (Number of page visits in demo lectures)",
+      score: userData && userData.demolecturesView,
+      icon: AiOutlineEye,
+    },
+    {
+      id: 3,
+      label: "Banner views (Number of page visits in banner)",
+      score: 1,
+      icon: HiOutlineMail,
+    },
+  ];
+
   return (
     <>
       <Container maxW="7xl" p={{ base: 5, md: 10 }}>
@@ -66,7 +104,7 @@ const StatsWithIcons = () => {
           ))}
         </SimpleGrid>
       </Container>
-      <Studentlist />
+      {/* <Studentlist /> */}
     </>
   );
 };
@@ -92,7 +130,7 @@ const Card = ({ data }: { data: StatData }) => {
           <HStack
             py={6}
             px={5}
-            spacing={4}
+            spacing={8}
             bg={useColorModeValue("gray.100", "gray.800")}
             w="100%"
           >
@@ -112,32 +150,18 @@ const Card = ({ data }: { data: StatData }) => {
               <Icon as={data.icon} w={6} h={6} color="white" />
             </Flex>
             <VStack spacing={0} align="start" maxW="lg" h="100%">
-              <Text as="h3" fontSize="md" noOfLines={2} color="gray.400">
+              <Text as="h3" fontSize="md" noOfLines={2}>
                 {data.label}
               </Text>
               <HStack spacing={2}>
                 <Text as="h2" fontSize="lg" fontWeight="extrabold">
                   {data.score}
                 </Text>
-                <Flex>
-                  {Number(data.score) > 100 ? (
-                    <Icon as={BsArrowUpShort} w={6} h={6} color="green.400" />
-                  ) : (
-                    <Icon as={BsArrowDownShort} w={6} h={6} color="red.400" />
-                  )}
-                  <Text as="h2" fontSize="md">
-                    {data.percentage}
-                  </Text>
-                </Flex>
               </HStack>
             </VStack>
           </HStack>
-          <Flex py={3} px={5} _groupHover={{ d: "flex" }}>
-            <Link fontSize="md">View All</Link>
-          </Flex>
         </Stack>
       </motion.div>
-     
     </>
   );
 };
