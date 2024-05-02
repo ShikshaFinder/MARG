@@ -54,6 +54,10 @@ function CoachingForm() {
       duration: 3000,
       isClosable: true,
     });
+        setTimeout(() => {
+          Router.reload();
+        }, 2000);
+
     Router.push("/aboutcontest");
   };
   if (!user.email) {

@@ -1,7 +1,7 @@
 // "use client";
 
 import React, { useState, useEffect } from "react";
-import { useForm, Controller } from "react-hook-form";
+import { useForm, Controller, set } from "react-hook-form";
 import { Img, useToast } from "@chakra-ui/react";
 import supabase from "../../../supabase";
 import { useAuthContext } from "@/context";
@@ -57,6 +57,7 @@ function formm() {
       duration: 3000,
       isClosable: true,
     });
+    setTimeout(() => {Router.reload()}, 2000);
     Router.push("/aboutcontest");
   };
   if (!user.email) {

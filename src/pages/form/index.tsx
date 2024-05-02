@@ -1,7 +1,6 @@
 import React from "react";
 import { Button, Stack } from "@chakra-ui/react";
 import supabase from "../../../supabase";
-import { useAuthContext } from "@/context";
 import { useRouter } from "next/router";
 import { useUser } from "../../../store";
 

@@ -1,8 +1,5 @@
 "use client";
-import { useRouter } from "next/router"; // Import the useRouter hook
 import supabase from "../../supabase";
-import { FaGoogle } from "react-icons/fa";
-
 import {
   Flex,
   Box,
@@ -21,6 +18,7 @@ import {
 import { useState } from "react";
 import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
 import { useToast } from "@chakra-ui/react";
+import { useRouter } from "next/router";
 
 export default function Login() {
   const router = useRouter(); // Initialize the router
@@ -30,9 +28,8 @@ export default function Login() {
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
 
- 
-
   const Signin = async () => {
+    const Router = useRouter();
     if (!email || !password) {
       toast({
         title: "Error.",
@@ -48,6 +45,10 @@ export default function Login() {
         email,
         password,
       });
+
+      setTimeout(() => {
+        Router.reload();
+      }, 2000);
       router.push("/form");
     } catch (error) {
       console.log(error);

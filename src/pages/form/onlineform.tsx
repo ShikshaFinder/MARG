@@ -55,6 +55,10 @@ function formm() {
       duration: 3000,
       isClosable: true,
     });
+    setTimeout(() => {
+      Router.reload();
+    }, 2000);
+
     Router.push("/aboutcontest");
   };
   if (!user.email) {
@@ -119,7 +123,7 @@ function formm() {
     }
     const { error } = await supabase
       .from("onlineform")
-      .insert([{ ...data, user_id: user.id, img: img_url, email: user.email}]);
+      .insert([{ ...data, user_id: user.id, img: img_url, email: user.email }]);
 
     if (error) {
       console.error("Error submitting Form:", error);
