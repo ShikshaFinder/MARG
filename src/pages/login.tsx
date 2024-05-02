@@ -126,6 +126,13 @@ export default function Login() {
                 </Link>
               </Text>
             </Stack>
+            <Stack align={"center"}>
+              {" "}
+              <Link href="/magicLink">
+                {" "}
+                <Text color={"blue.500"}>Forgot password?</Text>
+              </Link>
+            </Stack>
           </Stack>
         </Box>
       </Stack>
