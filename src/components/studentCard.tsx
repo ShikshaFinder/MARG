@@ -1,5 +1,12 @@
 import React from "react";
-import { Card, Text, CardBody, CardHeader, Stack } from "@chakra-ui/react";
+import {
+  Card,
+  Text,
+  CardBody,
+  CardHeader,
+  Stack,
+  Avatar,
+} from "@chakra-ui/react";
 
 function studentCard({
   name,
@@ -26,6 +33,7 @@ function studentCard({
         <CardHeader>
           <Stack direction={"row"}>
             {" "}
+            <Avatar size="sm" name={name} borderRadius={"3xl"} />{" "}
             <Text as="b">Name</Text> :<Text>{name} </Text>
           </Stack>
         </CardHeader>
