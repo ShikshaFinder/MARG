@@ -75,7 +75,7 @@ const StatsWithIcons = () => {
   }}
   useEffect(() => {
     fetchdata();
-  }, []);
+  }, [user]);
 
   const statData: StatData[] = [
     {
