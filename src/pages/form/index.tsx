@@ -8,7 +8,7 @@ import { useUser } from "../../../store";
 function form() {
   const router = useRouter();
   const useUse = useUser();
-    async function addInstitutionn(institute: string) {
+     function addInstitutionn(institute: string) {
       router.push("updateprofile/" + institute);
     }
    

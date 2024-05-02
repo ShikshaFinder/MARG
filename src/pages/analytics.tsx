@@ -33,61 +33,46 @@ const StatsWithIcons = () => {
   const [userData, setUserData] = React.useState<any>([]);
 
   async function fetchdata() {
-    if (
-      user &&
-      user.user_metadata &&
-      user.user_metadata.lastName === "School"
-    ) {
-      const { data, error } = await supabase
-        .from("viewschool")
-        .select("view,demolecturesView")
-        .eq("user_id", user.id)
-        .single();
-      setUserData(data);
-    } else if (
-      user &&
-      user.user_metadata &&
-      user.user_metadata.lastName === "coaching"
-    ) {
-      const { data, error } = await supabase
-        .from("viewcoaching")
-        .select("view,demolecturesView")
-        .eq("user_id", user.id)
-        .single();
-      setUserData(data);
-    } else if (
-      user &&
-      user.user_metadata &&
-      user.user_metadata.lastName === "onlineform"
-    ) {
-      const { data, error } = await supabase
-        .from("viewonline")
-        .select("view,demolecturesView")
-        .eq("user_id", user.id)
-        .single();
-      setUserData(data);
-    } else if (
-      user &&
-      user.user_metadata &&
-      user.user_metadata.lastName === "skillclass"
-    ) {
-      const { data, error } = await supabase
-        .from("viewskill")
-        .select("view,demolecturesView")
-        .eq("user_id", user.id)
-        .single();
-      setUserData(data);
-      console.log(data);
-    } else {
-      toast({
-        title: "Error",
-        description: "please create your profile first",
-        status: "error",
-        duration: 3000,
-        isClosable: true,
-      });
-    }
-  }
+  if(user.user_metadata.lastName !== null){ 
+      if (user.user_metadata.lastName === "School") {
+        const { data, error } = await supabase
+          .from("viewschool")
+          .select("view,demolecturesView")
+          .eq("user_id", user.id)
+          .single();
+        setUserData(data);
+      } else if (user.user_metadata.lastName === "coaching") {
+        const { data, error } = await supabase
+          .from("viewcoaching")
+          .select("view,demolecturesView")
+          .eq("user_id", user.id)
+          .single();
+        setUserData(data);
+      } else if (user.user_metadata.lastName === "onlineform") {
+        const { data, error } = await supabase
+          .from("viewonline")
+          .select("view,demolecturesView")
+          .eq("user_id", user.id)
+          .single();
+        setUserData(data);
+      } else if (user.user_metadata.lastName === "skillclass") {
+        const { data, error } = await supabase
+          .from("viewskill")
+          .select("view,demolecturesView")
+          .eq("user_id", user.id)
+          .single();
+        setUserData(data);
+        console.log(data);
+      } else {
+        toast({
+          title: "Error",
+          description: "please create your profile first",
+          status: "error",
+          duration: 3000,
+          isClosable: true,
+        });
+      }
+  }}
   useEffect(() => {
     fetchdata();
   }, [userData]);
