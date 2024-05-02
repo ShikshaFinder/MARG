@@ -47,7 +47,7 @@ function studentlist() {
       <Text fontSize="5xl">Admission forms</Text>
       <br />
       <Stack mx={"auto"}>
-        
+
         {userData &&
           userData.map(
             (admissionform: {

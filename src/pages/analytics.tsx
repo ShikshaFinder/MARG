@@ -5,7 +5,6 @@ import {
   Text,
   useColorModeValue,
   Flex,
-  Link,
   Icon,
   SimpleGrid,
   Container,
@@ -15,10 +14,10 @@ import { useAuthContext } from "@/context";
 import { motion } from "framer-motion";
 import supabase from "../../supabase";
 import { HiOutlineMail } from "react-icons/hi";
-import { BsArrowUpShort, BsArrowDownShort } from "react-icons/bs";
 import { AiOutlineLike, AiOutlineEye } from "react-icons/ai";
 import Studentlist from "./studentlist";
 import { useEffect } from "react";
+import { useToast } from "@chakra-ui/react";
 
 interface StatData {
   id: number;
@@ -30,7 +29,7 @@ interface StatData {
 const StatsWithIcons = () => {
   const { user } = useAuthContext();
   console.log(user);
-
+  const toast = useToast();
   const [userData, setUserData] = React.useState<any>([]);
 
   async function fetchdata() {
@@ -79,11 +78,19 @@ const StatsWithIcons = () => {
         .single();
       setUserData(data);
       console.log(data);
+    } else {
+      toast({
+        title: "Error",
+        description: "please create your profile first",
+        status: "error",
+        duration: 3000,
+        isClosable: true,
+      });
     }
   }
   useEffect(() => {
     fetchdata();
-  }, []);
+  }, [userData]);
 
   const statData: StatData[] = [
     {

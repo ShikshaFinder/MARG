@@ -11,7 +11,7 @@ function form() {
     async function addInstitutionn(institute: string) {
       router.push("updateprofile/" + institute);
     }
-
+   
 
   async function addInstitution(institute: string) {
     const typeOfInstitute = institute;
