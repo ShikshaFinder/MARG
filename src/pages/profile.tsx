@@ -14,12 +14,12 @@ import {
 import { useAuthContext } from "@/context";
 import Profilee from "../components/profile";
 import Leaderbord from "../components/Leaderbord";
-import { useRouter } from "next/router";
+// import { useRouter } from "next/router";
 import  {useUser}  from "../../store";
 import Nouser from "@/components/Nouser";
 
 function Profile() {
-  const router = useRouter();
+  // const router = useRouter();
   // const user = useAuthContext();
   const { user } = useAuthContext();
   if (!user.email) {
@@ -62,12 +62,12 @@ function Profile() {
             <Profilee
               name={useUse?.schoolname || useUse?.coachingname || useUse?.skillclassname || "Your Name"}
               email={useUse?.email || "youmail@gmail.com"}
-              state={useUse?.State || useUse.website || "Gujarat"}
+              state={useUse?.State || useUse?.website || "your state"}
               Board={useUse?.Board || useUse?.skilltype || "GSEB"}
               Medium={useUse?.medium || "English"}
-              Standard={useUse?.Standard ||  useUse.subdistrict || "10th"}
+              Standard={useUse?.Standard ||  useUse?.subdistrict || "10th"}
               city={useUse?.District || useUse?.city || "Ahmedabad"}
-              studentnumber={useUse?.studentnumber || useUse.mobile || useUse.mobile1 ||0}
+              studentnumber={useUse?.studentnumber || useUse?.mobile || useUse?.mobile1 ||0}
             />
           </TabPanel>
           <TabPanel>
