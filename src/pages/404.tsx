@@ -16,10 +16,7 @@ const Index = () => {
   return (
     <>
       <Head>
-        <meta
-          httpEquiv="refresh"
-          content="10;https://platform.shikshafinder.com/"
-        />
+        <meta httpEquiv="refresh" content="10;https://www.vigyasa.live/" />
       </Head>
       <Container maxW="5xl" p={{ base: 5, md: 10 }}>
         <Box
@@ -69,7 +66,7 @@ const Index = () => {
               maxW="600px"
               lineHeight={1.2}
             >
-              Get started with shiksha finder from home page 🫡
+              Get started with VIgyasa from home page 🫡
             </chakra.h1>
 
             <Stack direction={{ base: "column", md: "row" }} spacing={3}>

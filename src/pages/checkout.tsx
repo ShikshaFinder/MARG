@@ -6,7 +6,7 @@ function checkout() {
   return (
     <>
       <Head>
-        <title>Shiksha Finder Payment Page</title>
+        <title>Vigyasa</title>
         <meta
           name="viewport"
           content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0"

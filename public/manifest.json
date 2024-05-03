@@ -4,9 +4,9 @@
     "display": "fullscreen",
     "scope": "/",
     "start_url": "/",
-    "name": "Shiksha Finder",
-    "short_name": "shiksha finder",
-    "description": "Shiksha Finder is a platform that helps students and parents find the perfect school or coaching class. They focus on the quality of education provided by each institution, and their platform offers a comprehensive database of schools and classes in various cities.  Here are some of the things you can find on Shiksha Finder:  Information about schools and coaching classes, including curriculum, teacher qualifications, and facilities Reviews from other parents and students Demo lectures from some schools and coaching classes Tools to help you compare schools and classes side-by-side Shiksha Finder can be a valuable tool for students and parents who are looking for the best possible education.",
+    "name": "Vigyasa",
+    "short_name": "vigyasa",
+    "description": "Vigyasa Aims to spark the hidden curiosity in the students by providing them an early access to the world of science and technology. We believe that the best way to learn is by doing, and that is why we have created vigyasa A JEE/NEET foundation program for the students of class 6th to 10th",
     "icons": [
         {
             "src": "/icon-192x192.png",

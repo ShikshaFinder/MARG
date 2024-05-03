@@ -1,4 +1,3 @@
-"use client";
 import { useRouter } from "next/router";
 import supabase from "../../supabase";
 import {
@@ -48,7 +47,7 @@ export default function SignupCard() {
         password,
 
         options: {
-          emailRedirectTo: "https://platform.shikshafinder.com/form",
+          emailRedirectTo: "https://www.vigyasa.live/onbording",
           data: {
             firstName,
             lastName,

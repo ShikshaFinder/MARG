@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 // import type { InferGetServerSidePropsType, GetServerSideProps } from "next";
 
 import {
@@ -55,8 +55,8 @@ function Profile() {
           <TabPanel>
             {" "}
             <Profilee
-              name={useUse?.name || "Shiksha Finder"}
-              email={useUse?.email || "ceo@shikshafinder.com"}
+              name={useUse?.name || "Vigyasa"}
+              email={useUse?.email || "founder@vigyasa.live"}
               board={useUse?.Board || "CBSE"}
               medium={useUse?.medium || "English"}
               standard={useUse?.Standard || "10th"}
@@ -81,13 +81,3 @@ function Profile() {
 }
 
 export default Profile;
-
-export async function getServerSideProps(context: any) {
-  let content = "shiksha finder"; // Fetch the data here
-
-  return {
-    props: {
-      content, // will be passed to the page component as props
-    },
-  };
-}

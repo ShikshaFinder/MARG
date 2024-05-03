@@ -4,11 +4,11 @@ import React from 'react'
 function termsofservice() {
   return (
     <>
-      <h1>Shiksha finder terms of service</h1>
+      <h1>Vigyasa terms of service</h1>
       <p>
         Terms of Service These Terms of Service ("Terms") govern your access to
-        and use of the Shiksha Finder website (the "Service") operated by
-        Shiksha Finder ("us", "we", or "our").</p><p> By accessing or using the Service
+        and use of the Vigyasa website (the "Service") operated by
+        Vigyasa ("us", "we", or "our").</p><p> By accessing or using the Service
         you agree to be bound by these Terms. If you disagree with any part of
         the terms then you may not access the Service. Accounts When you create
         an account with us, you must provide accurate, complete, and up-to-date

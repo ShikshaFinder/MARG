@@ -31,7 +31,7 @@ function terms() {
       school details, and video ads. Any legal disputes or problems arising from
       the content will be the sole responsibility of the clients. The owners of
       the websites reserve the right to change the terms and conditions at any
-      time. For returns, customers must contact ceo@shikshafinder.com within one
+      time. For returns, customers must contact founder@vigyasa.live within one
       month of placing the order. Our vision is to create a business that
       supports all parties involved in this process. We genuinely strive to
       refund our users in case of failure to provide the promised returns.{" "}

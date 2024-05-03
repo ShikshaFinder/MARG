@@ -35,20 +35,20 @@ export default function CaptionCarousel() {
 
   const cards = [
     {
-      title: "Fullfill your thurst of knowledge with Vigyasa📚",
-      text: "With Vigyasa you can learn science and maths subject in a fun and interactive way!",
+      title: "Fulfill your thirst for knowledge with Vigyasa 📚",
+      text: "With Vigyasa, you can learn science and math subjects in a fun and interactive way!",
       image:
         "https://images.unsplash.com/photo-1443916568596-df5a58c445e9?q=80&w=1932&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     },
     {
-      title: "We aim to teach with projectors so that you can visualise the concepts easily 📈",
-      text: "So fill up the form and get induldge in the journey of learning!",
+      title: "We aim to teach with projectors so that you can visualize the concepts easily 📈",
+      text: "So fill out the form and indulge in the journey of learning!",
       image:
         "https://images.unsplash.com/photo-1519751138087-5bf79df62d5b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     },
     {
-      title: "Our mission is to make learning more fun👨‍🏫",
-      text: "So Let's get Started ",
+      title: "Our mission is to make learning more fun 👨‍🏫",
+      text: "So let's get started!",
       image:
         "https://images.unsplash.com/photo-1507237998874-b4d52d1dd655?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1yZWxhdGVkfDR8fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=900&q=60",
     },
@@ -111,7 +111,7 @@ export default function CaptionCarousel() {
             backgroundSize="cover"
             backgroundImage={`url(${card.image})`}
           >
-            {/* This is the block you need to change, to customize the caption */}
+            {/* This is the block you need to change to customize the caption */}
             <Container size="container.lg" height="600px" position="relative">
               <Stack
                 spacing={6}
@@ -132,7 +132,7 @@ export default function CaptionCarousel() {
                 <a href={"/form"}>
                   {" "}
                   <Button colorScheme="blackAlpha" variant="solid">
-                  Let's Begin 🚀
+                    Let's Begin 🚀
                   </Button>
                 </a>{" "}
               </Stack>

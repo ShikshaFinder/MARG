@@ -50,7 +50,7 @@ export default function App({
 
         <Head>
           <title>Vigyasa</title>
-          <meta property="og:title" content="Shiksha Finder" key="title" />
+          <meta property="og:title" content="Vigyasa" key="title" />
         </Head>
         <ChakraProvider theme={theme}>
           <AuthContextProvider>

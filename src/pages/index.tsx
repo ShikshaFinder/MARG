@@ -28,7 +28,7 @@ export default function Home() {
         title="vigyasa"
         description="Let's start learning early with vigyasa"
         openGraph={{
-          url: "https://platform.shikshafinder.com/",
+          url: "https://www.vigyasa.live/",
           title: "Let's promote Education quality",
           description: "Home page of vigyasa",
           images: [
@@ -37,7 +37,7 @@ export default function Home() {
               alt: "vigyasa == happy students",
             },
           ],
-          site_name: "shikshafinder.com",
+          site_name: "vigyasa.live",
           type: "website",
         }}
       />

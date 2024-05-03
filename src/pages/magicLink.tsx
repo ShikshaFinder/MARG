@@ -27,7 +27,7 @@ const MagicLinkForm = () => {
       options: {
         // set this to false if you do not want the user to be automatically signed up
         shouldCreateUser: false,
-        emailRedirectTo: "https://platform.shikshafinder.com/",
+        emailRedirectTo: "https://www.vigyasa.live/",
       },
     });
     if (error) {

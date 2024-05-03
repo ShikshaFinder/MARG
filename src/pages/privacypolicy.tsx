@@ -6,7 +6,7 @@ function PrivacyPolicy() {
         <h1>Privacy Policy</h1>
         <b>Effective Date: 03/03/24</b>
         <p>
-          At Company, accessible from shikshafinder.com, one of our main
+          At Company, accessible from vigyasa.com, one of our main
           priorities is the privacy of our visitors. This Privacy Policy
           document contains types of information that are collected and recorded
           by Company and how we use it.
@@ -40,7 +40,7 @@ function PrivacyPolicy() {
         </p>
         <p>
           We collect data from institutions through the
-          platform.shikshafinder.com, which they upload, and we showcase this
+          platform.vigyasa.com, which they upload, and we showcase this
           data to students to promote their quality of education.
         </p>
         <p>

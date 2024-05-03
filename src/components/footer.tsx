@@ -63,7 +63,7 @@ export default function SmallCentered() {
       >
         <Image
           src="/sfv1.png"
-          alt="Shiksha Finder Logo"
+          alt="Vigyasa Logo"
           className="Container"
           width={200}
           height={300}
@@ -105,7 +105,7 @@ export default function SmallCentered() {
               {" "}
               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Recognised by{" "}
             </Text>
-            <img src="/images.png" alt="startup india image shiksha finder" />
+            <img src="/images.png" alt="startup india image GWSF" />
           </a>
           <Stack direction={"row"} spacing={6}>
             <SocialButton
