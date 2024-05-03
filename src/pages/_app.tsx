@@ -18,7 +18,7 @@ require("dotenv").config();
 
 
 const inter = Inter({ subsets: ["latin"] });
-const supabaseUrl = "https://qgkjakomwapzuhvnrvgr.supabase.co";
+const supabaseUrl = "https://muxhijcpowgymwmneiqu.supabase.co";
 const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_KEY ?? "";
 
 export default function App({
@@ -49,7 +49,7 @@ export default function App({
         <Analytics />
 
         <Head>
-          <title>Shiksha Finder</title>
+          <title>Vigyasa</title>
           <meta property="og:title" content="Shiksha Finder" key="title" />
         </Head>
         <ChakraProvider theme={theme}>

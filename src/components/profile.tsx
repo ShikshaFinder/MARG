@@ -1,4 +1,3 @@
-// "use client";
 import { Container } from "@chakra-ui/react";
 import React from "react";
 import {
@@ -8,10 +7,12 @@ import {
   Card,
   CardBody,
   Badge,
+  Stack,
 } from "@chakra-ui/react";
+
 import {
   FaAlignLeft,
-  FaPersonBooth,
+  FaCoins,
   FaEdit,
   FaHeart,
   FaLanguage,
@@ -21,24 +22,25 @@ import {
   FaSignOutAlt,
 } from "react-icons/fa";
 import Link from "next/link";
+
 function profile({
   name,
+  email,
+  board,
+  medium,
+  standard,
   city,
   state,
-  email,
-  Board,
-  Medium,
-  Standard,
-studentnumber
+  coins,
 }: {
   name: string;
+  email: string;
+  board: string;
+  medium: string;
+  standard: string;
   city: string;
   state: string;
-  email: string;
-  Board: string;
-  Medium: string;
-  Standard: string;
-  studentnumber: number;
+  coins: number;
 }) {
   return (
     <Container justifyContent={"center"}>
@@ -48,8 +50,11 @@ studentnumber
             <WrapItem>
               <Link href={"/updateprofile"}>
                 {" "}
-                <Avatar size="2xl" name={name} borderRadius={"3xl"} />{" "}
-                <FaEdit size={24} style={{ alignSelf: "flex-end" }} />
+                <Stack direction="row" spacing={4}>
+                  {" "}
+                  <Avatar size="2xl" name={name} borderRadius={"3xl"} />{" "}
+                  <FaEdit size={24} style={{ alignSelf: "flex-end" }} />
+                </Stack>
               </Link>
             </WrapItem>
             <WrapItem>
@@ -57,48 +62,65 @@ studentnumber
             </WrapItem>
             <WrapItem>
               <Badge colorScheme="green" borderRadius={"2xl"}>
-                Great School
+                Good Learner
               </Badge>
             </WrapItem>
             <WrapItem style={{ marginTop: "10px" }}>
               <FaMapMarkerAlt />
               <b style={{ textAlign: "center" }}>
-                &nbsp; {city}, {state}
+                &nbsp; {city},{state}{" "}
               </b>
             </WrapItem>
-            <WrapItem style={{ marginTop: "10px" }}>
+            <WrapItem
+              style={{
+                marginTop: "10px",
+                overflow: "hidden",
+                textOverflow: "ellipsis",
+                whiteSpace: "nowrap",
+              }}
+            >
               <FaMailBulk />
-              <b style={{ textAlign: "center" }}>&nbsp;{email}</b>
+              <b style={{ textAlign: "center" }}>&nbsp; {email}</b>
             </WrapItem>
             <WrapItem style={{ marginTop: "10px" }}>
-              <FaPersonBooth />&nbsp;
-              <b style={{ textAlign: "center" }}> {studentnumber} </b>
+              <FaCoins />
+              <b style={{ textAlign: "center" }}> &nbsp;{coins} </b>
             </WrapItem>
             <WrapItem style={{ marginTop: "10px" }}>
-              <FaHeart />
-              <b
-                style={{
-                  textAlign: "center",
-                  color: "#90CAF9",
-                  textDecoration: "underline",
-                }}
-              >
-                <Link href={"/studentlist"}> &nbsp; Students List</Link>
-              </b>
+              <Stack direction="row" spacing={4}>
+                {" "}
+                <FaHeart />
+                <b
+                  style={{
+                    textAlign: "center",
+                    color: "#90CAF9",
+                    textDecoration: "underline",
+                  }}
+                >
+                  <Link href={"/liked"}> &nbsp; Your Liked Institute</Link>
+                </b>
+              </Stack>
             </WrapItem>
             <WrapItem style={{ marginTop: "10px" }}>
               <FaAlignLeft />
 
-              <b style={{ textAlign: "center" }}>&nbsp; {Board}</b>
+              <b style={{ textAlign: "center" }}>&nbsp; {board}</b>
             </WrapItem>
-            <WrapItem style={{ marginTop: "10px" }}>
+            <WrapItem
+              style={{
+                marginTop: "10px",
+                overflow: "hidden",
+                textOverflow: "ellipsis",
+                whiteSpace: "nowrap",
+              }}
+            >
               <FaLanguage />
 
-              <b style={{ textAlign: "center" }}>&nbsp; {Medium}</b>
+              <b style={{ textAlign: "center" }}>&nbsp; {medium}</b>
             </WrapItem>
             <WrapItem style={{ marginTop: "10px" }}>
               <FaSchool />
-              <b style={{ textAlign: "center" }}>&nbsp; {Standard}</b>{" "}
+              <b style={{ textAlign: "center" }}>&nbsp; {standard}</b>{" "}
             </WrapItem>
             <WrapItem style={{ marginTop: "10px" }}>
               <FaSignOutAlt />
@@ -113,6 +135,7 @@ studentnumber
             </WrapItem>
           </Wrap>
         </CardBody>
+        {/* Add bg="gray.200" to set the background color */}
       </Card>
     </Container>
   );

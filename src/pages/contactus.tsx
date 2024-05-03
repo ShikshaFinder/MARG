@@ -22,6 +22,7 @@ import { useToast } from "@chakra-ui/react";
 import { GoLocation } from "react-icons/go";
 import { BsPhone } from "react-icons/bs";
 import { HiOutlineMail } from "react-icons/hi";
+import { useRouter } from "next/router";
 
 const contactOptions = [
   {
@@ -36,13 +37,14 @@ const contactOptions = [
   },
   {
     label: "EMAIL",
-    value: "ceo@shikshafinder.com",
+    value: "founder@vigyasa.live",
     icon: HiOutlineMail,
   },
 ];
 
 const Contact = () => {
   const form = useForm();
+  const router = useRouter();
   const toast = useToast();
   const { register, handleSubmit } = form;
   const onSubmit = async (data: any) => {
@@ -57,11 +59,14 @@ const Contact = () => {
   const handleSubmitt = () => {
     toast({
       title: "Thank you for your feedback 👍",
-      description: "Your feedback is important to us. We will get back to you soon.",
+      description:
+        "Your feedback is important to us. We will get back to you soon.",
       status: "success",
       duration: 3000,
       isClosable: true,
     });
+
+    router.push("/");
   };
   return (
     <Container maxW="7xl" py={10} px={{ base: 5, md: 8 }}>

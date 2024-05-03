@@ -1,43 +1,34 @@
 import React, { useEffect, useState } from "react";
+// import type { InferGetServerSidePropsType, GetServerSideProps } from "next";
+
 import {
   Tabs,
   TabList,
   TabPanels,
-  Tab,
   TabPanel,
   Button,
   Box,
   useTab,
   useMultiStyleConfig,
- 
 } from "@chakra-ui/react";
+// import Leaderbord from "../components/Leaderbord";
 import { useAuthContext } from "@/context";
-import Profilee from "../components/profile";
-import Leaderbord from "../components/Leaderbord";
-// import { useRouter } from "next/router";
-import  {useUser}  from "../../store";
+import { useUser } from "../../store";
 import Nouser from "@/components/Nouser";
+import Profilee from "../components/profile";
+import Temp from "../components/temp";
+import { useRouter } from "next/router";
 
 function Profile() {
-  // const router = useRouter();
-  // const user = useAuthContext();
   const { user } = useAuthContext();
-  if (!user.email) {
-    return <Nouser />;
-  }
-
-    const useUse = useUser((state) => state.user);
-    console.log(useUse);
-
+  const useUse = useUser((state) => state.user);
+  const router = useRouter();
   const CustomTab = React.forwardRef<HTMLElement, any>((props, ref) => {
     const tabProps = useTab({ ...props, ref });
     const isSelected = !!tabProps["aria-selected"];
+
+    // 2. Hook into the Tabs `size`, `variant`, props
     const styles = useMultiStyleConfig("Tabs", tabProps);
-
-
-   
-    // console.log(user.id);
-  
 
     return (
       <Button __css={styles.tab} {...tabProps}>
@@ -49,34 +40,54 @@ function Profile() {
     );
   });
 
+  if (!user.email) {
+    return <Nouser />;
+  }
   return (
     <>
+      {" "}
       <Tabs>
         <TabList>
           <CustomTab>Profile</CustomTab>
-          <CustomTab>Leaderbord</CustomTab>
+          <CustomTab>Courses</CustomTab>
         </TabList>
         <TabPanels>
           <TabPanel>
             {" "}
             <Profilee
-              name={useUse?.schoolname || useUse?.coachingname || useUse?.skillclassname || "Your Name"}
-              email={useUse?.email || "youmail@gmail.com"}
-              state={useUse?.State || useUse?.website || "your state"}
-              Board={useUse?.Board || useUse?.skilltype || "GSEB"}
-              Medium={useUse?.medium || "English"}
-              Standard={useUse?.Standard ||  useUse?.subdistrict || "10th"}
-              city={useUse?.District || useUse?.city || "Ahmedabad"}
-              studentnumber={useUse?.studentnumber || useUse?.mobile || useUse?.mobile1 ||0}
+              name={useUse?.name || "Shiksha Finder"}
+              email={useUse?.email || "ceo@shikshafinder.com"}
+              board={useUse?.Board || "CBSE"}
+              medium={useUse?.medium || "English"}
+              standard={useUse?.Standard || "10th"}
+              city={useUse?.city || "Delhi"}
+              state={useUse?.State || "Delhi"}
+              coins={useUse?.Coins || 30}
             />
           </TabPanel>
           <TabPanel>
-            <Leaderbord />
+            <Temp />
           </TabPanel>
         </TabPanels>
       </Tabs>
+      <a
+        href="schoolleaderbord"
+        style={{ textDecoration: "underline", color: "blue" }}
+      >
+        school leaderbord
+      </a>
     </>
   );
 }
 
 export default Profile;
+
+export async function getServerSideProps(context: any) {
+  let content = "shiksha finder"; // Fetch the data here
+
+  return {
+    props: {
+      content, // will be passed to the page component as props
+    },
+  };
+}

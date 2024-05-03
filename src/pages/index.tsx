@@ -25,16 +25,16 @@ export default function Home() {
   return (
     <>
       <NextSeo
-        title="Shiksha Finder"
-        description="Show case the quality of education"
+        title="vigyasa"
+        description="Let's start learning early with vigyasa"
         openGraph={{
           url: "https://platform.shikshafinder.com/",
           title: "Let's promote Education quality",
-          description: "Home page of shiksha finder",
+          description: "Home page of vigyasa",
           images: [
             {
               url: "",
-              alt: "Shiksha Finder == happy students",
+              alt: "vigyasa == happy students",
             },
           ],
           site_name: "shikshafinder.com",
@@ -43,8 +43,8 @@ export default function Home() {
       />
       <Head>
         <meta
-          name="ShikshaFinder"
-          content="Shiksha Finder,schools,how to Market my educational platform,what is the best way of marketing your educational platform?,schools near me,advertiisment schools"
+          name="Vigyasa"
+          content="vigyasa,Vigyan + Jigyasa,Let's learn by questioning,Curiosity sparks knowledge ignites,Jee Neet Foundation classes,Carrier counselling with jigyasa"
         />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </Head>
@@ -75,19 +75,18 @@ export default function Home() {
                   zIndex: -1,
                 }}
               >
-                Shiksha Finder
+                vigyasa
               </Text>
               <br />
               <link rel="stylesheet" href="/login" />
-              <Text as={"span"} color={"blue.400"}>
-                इमानदार स्कूल की पहचान
+              <Text as={"span"} color={"blue.400"} fontSize="4xl">
+                Curiosity Sparks ,Knowledge ignites
               </Text>
             </Heading>
             <Text>
-              Here at Shiksha Finder You can upload <b>Demo Lecture</b> of your
-              schools and Education platform so that students can come and
-              Explore &nbsp;
-              <b>The Quality Of Education </b> You Are Providing.
+              Here at vigyasa We belive to teach <b>by inspiring Curiosity</b>{" "}
+              in to the brains of students so that they can learn by questioning
+              and can ignite their knowledge.
             </Text>
             <Stack
               spacing={{ base: 4, sm: 6 }}
@@ -109,7 +108,7 @@ export default function Home() {
                   </Button>
                 </Link>
               )}
-              <Link href="https://shikshafinder.com/" target="_blank">
+              <Link href="/aboutus" target="_blank">
                 {" "}
                 <Button
                   rounded={"full"}
@@ -117,7 +116,7 @@ export default function Home() {
                   fontWeight={"normal"}
                   px={6}
                 >
-                  For Students
+                  About vigyasa
                 </Button>
               </Link>
             </Stack>
@@ -150,8 +149,8 @@ export default function Home() {
                 <iframe
                   width="600"
                   height="400"
-                  src="https://www.youtube.com/embed/SSIeK18tkjM?si=zQfs_xRBnKAwl7HL"
-                  title="Shiksha Finder video"
+                  src="https://www.youtube.com/embed/Q8PYzXn4HSs?si=LWLz21eFgabVquDp"
+                  title="vigyasa video"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                 ></iframe>
               </AspectRatio>

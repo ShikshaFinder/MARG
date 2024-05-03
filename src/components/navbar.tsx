@@ -60,7 +60,7 @@ export default function Navbar() {
             fontFamily={"heading"}
             color={useColorModeValue("gray.800", "white")}
           >
-            <Link href={"/"}> Shiksha Finder</Link>
+            <Link href={"/"}> Vigyasa</Link>
           </Text>
 
           <Flex display={{ base: "none", md: "flex" }} ml={10}>
@@ -290,42 +290,22 @@ interface NavItem {
 
 const NAV_ITEMS: Array<NavItem> = [
   {
-    label: "Create & Edit your platform",
+    label: "Feel up the forms",
     children: [
       {
-        label: "Create & Edit Your platform",
-        subLabel: "Let the world know the quality of your education",
+        label: "Feel up the forms our representative will contact you soon",
+        subLabel: "Just some of your basic details and we will contact you soon",
         href: "/form",
-      },
-      {
-        label: "Upload demo lectures",
-        subLabel: "Let the students know the quality of your Education",
-        href: "/uploadDemolecture",
-      },
+      }
     ],
   },
+ 
   {
-    label: "Participate in contest",
-    href: "/contest",
-    children: [
-      {
-        label: "Participate in the best learning platform contest",
-        subLabel: "And showcase the trust of your students on you 😎",
-        href: "/contest",
-      },
-      {
-        label: "About this Contest",
-        subLabel: "what is this contest & how i can avail the benefites of ",
-        href: "/aboutcontest",
-      },
-    ],
+    label: "About Us",
+    href: "/aboutus",
   },
   {
-    label: "Analytics",
-    href: "/analytics",
-  },
-  {
-    label: "Start Marketing",
-    href: "/marketing",
+    label: "contactus",
+    href: "/contactus",
   },
 ];

@@ -18,25 +18,21 @@ function Navnew() {
       <MenuList>
         <Link href={"/form"}>
           <MenuItem>
-            Create platform🚀
+           Fill the form
           </MenuItem>
         </Link>
-        <Link href={"/profile"}>
+        <Link href={"/aboutus"}>
           <MenuItem>
-            My account
+            about us
           </MenuItem>
         </Link>
         <MenuDivider />
-        <Link href={"/marketing"}>
+        <Link href={"/contactus"}>
           <MenuItem>
-            Market 💪🏻
+            contact us
           </MenuItem>
         </Link>
-        <Link href={"/contest"}>
-          <MenuItem>
-            Participate in Contest
-          </MenuItem>
-        </Link>
+      
       </MenuList>
     </Menu>
   );

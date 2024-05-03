@@ -62,28 +62,24 @@ export default function SmallCentered() {
         align={"center"}
       >
         <Image
-          src="/icon-512x512.png"
+          src="/sfv1.png"
           alt="Shiksha Finder Logo"
           className="Container"
           width={200}
           height={300}
         ></Image>
         <Stack direction={"row"} spacing={6}>
-          <Box as={Link} href={"/aboutcontest"}>
-            contest
-          </Box>
+         
           <Box as={Link} href={"/aboutus"}>
             AboutUs
           </Box>
-          <Box as={Link} href={"/blog"}>
-            Blog
-          </Box>
+         
           <Box as={Link} href={"/contactus"}>
             Contact Us
           </Box>
-          <a href="https://marketing.shikshafinder.com/">
+          <a href="https://shikshafinder.com/">
             {" "}
-            <Box>Marketing portal for industries</Box>
+            <Box>View Demo Lecture in shiksha finder</Box>
           </a>
         </Stack>
       </Container>
