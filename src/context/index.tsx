@@ -4,7 +4,6 @@ import { createContext, useContext, useEffect, useState } from "react";
 import supabase from "../../supabase";
 import { useUser } from "../../store";
 import { useRouter } from "next/router";
-
 type UserType = {
   app_metadata: {
     provider: string;
@@ -22,7 +21,6 @@ type UserType = {
   phone: any;
   role: string;
   lastName: string;
-  user_metadata: any;
   firstName: string;
   updated_at: string;
 };
@@ -30,8 +28,8 @@ type UserType = {
 const AuthContext = createContext({});
 
 export const AuthContextProvider = ({ children }: any) => {
-  const [user, setUser] = useState({});
   const router = useRouter();
+  const [user, setUser] = useState({});
   const setUserStore = useUser((state) => state.setUser);
   const fetcCurrentUser = async () => {
     try {
@@ -40,26 +38,16 @@ export const AuthContextProvider = ({ children }: any) => {
       } = await supabase.auth.getUser();
       if (user) {
         setUser(user);
-   
-          if (
-            (user && user.user_metadata.lastName === "School") ||
-            (user && user.user_metadata.lastName === "coaching") ||
-            (user && user.user_metadata.lastName === "onlineform") ||
-            (user && user.user_metadata.lastName === "skillclass")
-          ) {
-            const { data, error } = await supabase
-          .from(user.user_metadata.lastName)
+        const { data, error } = await supabase
+          .from("Student")
           .select("*")
           .eq("user_id", user.id)
           .single();
 
         setUserStore(data);
-
-     
-    
-
-       
-          }
+        if (data == null) {
+          router.push("/formstudent");
+        }
       }
     } catch (error) {
       console.log(error);
