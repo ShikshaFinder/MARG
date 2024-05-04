@@ -15,7 +15,6 @@ import {
 import { useRouter } from "next/router";
 
 const ProductIntro = () => {
-
   const Router = useRouter();
   return (
     <Container maxW="5xl" px={{ base: 6, md: 3 }} py={10}>
@@ -100,7 +99,7 @@ const ProductIntro = () => {
             h="100%"
             minW={{ base: "auto", md: "30rem" }}
             objectFit="cover"
-            src="https://images.unsplash.com/photo-1625948515291-69613efd103f?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&auto=format&fit=crop&w=334&q=80"
+            src="https://images.unsplash.com/photo-1621959921443-7c11ef366e2e?q=80&w=1935&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
             rounded="md"
             fallback={<Skeleton />}
           />
