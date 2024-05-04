@@ -80,16 +80,19 @@ export default function Home() {
               <br />
               <link rel="stylesheet" href="/login" />
               <Text as={"span"} color={"blue.400"} fontSize="4xl">
-                Curiosity Sparks ,Knowledge ignites
+                Curiosity Sparks Knowledge ignites
               </Text>
             </Heading>
             <Text>
               Here at vigyasa We belive to teach <b>by inspiring Curiosity</b>{" "}
               in to the brains of students so that they can learn by questioning
-              and can ignite their knowledge.
-              We are a combination of JEE NEET Foundation classes and carrier counselling for better future of students.
-
-              There are many exams like KVPY and NTSE which are very important for students to get scholarship and to get into good colleges but many of you are not aware of these exams so we are here to help you with that.
+              and can ignite their knowledge. We are a combination of{" "}
+              <b>JEE NEET Foundation classes</b> and carrier counselling for
+              better future of students. There are many exams like
+              <b> KVPY and NTSE</b>
+              which are very important for students to get scholarship and to
+              get into good colleges but many of you are not aware of these
+              exams so we are here to help you with that.
             </Text>
             <Stack
               spacing={{ base: 4, sm: 6 }}
