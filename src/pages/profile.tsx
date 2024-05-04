@@ -62,7 +62,7 @@ function Profile() {
               standard={useUse?.Standard || "10th"}
               city={useUse?.city || "Delhi"}
               state={useUse?.State || "Delhi"}
-              coins={useUse?.Coins || 30}
+              
             />
           </TabPanel>
           <TabPanel>

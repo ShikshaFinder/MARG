@@ -12,9 +12,7 @@ import {
 
 import {
   FaAlignLeft,
-  FaCoins,
   FaEdit,
-  FaHeart,
   FaLanguage,
   FaMailBulk,
   FaMapMarkerAlt,
@@ -31,7 +29,6 @@ function profile({
   standard,
   city,
   state,
-  coins,
 }: {
   name: string;
   email: string;
@@ -40,7 +37,6 @@ function profile({
   standard: string;
   city: string;
   state: string;
-  coins: number;
 }) {
   return (
     <Container justifyContent={"center"}>
@@ -82,25 +78,7 @@ function profile({
               <FaMailBulk />
               <b style={{ textAlign: "center" }}>&nbsp; {email}</b>
             </WrapItem>
-            <WrapItem style={{ marginTop: "10px" }}>
-              <FaCoins />
-              <b style={{ textAlign: "center" }}> &nbsp;{coins} </b>
-            </WrapItem>
-            <WrapItem style={{ marginTop: "10px" }}>
-              <Stack direction="row" spacing={4}>
-                {" "}
-                <FaHeart />
-                <b
-                  style={{
-                    textAlign: "center",
-                    color: "#90CAF9",
-                    textDecoration: "underline",
-                  }}
-                >
-                  <Link href={"/liked"}> &nbsp; Your Liked Institute</Link>
-                </b>
-              </Stack>
-            </WrapItem>
+
             <WrapItem style={{ marginTop: "10px" }}>
               <FaAlignLeft />
 
