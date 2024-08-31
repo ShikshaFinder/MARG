@@ -1,5 +1,6 @@
-"use client";
+import { useRouter } from "next/router"; // Import the useRouter hook
 import supabase from "../../supabase";
+import { FcGoogle } from "react-icons/fc";
 import {
   Flex,
   Box,
@@ -14,11 +15,13 @@ import {
   Text,
   useColorModeValue,
   Link,
+  Alert,
+  AlertIcon,
+  Center,
 } from "@chakra-ui/react";
 import { useState } from "react";
 import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
 import { useToast } from "@chakra-ui/react";
-import { useRouter } from "next/router";
 
 export default function Login() {
   const router = useRouter(); // Initialize the router
@@ -29,7 +32,6 @@ export default function Login() {
   const [showPassword, setShowPassword] = useState(false);
 
   const Signin = async () => {
-    const Router = useRouter();
     if (!email || !password) {
       toast({
         title: "Error.",
@@ -45,11 +47,22 @@ export default function Login() {
         email,
         password,
       });
+      if (error) {
+        toast({
+          title: "Error.",
+          description: error.message,
+          status: "error",
+          duration: 5000,
+          isClosable: true,
+        });
+        return;
+      }
 
       setTimeout(() => {
-        Router.reload();
-      }, 2000);
-      router.push("/form");
+        router.reload();
+      }, 1000);
+
+      router.push("/addsignal");
     } catch (error) {
       console.log(error);
     }
@@ -71,6 +84,7 @@ export default function Login() {
             to enjoy all of our cool features ✌️
           </Text>
         </Stack>
+
         <Box
           rounded={"lg"}
           bg={useColorModeValue("white", "gray.700")}
@@ -80,7 +94,11 @@ export default function Login() {
           <Stack spacing={4}>
             <FormControl id="email" isRequired>
               <FormLabel>Email address</FormLabel>
-              <Input type="email" onChange={(e) => setEmail(e.target.value)} />
+              <Input
+                type="email"
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="example@gmail.com"
+              />
             </FormControl>
             <FormControl id="password" isRequired>
               <FormLabel>Password</FormLabel>
@@ -88,6 +106,7 @@ export default function Login() {
                 <Input
                   type={showPassword ? "text" : "password"}
                   onChange={(e) => setPassword(e.target.value)}
+                  placeholder="******"
                 />
                 <InputRightElement h={"full"}>
                   <Button
@@ -125,17 +144,20 @@ export default function Login() {
                   Signup
                 </Link>
               </Text>
-            </Stack>
-            <Stack align={"center"}>
-              {" "}
-              <Link href="/magicLink">
+              <br />
+              <Stack align={"center"}>
                 {" "}
-                <Text color={"blue.500"}>Forgot password?</Text>
-              </Link>
+                <Link href="/magicLink">
+                  {" "}
+                  <Text color={"blue.500"}>Forgot password?</Text>
+                </Link>
+              </Stack>
+              <br />
             </Stack>
           </Stack>
         </Box>
       </Stack>
+      <Box height={"30px"}></Box>
     </Flex>
   );
 }

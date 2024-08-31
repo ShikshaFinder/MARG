@@ -1,19 +1,13 @@
 "use client";
 
 import {
-  Heading,
-  Avatar,
   Box,
   Center,
   Image,
-  Flex,
-  Text,
-  Stack,
-  Button,
   useColorModeValue,
 } from "@chakra-ui/react";
 
-export default function SocialProfileWithImage() {
+export default function CardInfo({ address }:{address:string}) {
   return (
     <Center py={6}>
       <Box
@@ -33,10 +27,8 @@ export default function SocialProfileWithImage() {
           objectFit="cover"
           alt="#"
         />
-      
-
-       
-         
+        <b>Address :</b>
+        {address}
       </Box>
     </Center>
   );

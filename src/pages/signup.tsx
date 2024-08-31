@@ -47,7 +47,7 @@ export default function SignupCard() {
         password,
 
         options: {
-          emailRedirectTo: "localhost:3000/addsignal",
+          emailRedirectTo: "https://marg-two.vercel.app/addsignal",
           data: {
             firstName,
             lastName,

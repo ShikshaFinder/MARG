@@ -36,13 +36,13 @@ export const AuthContextProvider = ({ children }: any) => {
       const {
         data: { user },
       } = await supabase.auth.getUser();
-      if (user) {
-        // setUser(user);
+      // if (user) {
+      //   // setUser(user);
       
-        // if (data == null) {
-          router.push("/");
+      //   // if (data == null) {
+      //     router.push("/");
         
-      }
+      // }
     } catch (error) {
       console.log(error);
     } finally {
