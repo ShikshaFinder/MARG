@@ -15,7 +15,7 @@ const Index = () => {
   return (
     <>
       <Head>
-        <meta httpEquiv="refresh" content="10;https://www.vigyasa.live/" />
+        <meta httpEquiv="refresh" content="10;localhost:3000" />
       </Head>
       <Container maxW="5xl" p={{ base: 5, md: 10 }}>
         <Box

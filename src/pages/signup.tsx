@@ -47,7 +47,7 @@ export default function SignupCard() {
         password,
 
         options: {
-          emailRedirectTo: "https://www.vigyasa.live/onbording",
+          emailRedirectTo: "localhost:3000/addsignal",
           data: {
             firstName,
             lastName,

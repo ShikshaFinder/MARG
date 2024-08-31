@@ -4,9 +4,9 @@
     "display": "fullscreen",
     "scope": "/",
     "start_url": "/",
-    "name": "Vigyasa",
-    "short_name": "vigyasa",
-    "description": "Vigyasa Aims to spark the hidden curiosity in the students by providing them an early access to the world of science and technology. We believe that the best way to learn is by doing, and that is why we have created vigyasa A JEE/NEET foundation program for the students of class 6th to 10th",
+    "name": "MARG",
+    "short_name": "MARG",
+    "description": "MARG",
     "icons": [
         {
             "src": "/icon-192x192.png",
