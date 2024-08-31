@@ -4,7 +4,6 @@ import {
   ThemeConfig,
 } from "@chakra-ui/react";
 import { Inter } from "next/font/google";
-import Navbar from "../components/navbar";
 import { type AppProps } from "next/app";
 import { createPagesBrowserClient } from "@supabase/auth-helpers-nextjs";
 import { SessionContextProvider, Session } from "@supabase/auth-helpers-react";
@@ -17,8 +16,9 @@ import { Analytics } from "@vercel/analytics/react";
 require("dotenv").config();
 
 
+
 const inter = Inter({ subsets: ["latin"] });
-const supabaseUrl = "https://muxhijcpowgymwmneiqu.supabase.co";
+const supabaseUrl = "https://smtahwszfwziqyzwbnrg.supabase.co";
 const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_KEY ?? "";
 
 export default function App({
@@ -31,7 +31,7 @@ export default function App({
     createPagesBrowserClient({ supabaseUrl, supabaseKey })
   );
   const config: ThemeConfig = {
-    initialColorMode: "dark",
+    initialColorMode: "light",
     useSystemColorMode: true,
   };
 
@@ -49,13 +49,12 @@ export default function App({
         <Analytics />
 
         <Head>
-          <title>Vigyasa</title>
-          <meta property="og:title" content="Vigyasa" key="title" />
+          <title>MARG</title>
+          <meta property="og:title" content="MARG" key="title" />
         </Head>
         <ChakraProvider theme={theme}>
           <AuthContextProvider>
             <div className={inter.className}>
-              <Navbar />
             </div>
             <Component {...pageProps} />
           </AuthContextProvider>

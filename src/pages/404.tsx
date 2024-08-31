@@ -8,8 +8,7 @@ import {
 } from "@chakra-ui/react";
 // Here we have used react-icons package for the icon
 import Link from "next/link";
-import { AiOutlineTwitter, AiOutlineHome } from "react-icons/ai";
-import { BsInstagram } from "react-icons/bs";
+import { AiOutlineHome } from "react-icons/ai";
 import Head from "next/head";
 
 const Index = () => {
@@ -66,32 +65,10 @@ const Index = () => {
               maxW="600px"
               lineHeight={1.2}
             >
-              Get started with VIgyasa from home page 🫡
+              Get started from home page 🫡
             </chakra.h1>
 
-            <Stack direction={{ base: "column", md: "row" }} spacing={3}>
-              <Button
-                leftIcon={<BsInstagram />}
-                as={Link}
-                href="/"
-                rounded="md"
-                color="white"
-                bg="purple.500"
-                _hover={{ bg: "purple.600" }}
-              >
-                Instagram Community
-              </Button>
-              <Button
-                leftIcon={<AiOutlineTwitter />}
-                as={Link}
-                href={"/"}
-                rounded="md"
-                color="white"
-                bg="twitter.400"
-                _hover={{ bg: "twitter.500" }}
-              >
-                Follow us on Twitter
-              </Button>{" "}
+            <Stack direction="row">
               <Button
                 leftIcon={<AiOutlineHome />}
                 as={Link}

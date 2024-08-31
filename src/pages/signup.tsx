@@ -72,9 +72,6 @@ export default function SignupCard() {
           <Heading fontSize={"4xl"} textAlign={"center"}>
             Sign up
           </Heading>
-          <Text fontSize={"lg"} color={"gray.600"}>
-            to enjoy all of our cool features ✌️
-          </Text>
         </Stack>
         <Box
           rounded={"lg"}
@@ -155,19 +152,6 @@ export default function SignupCard() {
             </Stack>
           </Stack>
         </Box>
-        <Text>
-          By continuing you agree to our{" "}
-          <a
-            href="https://platform.shikshafinder.com/privacypolicy"
-            // style={{color: "blue"}}
-          >
-            Privacy Policy
-          </a>{" "}
-          &{" "}
-          <a href="https://platform.shikshafinder.com/termsofservice">
-            Terms of Service
-          </a>
-        </Text>
       </Stack>
     </Flex>
   );
