@@ -80,6 +80,7 @@ function addsignal() {
           <Button
             type="submit"
             disabled={!selectedState || !selectedDistrict || loading}
+            colorScheme="teal"
           >
             Get Info
           </Button>
