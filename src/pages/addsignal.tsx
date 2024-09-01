@@ -17,7 +17,7 @@ interface State {
 
 function addsignal() {
   const form = useForm();
-  const { register, handleSubmit, control, watch } = form;
+  const { register, handleSubmit, watch } = form;
   const [loading, setLoading] = useState(false);
 
   const selectedState = watch("state");

@@ -13,14 +13,13 @@ import {
   Card,
   Stack,
   Select,
-  Wrap,
+  Toast,
 } from "@chakra-ui/react";
 import { useForm, Controller } from "react-hook-form";
 import { useAuthContext } from "@/context";
 import { useRouter } from "next/router";
-import supabase from "../../supabase";
 import { state } from "@/components/state";
-import Nouser from "@/components/Nouser";
+import supabase from "../../../../supabase";
 
 interface State {
   districts: string[];
@@ -32,10 +31,11 @@ function Form() {
   const { user } = useAuthContext();
   const form = useForm();
   const router = useRouter();
+  const { id } = router.query;
 
   const { register, handleSubmit, control, watch } = form;
   const selectedState = watch("State");
-
+const [userData, setUserData] = useState<any[] | null>(null);
   function handleSubmitt() {
     toast({
       title: "Form submitted!",
@@ -47,7 +47,7 @@ function Form() {
 
     router.push("/addsignal");
   }
-  
+
   function Reload() {
     setTimeout(() => {
       router.reload();
@@ -57,10 +57,34 @@ function Form() {
   const [states, setStates] = useState<State[]>(state.states);
   const districts =
     states.find((state) => state.state === selectedState)?.districts || [];
+
+  async function getInfo() {
+    // setLoading(true);
+    try {
+      let { data: fetchedData, error } = await supabase
+        .from("information")
+        .select("address")
+        .match({id: id});
+
+      setUserData(fetchedData); // Append new data
+
+      if (error) throw error;
+    } catch (error) {
+      Toast({
+        title: "Error",
+        description: "Error fetching data",
+        status: "error",
+        duration: 9000,
+        isClosable: true,
+      });
+    //   setLoading(false);
+    }
+  } 
   const onSubmit = async (data: any) => {
     const { error } = await supabase
       .from("information")
-      .insert([{ ...data, user_id: user.id, email: user.email }]);
+      .update({ ...data })
+      .eq("id", id);
 
     if (error) {
       console.error("Error submitting Form:", error);
@@ -77,12 +101,11 @@ function Form() {
     }
   };
   //   if (!user.email) {
-    //     return <Nouser />;
-    //   }
-    
-    
-    return (
-      <>
+  //     return <Nouser />;
+  //   }
+
+  return (
+    <>
       <Stack spacing="4">
         <Card variant="outline">
           <CardBody>
@@ -138,7 +161,17 @@ function Form() {
                 name="camera1"
                 placeholder="Camera 1 Link"
               />
-            </FormControl><br />
+            </FormControl>
+            <br />{" "}
+            <FormControl isRequired>
+              <FormLabel>camera2</FormLabel>
+              <Input
+                {...register("camera2", { required: true })}
+                name="camera2"
+                placeholder="camera2 Link"
+              />
+            </FormControl>
+            <br />{" "}
             <FormControl isRequired>
               <FormLabel>camera2 Link</FormLabel>
               <Input
