@@ -59,7 +59,7 @@ export default function Login() {
         router.reload();
       }, 1000);
 
-      router.push("/addsignal");
+      router.push("/setup_RTSP");
     } catch (error) {
       console.log(error);
     }
