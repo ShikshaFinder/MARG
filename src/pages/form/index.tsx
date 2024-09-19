@@ -14,13 +14,14 @@ import {
   Stack,
   Select,
   Wrap,
+  Toast,
 } from "@chakra-ui/react";
-import { useForm, Controller } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { useAuthContext } from "@/context";
 import { useRouter } from "next/router";
-import supabase from "../../supabase";
 import { state } from "@/components/state";
-import Nouser from "@/components/Nouser";
+import supabase from "../../../supabase";
+// import Nouser from "@/components/Nouser";
 
 interface State {
   districts: string[];
@@ -33,8 +34,26 @@ function Form() {
   const form = useForm();
   const router = useRouter();
 
-  const { register, handleSubmit, control, watch } = form;
+  const { register, handleSubmit, watch } = form;
   const selectedState = watch("State");
+
+    function extractVideoId(url: string, data: any) {
+      const prefix = "https://youtu.be/";
+      if (url.startsWith(prefix)) {
+        const idAndParams = url.slice(prefix.length);
+        const [videoId] = idAndParams.split("?");
+        return videoId;
+      } else {
+        Toast({
+          title: "Error",
+          description: "Invalid URL",
+          status: "error",
+          duration: 3000,
+          isClosable: true,
+        }); // Add toast message
+      }
+    }
+    // extractVideoId(data.camera1);
 
   function handleSubmitt() {
     toast({
@@ -45,22 +64,23 @@ function Form() {
       isClosable: true,
     });
 
-    router.push("/addsignal");
+    router.push("/form/1167");
   }
-  
+
   function Reload() {
     setTimeout(() => {
       router.reload();
-    }, 3000);
+    }, 2000);
   }
 
   const [states, setStates] = useState<State[]>(state.states);
   const districts =
     states.find((state) => state.state === selectedState)?.districts || [];
   const onSubmit = async (data: any) => {
+    
     const { error } = await supabase
       .from("information")
-      .insert([{ ...data, user_id: user.id, email: user.email }]);
+      .insert([{ ...data, user_id: user.id }]);
 
     if (error) {
       console.error("Error submitting Form:", error);
@@ -77,12 +97,11 @@ function Form() {
     }
   };
   //   if (!user.email) {
-    //     return <Nouser />;
-    //   }
-    
-    
-    return (
-      <>
+  //     return <Nouser />;
+  //   }
+
+  return (
+    <>
       <Stack spacing="4">
         <Card variant="outline">
           <CardBody>
@@ -138,7 +157,8 @@ function Form() {
                 name="camera1"
                 placeholder="Camera 1 Link"
               />
-            </FormControl><br />
+            </FormControl>
+            <br />
             <FormControl isRequired>
               <FormLabel>camera2 Link</FormLabel>
               <Input

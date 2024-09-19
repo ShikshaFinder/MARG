@@ -7,7 +7,7 @@ import supabase from "../../supabase";
 import { Toast, FormControl, FormLabel, Select,Button } from "@chakra-ui/react";
 import { useForm, Controller } from "react-hook-form";
 import { state } from "@/components/state";
-  import { FieldValues } from "react-hook-form";
+import { FieldValues } from "react-hook-form";
 
 
 interface State {

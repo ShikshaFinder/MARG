@@ -62,7 +62,7 @@ export default function gridListWithCTA() {
         gap={{ base: "8", sm: "12", md: "16" }}
       >
         <Feature
-          heading={"abc"}
+          heading={""}
           text={"Short text describing one of you features/service"}
         />
         <Feature

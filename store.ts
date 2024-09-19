@@ -4,8 +4,10 @@ import {create} from 'zustand'
 
 
 type Store = {
-  selectedIcon: string | null
-  setSelectedIcon: (iconName: string | null) => void
+  id: string | null
+  setId: (Id: string | null) => void
+  Password: string | null 
+  setPassword: (Password: string | null) => void
 }
 type User = {
   user: any | null
@@ -13,14 +15,13 @@ type User = {
 }
 
 export const useStore = create<Store>((set) => ({
-  selectedIcon: null,
-  setSelectedIcon: (iconName) => set(() => ({ selectedIcon: iconName })),
+  id: null,
+  setId: (Id) => set(() => ({ id : Id })),
+  Password: null,
+  setPassword: (Password) => set(() => ({ Password : Password })),
 }))
 
 export const useUser = create<User>((set) => ({
   user: null,
   setUser: (user: string | null) => set(() => ({ user })),
 }))
-
-//import Shikshacoin balance updating shiksha coin balance
-// import { useStore } from "@/store";

@@ -10,7 +10,6 @@ import { SessionContextProvider, Session } from "@supabase/auth-helpers-react";
 import { useState } from "react";
 import AuthContextProvider from "@/context";
 import Head from "next/head";
-import { Analytics } from "@vercel/analytics/react";
 // const { BlobServiceClient } = require("@azure/storage-blob");
 // const { v1: uuidv1 } = require("uuid");
 require("dotenv").config();
@@ -46,7 +45,7 @@ export default function App({
         supabaseClient={supabaseClient}
         initialSession={pageProps.initialSession}
       >
-        <Analytics />
+        {/* <Analytics /> */}
 
         <Head>
           <title>MARG</title>

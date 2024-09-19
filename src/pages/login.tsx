@@ -14,10 +14,7 @@ import {
   Heading,
   Text,
   useColorModeValue,
-  Link,
-  Alert,
-  AlertIcon,
-  Center,
+  Link
 } from "@chakra-ui/react";
 import { useState } from "react";
 import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
