@@ -15,7 +15,7 @@ const StickyComponent = () => {
 
       // Simulate lane and wait time update
       setClientData((prevData) => ({
-        waitTime: Math.floor(Math.random() * 15) + 5, // Random next wait time between 5 and 20 seconds
+        waitTime: Math.floor(Math.random() * 100) + 5, // Random next wait time between 5 and 20 seconds
         lane: (prevData.lane % 4) + 1, // Cycle through lanes 1 to 4
       }));
 
