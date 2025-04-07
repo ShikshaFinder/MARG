@@ -10,6 +10,8 @@ import { SessionContextProvider, Session } from "@supabase/auth-helpers-react";
 import { useState } from "react";
 import AuthContextProvider from "@/context";
 import Head from "next/head";
+import "leaflet/dist/leaflet.css";
+
 // const { BlobServiceClient } = require("@azure/storage-blob");
 // const { v1: uuidv1 } = require("uuid");
 require("dotenv").config();

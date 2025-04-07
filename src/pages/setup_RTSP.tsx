@@ -30,7 +30,7 @@ import {
   useColorModeValue,
 } from "@chakra-ui/react";
 // import Nouser from "@/components/Nouser";
-
+import Map from "./map";
 interface State {
   districts: string[];
   state: string;
@@ -56,7 +56,7 @@ function Form() {
       isClosable: true,
     });
 
-    router.push("/addsignal");
+    router.push("/map");
   }
 
   function Reload() {
@@ -83,9 +83,10 @@ function Form() {
       });
     } else {
       handleSubmitt();
-      Reload();
+      router.push("/map");  // ✅ Redirecting to /map instead
     }
   };
+
   //   if (!user.email) {
   //     return <Nouser />;
   //   }
