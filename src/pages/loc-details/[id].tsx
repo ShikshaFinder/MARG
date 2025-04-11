@@ -8,7 +8,8 @@ import {
     Spinner,
     VStack,
     useColorModeValue,
-} from "@chakra-ui/react";
+} from "@chakra-ui/react"
+import Video from "../../components/videoshowing";
 
 const LocationDetails = () => {
     const router = useRouter();
@@ -97,6 +98,14 @@ const LocationDetails = () => {
                 ) : (
                     !loading && <Text color="gray.500">No prediction data available.</Text>
                 )}
+            </Box>
+
+            {/* Video component */}
+            <Box w="full" maxW="1200px" mt={4}>
+                <Heading size="md" mb={4} color="green.400" textAlign="center">
+                    Live Traffic Cameras
+                </Heading>
+                <Video />
             </Box>
         </Box>
     );

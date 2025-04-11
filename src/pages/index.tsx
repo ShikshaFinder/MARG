@@ -3,7 +3,7 @@ import { NextSeo } from "next-seo";
 import { useEffect, useState } from "react";
 import Info from "../components/info";
 import Link from "next/link";
-
+import { useRouter } from "next/router";
 import {
   Button,
   Flex,
@@ -12,25 +12,24 @@ import {
   Stack,
   Text,
   useBreakpointValue,
+  Box,
 } from "@chakra-ui/react";
 import dynamic from "next/dynamic";
 
 export default function Home() {
-  // const { user } = useAuthContext();
-  const LottieAnimation = dynamic(
-    () => import("../components/LottieAnimation"),
-    {
-      ssr: false, // Disable server-side rendering for this component
-    }
-  );
+  const router = useRouter();
+
+  const LottieAnimation = dynamic(() => import("../components/LottieAnimation"), {
+    ssr: false,
+  });
+
   const [showAnimation, setShowAnimation] = useState(true);
 
   useEffect(() => {
     const timer = setTimeout(() => {
       setShowAnimation(false);
     }, 3000);
-
-    return () => clearTimeout(timer); // Cleanup the timer on component unmount
+    return () => clearTimeout(timer);
   }, []);
 
   return (
@@ -56,6 +55,14 @@ export default function Home() {
         <meta name="description" content=" " />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </Head>
+
+      {/* Admin Button */}
+      <Flex justify="flex-end" p={4} bg="gray.50">
+        <Button colorScheme="blue" onClick={() => router.push("/login")}>
+          Admin Panel
+        </Button>
+      </Flex>
+
       {showAnimation && (
         <div style={{ height: "500px" }} id="lottie-animation">
           <LottieAnimation path="/Animation.json" />
@@ -73,7 +80,6 @@ export default function Home() {
                     _after={{
                       content: "''",
                       width: "full",
-                      // height: useBreakpointValue({ base: "20%", md: "30%" }),
                       position: "absolute",
                       bottom: 1,
                       left: 0,
@@ -89,11 +95,11 @@ export default function Home() {
                   </Text>{" "}
                 </Heading>
                 <Text fontSize={{ base: "md", lg: "lg" }} color={"gray.500"}>
-                  We use object detection to manage traffic signals,to reduce
+                  We use object detection to manage traffic signals, to reduce
                   the traffic congestion and to save the time of the people.
                 </Text>
                 <Stack direction={{ base: "column", md: "row" }} spacing={4}>
-                  <Link href="/signup">
+                  <Link href="/map">
                     <Button
                       rounded={"full"}
                       bg={"blue.400"}
@@ -105,7 +111,6 @@ export default function Home() {
                       Get Started
                     </Button>
                   </Link>
-                  {/* <Button rounded={"full"}>How It Works</Button> */}
                 </Stack>
               </Stack>
             </Flex>

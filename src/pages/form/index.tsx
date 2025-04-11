@@ -1,27 +1,33 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   FormControl,
   FormLabel,
   Input,
-  RadioGroup,
-  HStack,
-  Radio,
   Heading,
   Button,
   useToast,
-  CardBody,
+  Box,
+  Container,
+  SimpleGrid,
+  Divider,
+  Text,
   Card,
+  CardHeader,
+  CardBody,
+  CardFooter,
+  InputGroup,
+  InputLeftElement,
+  Icon,
+  useColorModeValue,
   Stack,
   Select,
-  Wrap,
-  Toast,
 } from "@chakra-ui/react";
+import { FaMapMarkerAlt, FaVideo, FaRuler, FaMapPin } from "react-icons/fa";
 import { useForm } from "react-hook-form";
 import { useAuthContext } from "@/context";
 import { useRouter } from "next/router";
 import { state } from "@/components/state";
 import supabase from "../../../supabase";
-// import Nouser from "@/components/Nouser";
 
 interface State {
   districts: string[];
@@ -33,179 +39,276 @@ function Form() {
   const { user } = useAuthContext();
   const form = useForm();
   const router = useRouter();
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const { register, handleSubmit, watch } = form;
+  const { register, handleSubmit, watch, formState: { errors } } = form;
   const selectedState = watch("State");
 
-    function extractVideoId(url: string, data: any) {
-      const prefix = "https://youtu.be/";
-      if (url.startsWith(prefix)) {
-        const idAndParams = url.slice(prefix.length);
-        const [videoId] = idAndParams.split("?");
-        return videoId;
-      } else {
-        Toast({
+  const [coords, setCoords] = useState<{ lat: number; lng: number } | null>(null);
+  const [states] = useState<State[]>(state.states);
+
+  const bgColor = useColorModeValue("white", "gray.800");
+  const borderColor = useColorModeValue("gray.200", "gray.700");
+
+  useEffect(() => {
+    const lat = localStorage.getItem("clickedLat");
+    const lng = localStorage.getItem("clickedLng");
+    if (lat && lng) {
+      setCoords({ lat: parseFloat(lat), lng: parseFloat(lng) });
+    }
+  }, []);
+
+  const districts = states.find((state) => state.state === selectedState)?.districts || [];
+
+  const onSubmit = async (data: any) => {
+    setIsSubmitting(true);
+    const payload = {
+      ...data,
+      user_id: user.id,
+      latitude: coords?.lat,
+      longitude: coords?.lng,
+    };
+
+    try {
+      const { error } = await supabase.from("information").insert([payload]);
+
+      if (error) {
+        toast({
           title: "Error",
-          description: "Invalid URL",
+          description: error.message,
           status: "error",
           duration: 3000,
           isClosable: true,
-        }); // Add toast message
+        });
+      } else {
+        toast({
+          title: "Success!",
+          description: "Traffic signal location added successfully",
+          status: "success",
+          duration: 3000,
+          isClosable: true,
+        });
+        setTimeout(() => {
+          router.push("/map");
+        }, 2000);
       }
-    }
-    // extractVideoId(data.camera1);
-
-  function handleSubmitt() {
-    toast({
-      title: "Form submitted!",
-      description: "Thank you for your Form",
-      status: "success",
-      duration: 3000,
-      isClosable: true,
-    });
-
-    router.push("/form/1167");
-  }
-
-  function Reload() {
-    setTimeout(() => {
-      router.reload();
-    }, 2000);
-  }
-
-  const [states, setStates] = useState<State[]>(state.states);
-  const districts =
-    states.find((state) => state.state === selectedState)?.districts || [];
-  const onSubmit = async (data: any) => {
-    
-    const { error } = await supabase
-      .from("information")
-      .insert([{ ...data, user_id: user.id }]);
-
-    if (error) {
-      console.error("Error submitting Form:", error);
+    } catch (err) {
       toast({
         title: "Error",
-        description: error.message,
+        description: "An unexpected error occurred",
         status: "error",
         duration: 3000,
         isClosable: true,
       });
-    } else {
-      handleSubmitt();
-      Reload();
+    } finally {
+      setIsSubmitting(false);
     }
   };
-  //   if (!user.email) {
-  //     return <Nouser />;
-  //   }
 
   return (
-    <>
-      <Stack spacing="4">
-        <Card variant="outline">
-          <CardBody>
-            <Heading size="md" fontSize="26px">
-              Please Add Address in MARG portal
-            </Heading>
-            <br />
-            <FormControl isRequired>
-              <FormLabel>Address of traffic signal</FormLabel>
-              <Input
-                {...register("address", {
-                  required: true,
-                })}
-                name="address"
-                placeholder="address"
-              />
-            </FormControl>{" "}
-            <br />
-            <FormControl isRequired>
-              <FormLabel>State</FormLabel>
-              <Select
-                {...register("State", { required: true })}
-                name="State"
-                placeholder="Select State"
+    <Container maxW="container.lg" py={8}>
+      <Card
+        variant="outline"
+        borderWidth="1px"
+        borderRadius="lg"
+        overflow="hidden"
+        boxShadow="lg"
+        bg={bgColor}
+        borderColor={borderColor}
+      >
+        <CardHeader pb={0}>
+          <Heading size="lg" color="teal.600" mb={2}>
+            Add New Traffic Signal Location
+          </Heading>
+          <Text color="gray.500" fontSize="md">
+            Please fill in the details to register a new traffic signal in the MARG portal
+          </Text>
+          <Divider mt={4} />
+        </CardHeader>
+
+        <CardBody>
+          <form onSubmit={handleSubmit(onSubmit)}>
+            <Stack spacing={6}>
+              {/* Location Information Section */}
+              <Box>
+                <Heading size="sm" mb={4} color="teal.500">
+                  Location Details
+                </Heading>
+
+                <FormControl isRequired mb={4}>
+                  <FormLabel fontWeight="medium">Address of traffic signal</FormLabel>
+                  <InputGroup>
+                    <InputLeftElement pointerEvents="none">
+                      <Icon as={FaMapPin} color="gray.400" />
+                    </InputLeftElement>
+                    <Input
+                      {...register("address", { required: true })}
+                      placeholder="Enter full address"
+                      pl="40px"
+                    />
+                  </InputGroup>
+                </FormControl>
+
+                <SimpleGrid columns={{ base: 1, md: 2 }} spacing={4}>
+                  <FormControl isRequired>
+                    <FormLabel fontWeight="medium">State</FormLabel>
+                    <Select {...register("State", { required: true })} placeholder="Select State">
+                      {states.map((stateObj) => (
+                        <option key={stateObj.state} value={stateObj.state}>
+                          {stateObj.state}
+                        </option>
+                      ))}
+                    </Select>
+                  </FormControl>
+
+                  <FormControl isRequired>
+                    <FormLabel fontWeight="medium">District/City</FormLabel>
+                    <Select
+                      {...register("city", { required: true })}
+                      placeholder="Select District"
+                      isDisabled={!selectedState}
+                    >
+                      {districts.map((district) => (
+                        <option key={district} value={district}>
+                          {district}
+                        </option>
+                      ))}
+                    </Select>
+                  </FormControl>
+                </SimpleGrid>
+              </Box>
+
+              <Divider />
+
+              {/* Camera Section */}
+              <Box>
+                <Heading size="sm" mb={4} color="teal.500">
+                  Camera Information
+                </Heading>
+
+                <SimpleGrid columns={{ base: 1, md: 2 }} spacing={4}>
+                  <FormControl isRequired>
+                    <FormLabel fontWeight="medium">Camera 1 Link</FormLabel>
+                    <InputGroup>
+                      <InputLeftElement pointerEvents="none">
+                        <Icon as={FaVideo} color="gray.400" />
+                      </InputLeftElement>
+                      <Input
+                        {...register("camera1", { required: true })}
+                        placeholder="YouTube or stream link"
+                        pl="40px"
+                      />
+                    </InputGroup>
+                  </FormControl>
+
+                  <FormControl isRequired>
+                    <FormLabel fontWeight="medium">Camera 2 Link</FormLabel>
+                    <InputGroup>
+                      <InputLeftElement pointerEvents="none">
+                        <Icon as={FaVideo} color="gray.400" />
+                      </InputLeftElement>
+                      <Input
+                        {...register("camera2", { required: true })}
+                        placeholder="YouTube or stream link"
+                        pl="40px"
+                      />
+                    </InputGroup>
+                  </FormControl>
+
+                  <FormControl isRequired>
+                    <FormLabel fontWeight="medium">Camera 3 Link</FormLabel>
+                    <InputGroup>
+                      <InputLeftElement pointerEvents="none">
+                        <Icon as={FaVideo} color="gray.400" />
+                      </InputLeftElement>
+                      <Input
+                        {...register("camera3", { required: true })}
+                        placeholder="YouTube or stream link"
+                        pl="40px"
+                      />
+                    </InputGroup>
+                  </FormControl>
+
+                  <FormControl isRequired>
+                    <FormLabel fontWeight="medium">Camera 4 Link</FormLabel>
+                    <InputGroup>
+                      <InputLeftElement pointerEvents="none">
+                        <Icon as={FaVideo} color="gray.400" />
+                      </InputLeftElement>
+                      <Input
+                        {...register("camera4", { required: true })}
+                        placeholder="YouTube or stream link"
+                        pl="40px"
+                      />
+                    </InputGroup>
+                  </FormControl>
+                </SimpleGrid>
+              </Box>
+
+              <Divider />
+
+              {/* Additional Details */}
+              <Box>
+                <Heading size="sm" mb={4} color="teal.500">
+                  Additional Details
+                </Heading>
+
+                <SimpleGrid columns={{ base: 1, md: 3 }} spacing={4}>
+                  <FormControl isRequired>
+                    <FormLabel fontWeight="medium">Width</FormLabel>
+                    <InputGroup>
+                      <InputLeftElement pointerEvents="none">
+                        <Icon as={FaRuler} color="gray.400" />
+                      </InputLeftElement>
+                      <Input
+                        {...register("width", { required: true })}
+                        placeholder="Width in meters"
+                        pl="40px"
+                        type="number"
+                      />
+                    </InputGroup>
+                  </FormControl>
+
+                  <FormControl isReadOnly>
+                    <FormLabel fontWeight="medium">Latitude</FormLabel>
+                    <InputGroup>
+                      <InputLeftElement pointerEvents="none">
+                        <Icon as={FaMapMarkerAlt} color="gray.400" />
+                      </InputLeftElement>
+                      <Input value={coords?.lat || ""} readOnly pl="40px" />
+                    </InputGroup>
+                  </FormControl>
+
+                  <FormControl isReadOnly>
+                    <FormLabel fontWeight="medium">Longitude</FormLabel>
+                    <InputGroup>
+                      <InputLeftElement pointerEvents="none">
+                        <Icon as={FaMapMarkerAlt} color="gray.400" />
+                      </InputLeftElement>
+                      <Input value={coords?.lng || ""} readOnly pl="40px" />
+                    </InputGroup>
+                  </FormControl>
+                </SimpleGrid>
+              </Box>
+            </Stack>
+
+            <Box mt={8} textAlign="right">
+              <Button
+                colorScheme="teal"
+                size="lg"
+                type="submit"
+                isLoading={isSubmitting}
+                loadingText="Submitting"
+                px={8}
+                shadow="md"
               >
-                {states.map((stateObj) => (
-                  <option key={stateObj.state} value={stateObj.state}>
-                    {stateObj.state}
-                  </option>
-                ))}
-              </Select>
-            </FormControl>
-            <br />
-            <FormControl isRequired>
-              <FormLabel>District/city</FormLabel>
-              <Select
-                {...register("city", { required: true })}
-                name="city"
-                placeholder="Select District"
-              >
-                {districts.map((district) => (
-                  <option key={district} value={district}>
-                    {district}
-                  </option>
-                ))}
-              </Select>
-            </FormControl>{" "}
-            <br />
-            <FormControl isRequired>
-              <FormLabel> camera1 Link</FormLabel>
-              <Input
-                {...register("camera1", { required: true })}
-                name="camera1"
-                placeholder="Camera 1 Link"
-              />
-            </FormControl>
-            <br />
-            <FormControl isRequired>
-              <FormLabel>camera2 Link</FormLabel>
-              <Input
-                {...register("camera2", { required: true })}
-                name="camera2"
-                placeholder="camera2 Link"
-              />
-            </FormControl>
-            <br />{" "}
-            <FormControl isRequired>
-              <FormLabel>camera3 Link</FormLabel>
-              <Input
-                {...register("camera3", { required: true })}
-                name="camera3"
-                placeholder="camera3 Link"
-              />
-            </FormControl>
-            <br />
-            <FormControl isRequired>
-              <FormLabel>camera4 Link</FormLabel>
-              <Input
-                {...register("camera4", { required: true })}
-                name="camera4"
-                placeholder="camera4 Link"
-              />
-            </FormControl>
-            <br />
-            <FormControl isRequired>
-              <FormLabel>Width</FormLabel>
-              <Input
-                {...register("width", { required: true })}
-                name="width"
-                placeholder="width"
-              />
-            </FormControl>
-            <br />
-            <Button
-              colorScheme="teal"
-              size="md"
-              onClick={handleSubmit(onSubmit)}
-            >
-              Submit
-            </Button>
-          </CardBody>
-        </Card>
-      </Stack>
-    </>
+                Add Traffic Signal
+              </Button>
+            </Box>
+          </form>
+        </CardBody>
+      </Card>
+    </Container>
   );
 }
 

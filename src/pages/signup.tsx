@@ -141,6 +141,7 @@ export default function SignupCard() {
               >
                 Sign up
               </Button>
+
             </Stack>
             <Stack pt={6}>
               <Text align={"center"}>
